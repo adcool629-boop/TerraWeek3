@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://nletk73n3jcy" path="res://Scenes/fishing_shop.tscn" id="10_uuxwk"]
 [ext_resource type="PackedScene" uid="uid://c6ueol4ki5jm4" path="res://Scenes/inventory.tscn" id="11_3sc2b"]
 [ext_resource type="PackedScene" uid="uid://cie1s6p2wish8" path="res://Scenes/potion_shop.tscn" id="12_cfck2"]
+[ext_resource type="PackedScene" uid="uid://eqsn80qkcdqn" path="res://Scenes/ni_dialogue.tscn" id="13_xvtj4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t758c"]
 atlas = ExtResource("1_ul2td")
@@ -655,6 +656,13 @@ target_position = Vector2(0, 25)
 collision_mask = 8
 
 [node name="PotionShop" parent="." unique_id=873678996 instance=ExtResource("12_cfck2")]
+
+[node name="NPCDetector" type="RayCast2D" parent="." unique_id=743409837]
+target_position = Vector2(0, 25)
+collision_mask = 16
+collide_with_areas = true
+
+[node name="NI_Dialogue" parent="." unique_id=946351177 instance=ExtResource("13_xvtj4")]
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

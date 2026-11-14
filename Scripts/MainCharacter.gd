@@ -7,6 +7,9 @@ var total_coins: int = 100000
 var trash: int = 100
 var store_num: int = 0
 var store: int = 0
+var bridge1
+var RemoveableWater1
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

@@ -60,6 +60,7 @@ func process_movement() -> void:
 		fishing_detector.target_position = direction * 32.0
 		$FShopDetector.target_position = direction * 32.0
 		$PShopDetector.target_position = direction * 32.0
+		$NPCDetector.target_position = direction * 32.0
 	else:
 		velocity = Vector2.ZERO
 func process_animation() -> void:
@@ -111,6 +112,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			shopping = true
 	elif not $PShopDetector.is_colliding():
 			$ShopHelp.text = ("")
+	if $NPCDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+	if $NPCDetector.is_colliding() and event.is_action_pressed('Interact'):
+		$NI_Dialogue.set_process(true)
+		$NI_Dialogue.set_process_input(true)
+		$NI_Dialogue.visible = true
+		shopping = true
+		get_child(19).text_one()
 	if inv_closed:
 		if event.is_action_pressed('OpenInventory'):
 			get_child(15).openinv()
