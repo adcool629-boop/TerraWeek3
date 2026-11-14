@@ -1,0 +1,186 @@
+[gd_scene format=3 uid="uid://cie1s6p2wish8"]
+
+[ext_resource type="Script" uid="uid://scrg7cc55vlb" path="res://Scripts/potion_shop.gd" id="1_uyf3o"]
+[ext_resource type="Texture2D" uid="uid://cajaadqcd0knk" path="res://assets/All Potions/Green potions/poç╞o verde.png" id="2_caquo"]
+[ext_resource type="Texture2D" uid="uid://bea2o3h7xg8ek" path="res://assets/fishing_free/global_free_recoloured.png" id="3_62vsi"]
+
+[node name="PotionShop" type="CanvasLayer" unique_id=873678996]
+scale = Vector2(2.3, 2.3)
+transform = Transform2D(2.3, 0, 0, 2.3, 0, 0)
+script = ExtResource("1_uyf3o")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=773767695]
+offset_left = 109.565
+offset_top = 18.652
+offset_right = 356.565
+offset_bottom = 281.652
+color = Color(0.16862746, 0.1254902, 0.047058824, 1)
+
+[node name="Title" type="Label" parent="." unique_id=712069243]
+offset_left = 185.65218
+offset_top = 18.492754
+offset_right = 279.65216
+offset_bottom = 40.826088
+text = "Potion Shop"
+
+[node name="TrashAmount" type="Label" parent="." unique_id=1060569491]
+offset_left = 114.347824
+offset_top = 36.956524
+offset_right = 170.0
+offset_bottom = 53.478264
+theme_override_font_sizes/font_size = 6
+text = "Trash Amount: 000"
+autowrap_mode = 3
+
+[node name="LuckPotionsTitle" type="Label" parent="." unique_id=1923721410]
+offset_left = 201.73914
+offset_top = 36.95652
+offset_right = 263.73914
+offset_bottom = 50.914856
+theme_override_font_sizes/font_size = 10
+text = "Luck Potions"
+
+[node name="Luck PotionS" type="Sprite2D" parent="." unique_id=2134242374]
+position = Vector2(158.69566, 70.434784)
+texture = ExtResource("2_caquo")
+region_enabled = true
+region_rect = Rect2(0, 0, 16.30336, 15.964613)
+
+[node name="SLPotion" type="Button" parent="Luck PotionS" unique_id=774840438]
+offset_left = -18.260887
+offset_top = 9.130436
+offset_right = 18.69564
+offset_bottom = 24.130436
+theme_override_font_sizes/font_size = 5
+text = "1 trash"
+
+[node name="Description" type="Label" parent="Luck PotionS" unique_id=2118088432]
+offset_left = -42.17393
+offset_top = 26.086958
+offset_right = 30.869556
+offset_bottom = 53.02446
+theme_override_font_sizes/font_size = 5
+text = "Increases chance of getting rarer and more valuable fish for the next 2 casts"
+autowrap_mode = 2
+
+[node name="Title" type="Label" parent="Luck PotionS" unique_id=1046156726]
+offset_left = -26.08697
+offset_top = -18.26087
+offset_right = 25.91303
+offset_bottom = -9.88587
+theme_override_font_sizes/font_size = 6
+text = "Small Luck Potion"
+
+[node name="Luck PotionM" type="Sprite2D" parent="." unique_id=1657291995]
+position = Vector2(227.82608, 68.260864)
+scale = Vector2(1.288043, 1.3115946)
+texture = ExtResource("2_caquo")
+region_enabled = true
+region_rect = Rect2(0, 0, 16.30336, 15.964613)
+
+[node name="Title" type="Label" parent="Luck PotionM" unique_id=672497429]
+offset_left = -24.97891
+offset_top = -15.248614
+offset_right = 25.02109
+offset_bottom = -8.269447
+theme_override_font_sizes/font_size = 5
+text = "Medium Luck Potion"
+
+[node name="Description" type="Label" parent="Luck PotionM" unique_id=674388380]
+offset_left = -26.329105
+offset_top = 21.878454
+offset_right = 28.016918
+offset_bottom = 44.628456
+theme_override_font_sizes/font_size = 4
+text = "Increases chance of getting rarer and more valuable fish for the next 6 casts"
+autowrap_mode = 2
+
+[node name="MLPotion" type="Button" parent="Luck PotionM" unique_id=1822711560]
+offset_left = -17.215197
+offset_top = 7.9557986
+offset_right = 16.877653
+offset_bottom = 21.9558
+theme_override_font_sizes/font_size = 4
+text = "3 trash"
+
+[node name="Luck PotionL" type="Sprite2D" parent="." unique_id=1843158788]
+position = Vector2(300.43478, 62.6087)
+scale = Vector2(1.7228279, 1.6014496)
+texture = ExtResource("2_caquo")
+region_enabled = true
+region_rect = Rect2(0, 0, 16.30336, 15.964613)
+
+[node name="Title" type="Label" parent="Luck PotionL" unique_id=740621730]
+offset_left = -16.908478
+offset_top = -14.66063
+offset_right = 18.091522
+offset_bottom = -9.077296
+theme_override_font_sizes/font_size = 4
+text = "Large Luck Potion"
+
+[node name="Description" type="Label" parent="Luck PotionL" unique_id=683595877]
+offset_left = -15.14191
+offset_top = 21.719454
+offset_right = 26.498425
+offset_bottom = 40.28195
+theme_override_font_sizes/font_size = 3
+text = "Increases chance of getting rarer and more valuable fish for the next 20 casts"
+autowrap_mode = 2
+
+[node name="LLPotion" type="Button" parent="Luck PotionL" unique_id=1489414682]
+offset_left = -10.599342
+offset_top = 9.230763
+offset_right = 11.400658
+offset_bottom = 22.230762
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.64
+theme_override_font_sizes/font_size = 3
+text = "10 trash"
+
+[node name="Border" type="ColorRect" parent="." unique_id=1290171884]
+offset_left = 109.56522
+offset_top = 126.95652
+offset_right = 356.56522
+offset_bottom = 128.95651
+
+[node name="TrashIcon" type="Sprite2D" parent="." unique_id=304346715]
+position = Vector2(153.04346, 41.30435)
+scale = Vector2(0.826087, 0.8726708)
+texture = ExtResource("3_62vsi")
+region_enabled = true
+region_rect = Rect2(47.629757, 34.275627, 16.370243, 14.838348)
+
+[node name="Note" type="Label" parent="." unique_id=239343436]
+offset_left = 110.0
+offset_top = 273.91306
+offset_right = 165.0
+offset_bottom = 282.28806
+theme_override_font_sizes/font_size = 6
+text = "*Potions Can Stack"
+
+[node name="BuyMessage" type="Label" parent="." unique_id=1304733775]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BuyTimer" type="Timer" parent="BuyMessage" unique_id=1213577794]
+
+[node name="CloseButton" type="Button" parent="." unique_id=1755932051]
+offset_left = 335.6522
+offset_top = 19.130434
+offset_right = 356.52176
+offset_bottom = 44.130432
+theme_override_font_sizes/font_size = 12
+text = "X"
+
+[node name="ComingSoon" type="Label" parent="." unique_id=1278859476]
+offset_left = 123.04348
+offset_top = 138.69566
+offset_right = 335.0435
+offset_bottom = 161.69566
+text = "New Potions Coming Soon..."
+
+[connection signal="pressed" from="Luck PotionS/SLPotion" to="." method="_on_sl_potion_pressed"]
+[connection signal="pressed" from="Luck PotionM/MLPotion" to="." method="_on_ml_potion_pressed"]
+[connection signal="pressed" from="Luck PotionL/LLPotion" to="." method="_on_ll_potion_pressed"]
+[connection signal="timeout" from="BuyMessage/BuyTimer" to="." method="_on_buy_timer_timeout"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

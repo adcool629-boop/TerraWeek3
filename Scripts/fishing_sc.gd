@@ -55,3 +55,4 @@ func _on_timer_timeout() -> void:
 	pin.position.y = 400.0
 	pin_position = 400
 	pin_direction = -1.0
+	$Label.text = ''

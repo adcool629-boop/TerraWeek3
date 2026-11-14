@@ -4,7 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bkhnhtpgja5f1" path="res://Scenes/cod.tscn" id="1_twvwo"]
 [ext_resource type="PackedScene" uid="uid://chjgkubdfca40" path="res://Scenes/clownfish.tscn" id="3_urn1o"]
 [ext_resource type="PackedScene" uid="uid://cdwlsl11sut17" path="res://Scenes/goldfish.tscn" id="4_jdl8t"]
-[ext_resource type="FontFile" uid="uid://b366gcebddcsv" path="res://assets/Fonts/RodeliaRegular-XG7w2.ttf" id="4_urn1o"]
+[ext_resource type="PackedScene" uid="uid://cibsphr8mdrv7" path="res://Scenes/skullfish.tscn" id="5_jdl8t"]
+[ext_resource type="PackedScene" uid="uid://dbnrj2vbh381t" path="res://Scenes/bluegill.tscn" id="6_21uvr"]
+[ext_resource type="PackedScene" uid="uid://cohlyyyrxhqnt" path="res://Scenes/trash.tscn" id="7_csmc7"]
+[ext_resource type="PackedScene" uid="uid://di34j6ej4dri5" path="res://Scenes/fantasia.tscn" id="8_lkfiq"]
+[ext_resource type="PackedScene" uid="uid://hvxbr3iuifnt" path="res://Scenes/squid.tscn" id="9_fl3e6"]
 
 [node name="Fish" type="Node2D" unique_id=899732550]
 script = ExtResource("1_4fqy1")
@@ -17,22 +21,29 @@ script = ExtResource("1_4fqy1")
 
 [node name="Label" type="Label" parent="." unique_id=742854623]
 offset_left = -44.0
-offset_top = -75.0
-offset_right = 44.0
-offset_bottom = -44.0
-theme_override_fonts/font = ExtResource("4_urn1o")
+offset_top = 58.0
+offset_right = 45.0
+offset_bottom = 89.0
 horizontal_alignment = 1
 
 [node name="ShowFish" type="Timer" parent="." unique_id=1823605507]
 one_shot = true
 
-[node name="Coins" type="Label" parent="." unique_id=884530668]
-offset_left = 50.0
-offset_top = -83.0
-offset_right = 111.0
-offset_bottom = -60.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_urn1o")
-text = "Coins: 0"
+[node name="Skullfish" parent="." unique_id=657143369 instance=ExtResource("5_jdl8t")]
+
+[node name="Bluegill" parent="." unique_id=1929369117 instance=ExtResource("6_21uvr")]
+
+[node name="Trash" parent="." unique_id=1576342796 instance=ExtResource("7_csmc7")]
+
+[node name="Fantasia" parent="." unique_id=626056667 instance=ExtResource("8_lkfiq")]
+
+[node name="Squid" parent="." unique_id=474590968 instance=ExtResource("9_fl3e6")]
+
+[node name="RareCatch" type="Label" parent="." unique_id=520411464]
+offset_left = -42.0
+offset_top = -80.0
+offset_right = 42.0
+offset_bottom = -57.0
+theme_override_colors/font_color = Color(0.14649862, 0.3706567, 1, 1)
 
 [connection signal="timeout" from="ShowFish" to="." method="_on_show_fish_timeout"]

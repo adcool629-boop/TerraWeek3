@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cibsphr8mdrv7"]
+
+[ext_resource type="Texture2D" uid="uid://dbnw4fb08l7d3" path="res://assets/fishing_free/780a08ef-2362-44d5-a58e-5755dcb82d78.png" id="1_dffma"]
+[ext_resource type="Texture2D" uid="uid://wd7dkvp0bgr3" path="res://assets/fishing_free/76634276-f667-45b1-86e5-afcb06f4bc28.png" id="2_m37x1"]
+[ext_resource type="Texture2D" uid="uid://bea2o3h7xg8ek" path="res://assets/fishing_free/global_free_recoloured.png" id="3_wh2xs"]
+
+[node name="Skullfish" type="Node2D" unique_id=657143369]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1931263532]
+light_mask = 3
+offset_left = -61.0
+offset_top = -55.0
+offset_right = 61.0
+offset_bottom = 55.0
+texture = ExtResource("1_dffma")
+expand_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=940537521]
+scale = Vector2(0.1, 0.1)
+energy = 7.0
+blend_mode = 2
+texture = ExtResource("2_m37x1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2023029951]
+light_mask = 2
+position = Vector2(0, 1)
+texture = ExtResource("3_wh2xs")
+region_enabled = true
+region_rect = Rect2(0, 32.433, 15.357, 16.561)

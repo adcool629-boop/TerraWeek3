@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://nletk73n3jcy"]
 
-[ext_resource type="FontFile" uid="uid://b366gcebddcsv" path="res://assets/Fonts/RodeliaRegular-XG7w2.ttf" id="1_2vps4"]
 [ext_resource type="Script" uid="uid://dufiecr48cm2h" path="res://Scripts/fishing_shop.gd" id="1_60buo"]
 [ext_resource type="Texture2D" uid="uid://h2f24yyyj123" path="res://assets/Tiny Coast Pack/Other/baits_16x16.png" id="2_fen1w"]
+[ext_resource type="Texture2D" uid="uid://dnfw7adgpaau1" path="res://assets/Tiny Coast Pack/Other/fishing_rod_16x16.png" id="3_60buo"]
 
 [node name="FishingShop" type="CanvasLayer" unique_id=434899543]
 scale = Vector2(2.3, 2.3)
@@ -21,7 +21,6 @@ offset_left = 175.56522
 offset_top = 18.652174
 offset_right = 272.56522
 offset_bottom = 41.652176
-theme_override_fonts/font = ExtResource("1_2vps4")
 text = "Fishing Shop"
 
 [node name="Bait" type="Label" parent="." unique_id=1886620103]
@@ -29,16 +28,22 @@ offset_left = 213.56522
 offset_top = 37.652172
 offset_right = 241.56522
 offset_bottom = 53.360508
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 13
 text = "Bait"
 
+[node name="Fishing Rods" type="Label" parent="." unique_id=445846169]
+offset_left = 185.217
+offset_top = 117.0
+offset_right = 282.217
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 13
+text = "Fishing Rods"
+
 [node name="ComingSoon" type="Label" parent="." unique_id=1822262730]
-offset_left = 169.56522
-offset_top = 120.652176
-offset_right = 278.56522
-offset_bottom = 164.65219
-theme_override_fonts/font = ExtResource("1_2vps4")
+offset_left = 171.30435
+offset_top = 207.39131
+offset_right = 286.30435
+offset_bottom = 255.05798
 text = "New Items
 Coming Soon..."
 
@@ -53,7 +58,6 @@ offset_left = -17.0
 offset_top = -19.0
 offset_right = 23.0
 offset_bottom = -11.75
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 6
 text = "clownfish lure"
 
@@ -70,7 +74,6 @@ offset_left = -11.913041
 offset_top = 21.217392
 offset_right = 21.08696
 offset_bottom = 44.217392
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 4
 text = "Increase the 
 chance of getting
@@ -87,7 +90,6 @@ offset_left = -11.0
 offset_top = -17.0
 offset_right = 12.0
 offset_bottom = -9.75
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 6
 text = "cod lure"
 
@@ -104,7 +106,6 @@ offset_left = -16.086956
 offset_top = 23.652172
 offset_right = 16.913044
 offset_bottom = 46.652172
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 4
 text = "Increase the 
 chance of getting
@@ -121,7 +122,6 @@ offset_left = -12.0
 offset_top = -16.0
 offset_right = 12.0
 offset_bottom = -8.75
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 6
 text = "goldfish lure"
 
@@ -138,7 +138,6 @@ offset_left = -11.652169
 offset_top = 24.21739
 offset_right = 21.347832
 offset_bottom = 47.217392
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 4
 text = "Increase the 
 chance of getting
@@ -155,7 +154,6 @@ offset_left = -12.0
 offset_top = -16.0
 offset_right = 12.0
 offset_bottom = -8.75
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 6
 text = "fat chance"
 
@@ -172,30 +170,135 @@ offset_left = -14.956507
 offset_top = 23.21739
 offset_right = 26.043493
 offset_bottom = 46.217392
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 4
 text = "Triple the weight of 
 any fish caught."
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=1218295394]
+[node name="IntermediateFishingRod" type="Sprite2D" parent="." unique_id=1595857276]
+position = Vector2(171.30435, 146.95653)
+texture = ExtResource("3_60buo")
+region_enabled = true
+region_rect = Rect2(16.304533, 0, 15.346518, 16)
+
+[node name="IRodTitle" type="Label" parent="IntermediateFishingRod" unique_id=2048490191]
+offset_left = -30.000002
+offset_top = -14.347825
+offset_right = 30.999998
+offset_bottom = -5.972825
+theme_override_font_sizes/font_size = 5
+text = "Intermediate Fishing Rod"
+
+[node name="IRodButton" type="Button" parent="IntermediateFishingRod" unique_id=2143206185]
+offset_left = -16.956535
+offset_top = 10.434783
+offset_right = 20.043465
+offset_bottom = 25.434784
+theme_override_font_sizes/font_size = 5
+text = "5000 Coins"
+
+[node name="IRodDescription" type="Label" parent="IntermediateFishingRod" unique_id=959769341]
+offset_left = -35.217392
+offset_top = 25.652176
+offset_right = 37.782608
+offset_bottom = 48.402176
+theme_override_font_sizes/font_size = 4
+text = "Increase the value of fish caught by 2
+ Decrease the wait time by 1/2
+Mini Games get slightly harder
+Allows new fish to be caught"
+
+[node name="ColorRect" type="ColorRect" parent="IntermediateFishingRod" unique_id=1987103498]
+z_index = 1
+offset_top = -74.565
+offset_right = 138.26086
+offset_bottom = 52.391525
+color = Color(0.3482749, 0.16856816, 0, 1)
+
+[node name="Label" type="Label" parent="IntermediateFishingRod/ColorRect" unique_id=1651252527]
+layout_mode = 0
+offset_left = 23.478249
+offset_top = 4.130442
+offset_right = 120.47825
+offset_bottom = 27.130442
+theme_override_font_sizes/font_size = 8
+text = "You own a better rod
+would you still like to 
+equip this rod?"
+
+[node name="YesButton" type="Button" parent="IntermediateFishingRod/ColorRect" unique_id=691908847]
+layout_mode = 0
+offset_left = 13.913044
+offset_top = 87.17392
+offset_right = 53.043476
+offset_bottom = 118.17392
+text = "yes"
+
+[node name="NoButton" type="Button" parent="IntermediateFishingRod/ColorRect" unique_id=804068773]
+layout_mode = 0
+offset_left = 80.434784
+offset_top = 86.73915
+offset_right = 119.565216
+offset_bottom = 117.73915
+text = "no"
+
+[node name="AdvancedFishingRod" type="Sprite2D" parent="." unique_id=1905137485]
+position = Vector2(264.78262, 147.3913)
+texture = ExtResource("3_60buo")
+region_enabled = true
+region_rect = Rect2(32.368587, 0, 15.6314125, 16)
+
+[node name="ARodTitle" type="Label" parent="AdvancedFishingRod" unique_id=1035279790]
+offset_left = -26.086985
+offset_top = -14.347813
+offset_right = 26.913015
+offset_bottom = -7.3686457
+theme_override_font_sizes/font_size = 5
+text = "Advanced Fishing Rod"
+
+[node name="ARodButton" type="Button" parent="AdvancedFishingRod" unique_id=1653126157]
+offset_left = -17.826115
+offset_top = 8.69564
+offset_right = 19.173885
+offset_bottom = 23.69564
+theme_override_font_sizes/font_size = 5
+text = "20000 Coins"
+
+[node name="ARodDescription" type="Label" parent="AdvancedFishingRod" unique_id=1597336552]
+offset_left = -34.347855
+offset_top = 24.347841
+offset_right = 37.652145
+offset_bottom = 47.34784
+theme_override_font_sizes/font_size = 4
+text = "Increase the Value of fish caught by 4
+Decrease the wait time by 1/4
+Mini Games get substantially harder
+Allows new fish to be caught."
+
+[node name="Border" type="ColorRect" parent="." unique_id=1218295394]
 offset_left = 109.56522
 offset_top = 116.95652
 offset_right = 356.56522
 offset_bottom = 118.95652
 
+[node name="Border2" type="ColorRect" parent="." unique_id=1351365531]
+offset_left = 109.56522
+offset_top = 206.52174
+offset_right = 356.56522
+offset_bottom = 208.52174
+
 [node name="Close Button" type="Button" parent="." unique_id=1761132069]
-offset_left = 322.6087
-offset_top = 20.869566
-offset_right = 352.6087
-offset_bottom = 51.2029
-text = "❌"
+offset_left = 320.0
+offset_top = 22.173914
+offset_right = 352.17392
+offset_bottom = 58.173912
+theme_override_font_sizes/font_size = 20
+text = "X"
 
 [node name="BuyMessage" type="Label" parent="." unique_id=1855489932]
-offset_left = 292.17392
-offset_top = 13.04348
-offset_right = 332.17392
-offset_bottom = 36.04348
-theme_override_fonts/font = ExtResource("1_2vps4")
+offset_left = 205.2174
+offset_top = 3.9130435
+offset_right = 245.2174
+offset_bottom = 26.913044
 
 [node name="BuyMessageTimer" type="Timer" parent="BuyMessage" unique_id=1951417417]
 one_shot = true
@@ -204,10 +307,9 @@ one_shot = true
 offset_left = 118.26088
 offset_top = 20.434784
 offset_right = 162.2609
-offset_bottom = 59.934784
-theme_override_fonts/font = ExtResource("1_2vps4")
+offset_bottom = 51.559784
 theme_override_font_sizes/font_size = 6
-text = "Only ONE bait
+text = "Only one LURE
  can be used at
  a time"
 
@@ -216,7 +318,6 @@ offset_left = 264.34784
 offset_top = 40.0
 offset_right = 298.34784
 offset_bottom = 52.5625
-theme_override_fonts/font = ExtResource("1_2vps4")
 theme_override_font_sizes/font_size = 8
 text = "Coins: 0"
 
@@ -224,5 +325,9 @@ text = "Coins: 0"
 [connection signal="pressed" from="CodLure/CodButton" to="." method="_on_cod_button_pressed"]
 [connection signal="pressed" from="GoldfishLure/GoldfishButton" to="." method="_on_goldfish_button_pressed"]
 [connection signal="pressed" from="FatChance/FatChanceButton" to="." method="_on_fat_chance_button_pressed"]
+[connection signal="pressed" from="IntermediateFishingRod/IRodButton" to="." method="_on_i_rod_button_pressed"]
+[connection signal="pressed" from="IntermediateFishingRod/ColorRect/YesButton" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="IntermediateFishingRod/ColorRect/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="AdvancedFishingRod/ARodButton" to="." method="_on_a_rod_button_pressed"]
 [connection signal="pressed" from="Close Button" to="." method="_on_close_button_pressed"]
 [connection signal="timeout" from="BuyMessage/BuyMessageTimer" to="." method="_on_buy_message_timer_timeout"]

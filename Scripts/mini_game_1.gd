@@ -80,10 +80,25 @@ func win() -> void:
 	$WinTimer.start()
 func _on_end_timer_timeout() -> void:
 	get_parent().quick_time_end()
+	$TextureProgressBar.value = 100
 	count = 0
 
 
 func _on_win_timer_timeout() -> void:
 	get_parent().fish_caught()
 	get_parent().quick_time_end()
+	$TextureProgressBar.value = 100
 	count = 0
+
+func IRod_progress_timer():
+	print("Check to Change IRod")
+	if get_parent().IRod:
+		progress_timer = 1.5
+		print("Time Limit set to 1.5")
+	
+func ARod_progress_timer() -> void:
+	print("Check to Change ARod")
+	if get_parent().ARod:
+		progress_timer = 0.75
+		print("Time Limit set to 0.75")
+		

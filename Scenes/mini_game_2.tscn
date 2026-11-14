@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cq0wn3e4q83e3"]
+
+[ext_resource type="Script" uid="uid://but5ewuhp03bj" path="res://Scripts/mini_game_2.gd" id="1_hwp1r"]
+
+[sub_resource type="Gradient" id="Gradient_bmcov"]
+offsets = PackedFloat32Array(0.4, 0.5, 0.6)
+colors = PackedColorArray(0.9778037, 0.022196293, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1)
+metadata/_snap_count = 20
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t1rta"]
+gradient = SubResource("Gradient_bmcov")
+
+[node name="MiniGame2" type="CanvasLayer" unique_id=1696869187]
+script = ExtResource("1_hwp1r")
+
+[node name="Outline" type="ColorRect" parent="." unique_id=1682418890]
+offset_left = 120.0
+offset_top = 467.0
+offset_right = 1045.0
+offset_bottom = 547.0
+color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+
+[node name="Bar" type="TextureRect" parent="Outline" unique_id=1438784726]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 917.0
+offset_bottom = 70.0
+texture = SubResource("GradientTexture2D_t1rta")
+expand_mode = 1
+
+[node name="Pin" type="ColorRect" parent="Outline/Bar" unique_id=2024741404]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -3.0
+offset_right = 5.0
+offset_bottom = 62.0
+
+[node name="Marker2D" type="Marker2D" parent="Outline/Bar" unique_id=1765963326]
+position = Vector2(482, 46)
+
+[node name="WinTimer" type="Timer" parent="." unique_id=1130067696]
+one_shot = true
+
+[node name="LoseTimer" type="Timer" parent="." unique_id=1224625458]
+one_shot = true
+
+[node name="Label" type="Label" parent="." unique_id=414110192]
+offset_left = 511.0
+offset_top = 402.0
+offset_right = 659.0
+offset_bottom = 464.0
+theme_override_font_sizes/font_size = 32
+text = "Great!"
+horizontal_alignment = 1
+
+[node name="Instructions" type="Label" parent="." unique_id=561945612]
+offset_left = 425.0
+offset_top = 381.0
+offset_right = 750.0
+offset_bottom = 404.0
+text = "Hit Space Bar when the Pin is in the green"
+
+[node name="TriesLeft" type="Label" parent="." unique_id=843548813]
+offset_left = 517.0
+offset_top = 348.0
+offset_right = 658.0
+offset_bottom = 381.5
+theme_override_font_sizes/font_size = 24
+text = "Tries Left: 3"
+
+[connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]
+[connection signal="timeout" from="LoseTimer" to="." method="_on_lose_timer_timeout"]

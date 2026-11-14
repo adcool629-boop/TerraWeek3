@@ -3,7 +3,10 @@ extends Node
 var chosen_character: int = 0
 var fishables: bool = false
 var moveables: bool = true
-var total_coins: int = 0
+var total_coins: int = 100000
+var trash: int = 100
+var store_num: int = 0
+var store: int = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

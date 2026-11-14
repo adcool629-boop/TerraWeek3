@@ -1,0 +1,315 @@
+[gd_scene format=3 uid="uid://c6ueol4ki5jm4"]
+
+[ext_resource type="Script" uid="uid://x5ip86na0qcy" path="res://Scripts/inventory.gd" id="1_wdn4f"]
+[ext_resource type="Texture2D" uid="uid://bea2o3h7xg8ek" path="res://assets/fishing_free/global_free_recoloured.png" id="2_yxepq"]
+[ext_resource type="Texture2D" uid="uid://h2f24yyyj123" path="res://assets/Tiny Coast Pack/Other/baits_16x16.png" id="3_0n8tc"]
+[ext_resource type="Texture2D" uid="uid://dxhnfaee28w1u" path="res://Scripts/coin.png" id="4_0n8tc"]
+[ext_resource type="Texture2D" uid="uid://dnfw7adgpaau1" path="res://assets/Tiny Coast Pack/Other/fishing_rod_16x16.png" id="5_k1vlg"]
+
+[node name="Inventory" type="CanvasLayer" unique_id=340463798]
+script = ExtResource("1_wdn4f")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=891367952]
+offset_left = 135.0
+offset_top = 9.0
+offset_right = 1035.0
+offset_bottom = 639.0
+color = Color(0.71943045, 0.4654252, 0.15567237, 1)
+
+[node name="Title" type="Label" parent="." unique_id=2025725082]
+offset_left = 503.0
+offset_top = 11.0
+offset_right = 643.0
+offset_bottom = 52.875
+theme_override_font_sizes/font_size = 30
+text = "Inventory"
+
+[node name="panels" type="Control" parent="." unique_id=21703458]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="panels" unique_id=182096450]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 60.0
+offset_right = 247.0
+offset_bottom = 156.0
+
+[node name="Panel2" type="Panel" parent="panels" unique_id=1072461696]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 60.0
+offset_right = 372.0
+offset_bottom = 156.0
+
+[node name="Panel3" type="Panel" parent="panels" unique_id=1914527229]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 60.0
+offset_right = 497.0
+offset_bottom = 156.0
+
+[node name="Panel4" type="Panel" parent="panels" unique_id=36065752]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 60.0
+offset_right = 622.0
+offset_bottom = 156.0
+
+[node name="Panel5" type="Panel" parent="panels" unique_id=695425540]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 60.0
+offset_right = 747.0
+offset_bottom = 156.0
+
+[node name="Panel6" type="Panel" parent="panels" unique_id=1415286841]
+layout_mode = 0
+offset_left = 775.0
+offset_top = 60.0
+offset_right = 872.0
+offset_bottom = 156.0
+
+[node name="Panel7" type="Panel" parent="panels" unique_id=1065289238]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 60.0
+offset_right = 997.0
+offset_bottom = 156.0
+
+[node name="Panel8" type="Panel" parent="panels" unique_id=141275514]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 200.0
+offset_right = 247.0
+offset_bottom = 296.0
+
+[node name="Panel9" type="Panel" parent="panels" unique_id=1563295659]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 200.0
+offset_right = 372.0
+offset_bottom = 296.0
+
+[node name="Panel10" type="Panel" parent="panels" unique_id=1617759260]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 497.0
+offset_bottom = 296.0
+
+[node name="Panel11" type="Panel" parent="panels" unique_id=577010953]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 200.0
+offset_right = 622.0
+offset_bottom = 296.0
+
+[node name="Panel12" type="Panel" parent="panels" unique_id=837785150]
+layout_mode = 0
+offset_left = 775.0
+offset_top = 200.0
+offset_right = 872.0
+offset_bottom = 296.0
+
+[node name="Panel13" type="Panel" parent="panels" unique_id=1686441246]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 200.0
+offset_right = 747.0
+offset_bottom = 296.0
+
+[node name="Panel14" type="Panel" parent="panels" unique_id=1251293865]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 200.0
+offset_right = 997.0
+offset_bottom = 296.0
+
+[node name="Close" type="Button" parent="." unique_id=498692334]
+offset_left = 988.0
+offset_top = 11.0
+offset_right = 1031.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 27
+text = "X"
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1907055063]
+position = Vector2(-206, 91)
+gizmo_extents = 0.0
+
+[node name="Node" type="Node" parent="." unique_id=1257121477]
+
+[node name="Clownfish" type="Sprite2D" parent="Node" unique_id=1839751327]
+scale = Vector2(5, 5)
+texture = ExtResource("2_yxepq")
+region_enabled = true
+region_rect = Rect2(16.856834, 0.57736635, 15.088448, 14.518154)
+
+[node name="Cod" type="Sprite2D" parent="Node" unique_id=1889122789]
+scale = Vector2(5, 5)
+texture = ExtResource("2_yxepq")
+region_enabled = true
+region_rect = Rect2(0, 0, 16.679504, 16.636917)
+
+[node name="Goldfish" type="Sprite2D" parent="Node" unique_id=819332153]
+scale = Vector2(5, 5)
+texture = ExtResource("2_yxepq")
+region_enabled = true
+region_rect = Rect2(15.368322, 32.060795, 16.517424, 16.460178)
+
+[node name="ClownfishLure" type="Sprite2D" parent="Node" unique_id=1310620807]
+scale = Vector2(5, 5)
+texture = ExtResource("3_0n8tc")
+region_enabled = true
+region_rect = Rect2(0, 0, 14.565815, 14.701946)
+
+[node name="CfLButton" type="Button" parent="Node/ClownfishLure" unique_id=1578117752]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Amount" type="Label" parent="Node/ClownfishLure" unique_id=239412746]
+offset_left = 3.8
+offset_top = 5.2
+offset_right = 43.8
+offset_bottom = 28.2
+theme_override_font_sizes/font_size = 6
+
+[node name="CodLure" type="Sprite2D" parent="Node" unique_id=1296338786]
+scale = Vector2(5, 5)
+texture = ExtResource("3_0n8tc")
+region_enabled = true
+region_rect = Rect2(15.81028, 0.67565346, 14.565815, 14.701946)
+
+[node name="CodLButton" type="Button" parent="Node/CodLure" unique_id=231725016]
+z_index = -1
+offset_left = -9.999999
+offset_top = -7.9999995
+offset_right = 9.000001
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Node/CodLure" unique_id=658644082]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
+[node name="GoldfishLure" type="Sprite2D" parent="Node" unique_id=603927012]
+scale = Vector2(5, 5)
+texture = ExtResource("3_0n8tc")
+region_enabled = true
+region_rect = Rect2(48.106503, 0.13513088, 14.565815, 14.701946)
+
+[node name="Label" type="Label" parent="Node/GoldfishLure" unique_id=1780866225]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
+[node name="GfLButton" type="Button" parent="Node/GoldfishLure" unique_id=2144213549]
+z_index = -1
+offset_left = -10.2
+offset_top = -8.0
+offset_right = 8.8
+offset_bottom = 11.0
+
+[node name="FatChance" type="Sprite2D" parent="Node" unique_id=948689415]
+scale = Vector2(5, 5)
+texture = ExtResource("3_0n8tc")
+region_enabled = true
+region_rect = Rect2(1.0810432, 17.396826, 14.565815, 14.701946)
+
+[node name="Label" type="Label" parent="Node/FatChance" unique_id=816364300]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
+[node name="FCButton" type="Button" parent="Node/FatChance" unique_id=1180547844]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Trash" type="Sprite2D" parent="Node" unique_id=1066831592]
+scale = Vector2(5, 5)
+texture = ExtResource("2_yxepq")
+region_enabled = true
+region_rect = Rect2(47.84953, 33.26281, 15.986195, 15.671593)
+
+[node name="Label" type="Label" parent="Node/Trash" unique_id=1794497678]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Coins" type="Label" parent="." unique_id=1259422853]
+offset_left = 666.0
+offset_top = 17.0
+offset_right = 775.0
+offset_bottom = 55.0
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 27
+autowrap_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Coins" unique_id=2028078934]
+position = Vector2(123.999985, 16)
+scale = Vector2(4, 4)
+texture = ExtResource("4_0n8tc")
+region_enabled = true
+region_rect = Rect2(1.8410339, 1.4041672, 12.376564, 12.376568)
+
+[node name="BaitSelected" type="Label" parent="." unique_id=1478168737]
+offset_left = 80.0
+offset_top = 10.0
+offset_right = 244.0
+offset_bottom = 77.0
+theme_override_font_sizes/font_size = 32
+
+[node name="BaitSelectedTimer" type="Timer" parent="BaitSelected" unique_id=388315896]
+one_shot = true
+
+[node name="UnselectAll" type="Button" parent="." unique_id=700125292]
+offset_left = 152.0
+offset_top = 581.0
+offset_right = 290.0
+offset_bottom = 629.0
+text = "Unselect All Lure"
+
+[node name="BRod" type="Sprite2D" parent="." unique_id=1182126065]
+position = Vector2(950, 35)
+scale = Vector2(3, 3)
+texture = ExtResource("5_k1vlg")
+region_enabled = true
+region_rect = Rect2(0, 0, 15.780075, 16)
+
+[node name="IRod" type="Sprite2D" parent="." unique_id=813819599]
+position = Vector2(950, 35)
+scale = Vector2(3, 3)
+texture = ExtResource("5_k1vlg")
+region_enabled = true
+region_rect = Rect2(16.191679, 0, 15.675978, 16)
+
+[node name="ARod" type="Sprite2D" parent="." unique_id=1930074360]
+position = Vector2(950, 35)
+scale = Vector2(3, 3)
+texture = ExtResource("5_k1vlg")
+region_enabled = true
+region_rect = Rect2(32.073215, 0, 15.9267845, 16)
+
+[node name="Current Rod" type="Label" parent="." unique_id=2057584141]
+offset_left = 820.0
+offset_top = 24.0
+offset_right = 888.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 16
+text = "Current Rod:"
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Node/ClownfishLure/CfLButton" to="." method="_on_cf_l_button_pressed"]
+[connection signal="pressed" from="Node/CodLure/CodLButton" to="." method="_on_cod_l_button_pressed"]
+[connection signal="pressed" from="Node/GoldfishLure/GfLButton" to="." method="_on_gf_l_button_pressed"]
+[connection signal="pressed" from="Node/FatChance/FCButton" to="." method="_on_fc_button_pressed"]
+[connection signal="timeout" from="BaitSelected/BaitSelectedTimer" to="." method="_on_bait_selected_timer_timeout"]
+[connection signal="pressed" from="UnselectAll" to="." method="_on_unselect_all_pressed"]

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://0wedekccub62"]
 
 [ext_resource type="Script" uid="uid://b1qhibo41kvu2" path="res://Scripts/fishing_sc.gd" id="1_d5342"]
-[ext_resource type="FontFile" uid="uid://b366gcebddcsv" path="res://assets/Fonts/RodeliaRegular-XG7w2.ttf" id="2_gyieb"]
 
 [sub_resource type="Gradient" id="Gradient_1iagy"]
 colors = PackedColorArray(0, 1, 0, 1, 6.1466823, 0, 0, 1)
@@ -46,7 +45,6 @@ offset_top = 9.0
 offset_right = -235.0
 offset_bottom = 87.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_gyieb")
 theme_override_font_sizes/font_size = 64
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

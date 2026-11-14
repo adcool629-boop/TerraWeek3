@@ -6,10 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dgxnfqhv4qvel" path="res://assets/Tiny Coast Pack/Tiny Adventure Pack/Character v2/Char3/Char3_Sword_32px.png" id="2_gg4rq"]
 [ext_resource type="Texture2D" uid="uid://3rnofsj8esj2" path="res://assets/Tiny Coast Pack/Tiny Adventure Pack/Character v2/Char3/Char3_walk_16px.png" id="3_oi8f3"]
 [ext_resource type="PackedScene" uid="uid://0wedekccub62" path="res://Scenes/fishing_sc.tscn" id="6_l436x"]
-[ext_resource type="FontFile" uid="uid://b366gcebddcsv" path="res://assets/Fonts/RodeliaRegular-XG7w2.ttf" id="7_re2j7"]
 [ext_resource type="PackedScene" uid="uid://dtygrq1p2u8de" path="res://Scenes/mini_game_1.tscn" id="8_6gf25"]
 [ext_resource type="PackedScene" uid="uid://c2ehe3iyayts6" path="res://Scenes/fish.tscn" id="8_74yyn"]
 [ext_resource type="PackedScene" uid="uid://nletk73n3jcy" path="res://Scenes/fishing_shop.tscn" id="10_nw2kd"]
+[ext_resource type="PackedScene" uid="uid://cq0wn3e4q83e3" path="res://Scenes/mini_game_2.tscn" id="10_u624f"]
+[ext_resource type="PackedScene" uid="uid://c6ueol4ki5jm4" path="res://Scenes/inventory.tscn" id="11_cj8mw"]
+[ext_resource type="PackedScene" uid="uid://cie1s6p2wish8" path="res://Scenes/potion_shop.tscn" id="12_cj8mw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0yt28"]
 atlas = ExtResource("1_gg4rq")
@@ -613,7 +615,6 @@ offset_left = 3.6
 offset_top = -27.4
 offset_right = 43.6
 offset_bottom = -4.3999996
-theme_override_fonts/font = ExtResource("7_re2j7")
 theme_override_font_sizes/font_size = 8
 
 [node name="ErrorTimer" type="Timer" parent="." unique_id=1226957158]
@@ -634,10 +635,28 @@ collision_mask = 4
 [node name="ShopHelp" type="Label" parent="." unique_id=682458848]
 offset_right = 40.0
 offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("7_re2j7")
 theme_override_font_sizes/font_size = 9
 
 [node name="FishingShop" parent="." unique_id=434899543 instance=ExtResource("10_nw2kd")]
 
+[node name="MiniGame2" parent="." unique_id=1696869187 instance=ExtResource("10_u624f")]
+
+[node name="FishHooked" type="Label" parent="." unique_id=1760302447]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="FishHookedTimer" type="Timer" parent="FishHooked" unique_id=1034107238]
+one_shot = true
+
+[node name="Inventory" parent="." unique_id=340463798 instance=ExtResource("11_cj8mw")]
+
+[node name="PShopDetector" type="RayCast2D" parent="." unique_id=978969423]
+scale = Vector2(0.99999994, 0.99999994)
+target_position = Vector2(0, 25)
+collision_mask = 4
+
+[node name="PotionShop" parent="." unique_id=873678996 instance=ExtResource("12_cj8mw")]
+
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
+[connection signal="timeout" from="FishHooked/FishHookedTimer" to="." method="_on_fish_hooked_timer_timeout"]

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://di34j6ej4dri5"]
+
+[ext_resource type="Texture2D" uid="uid://dbnw4fb08l7d3" path="res://assets/fishing_free/780a08ef-2362-44d5-a58e-5755dcb82d78.png" id="1_08da1"]
+[ext_resource type="Texture2D" uid="uid://wd7dkvp0bgr3" path="res://assets/fishing_free/76634276-f667-45b1-86e5-afcb06f4bc28.png" id="2_vi1mk"]
+[ext_resource type="Texture2D" uid="uid://bea2o3h7xg8ek" path="res://assets/fishing_free/global_free_recoloured.png" id="3_s82ry"]
+
+[node name="Fantasia" type="Node2D" unique_id=626056667]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=286210238]
+light_mask = 3
+offset_left = -61.0
+offset_top = -55.0
+offset_right = 61.0
+offset_bottom = 55.0
+texture = ExtResource("1_08da1")
+expand_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1636335089]
+scale = Vector2(0.1, 0.1)
+energy = 7.0
+blend_mode = 2
+texture = ExtResource("2_vi1mk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=670852695]
+light_mask = 2
+position = Vector2(0, 1)
+texture = ExtResource("3_s82ry")
+region_enabled = true
+region_rect = Rect2(16.121082, 16.441902, 15.868126, 15.379314)
