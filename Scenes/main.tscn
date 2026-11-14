@@ -14,5 +14,3 @@ position = Vector2(-8212, -878.00006)
 position = Vector2(1, 0)
 
 [node name="TileMap" parent="." unique_id=796577746 instance=ExtResource("4_jjvhh")]
-
-[node name="FishingZones" type="Node2D" parent="." unique_id=237852168]

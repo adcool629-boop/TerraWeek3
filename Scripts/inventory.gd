@@ -9,14 +9,22 @@ var TrashBag_amount: int = 0
 var SLuck_amount: int = 0
 var MLuck_amount: int = 0
 var LLuck_amount: int = 0
-var CfL_position: int
-var CodL_position: int
-var GfL_position: int
-var FC_position: int
-var Trash_position: int
-var SLuck_position: int
-var MLuck_position: int
-var LLuck_position: int
+var CfL_positionX: int
+var CfL_positionY: int
+var CodL_positionX: int
+var CodL_positionY: int
+var GfL_positionX: int
+var GfL_positionY: int
+var FC_positionX: int
+var FC_positionY: int
+var Trash_positionX: int
+var Trash_positionY: int
+var SLuck_positionX: int
+var SLuck_positionY: int
+var MLuck_positionX: int
+var MLuck_positionY: int
+var LLuck_positionX: int
+var LLuck_positionY: int
 var intermediate_equipped: bool = false
 var advanced_equipped: bool = false
 var basic_equipped: bool = true
@@ -90,12 +98,15 @@ func add_clownfish_lure() -> void:
 	$Node/ClownfishLure/Amount.text =  str(ClownfishLure_amount)
 	if get_parent().CfL_amount > 0 and get_parent().CfL_amount < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
-			
 			$Node/ClownfishLure.position.x = (MainCharacter.store_num) * 125 + 75
-			CfL_position = $Node/ClownfishLure.position.x
 			$Node/ClownfishLure.position.y = 100
-			print("Position is " +str(CfL_position))
-			
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/ClownfishLure.position.x = (MainCharacter.store_num) * 125 - 800
+			$Node/ClownfishLure.position.y = 200
+		CfL_positionX = $Node/ClownfishLure.position.x
+		CfL_positionY = $Node/ClownfishLure.position.y
+		print("X Position is " +str(CfL_positionX))
+		print("Y Position is " +str(CfL_positionY))
 func decrease_clownfish_lure() -> void:
 	ClownfishLure_amount += -1
 	$Node/ClownfishLure/Amount.text = str(ClownfishLure_amount)
@@ -110,34 +121,70 @@ func remove_clownfish_lure() -> void:
 	get_parent().unselect_clownfish_lure()
 	
 func clownfish_lure_move_back() -> void:
-	if CodL_position > CfL_position:
-		$Node/CodLure.position.x = CodL_position - 125
-		CodL_position = CodL_position - 125
+	if CodL_positionX > CfL_positionX:
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
 		print("decreasing cod position")
-	if GfL_position > CfL_position:
-		$Node/GoldfishLure.position.x = GfL_position - 125
-		GfL_position = GfL_position - 125
+	elif CodL_positionY > CfL_positionY and CodL_positionX == 200:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	if GfL_positionX > CfL_positionX:
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
 		print("decreasing goldfish position")
-	if FC_position > CfL_position:
-		$Node/FatChance.position.x = FC_position - 125
-		FC_position = FC_position - 125
+	elif GfL_positionY > CfL_positionY and GfL_positionX == 200:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	if FC_positionX > CfL_positionX:
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
 		print("decreasing FC position")
-	if Trash_position > FC_position:
-		$Node/Trash.position.x = Trash_position - 125
-		Trash_position = Trash_position - 125
+	elif FC_positionY > CfL_positionY and FC_positionX == 200:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	if Trash_positionX > CfL_positionX:
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
 		print("decreasing trash position")
-	if SLuck_position > FC_position:
-		$Node/SLuck.position.x = SLuck_position - 125
-		SLuck_position = SLuck_position - 125
+	elif Trash_positionY > CfL_positionY and Trash_positionX == 200:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	if SLuck_positionX > CfL_positionX:
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
 		print("decreasing S Luck position")
-	if MLuck_position > FC_position:
-		$Node/MLuck.position.x = MLuck_position - 125
-		MLuck_position = MLuck_position - 125
+	elif SLuck_positionY > CfL_positionY and SLuck_positionX == 200:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	if MLuck_positionX > CfL_positionX:
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
 		print("decreasing M Luck position")
-	if LLuck_position > FC_position:
-		$Node/LLuck.position.x = LLuck_position - 125
-		LLuck_position = LLuck_position - 125
+	elif MLuck_positionY > CfL_positionY and MLuck_positionX == 200:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	if LLuck_positionX > CfL_positionX:
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX = LLuck_positionX - 125
 		print("decreasing L Luck position")
+	elif LLuck_positionY > CfL_positionY and LLuck_positionX == 200:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
+	
 func add_cod_lure() -> void:
 	CodLure_amount += 1
 	print(CodLure_amount)
@@ -145,9 +192,15 @@ func add_cod_lure() -> void:
 	if get_parent().CodL_amount > 0 and get_parent().CodL_amount < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/CodLure.position.x = (MainCharacter.store_num) * 125 + 75
-			CodL_position = $Node/CodLure.position.x
 			$Node/CodLure.position.y = 100
-			print(CodL_position)
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/CodLure.position.x = (MainCharacter.store_num) * 125 - 800
+			CodLure_amount = $Node/CodLure.position.x
+			$Node/CodLure.position.y = 200
+		CodL_positionX = $Node/CodLure.position.x
+		CodL_positionY = $Node/CodLure.position.y
+		print("X Position is " +str(CodL_positionX))
+		print("Y Position is " +str(CodL_positionY))
 			
 func decrease_cod_lure() -> void:
 	CodLure_amount += -1
@@ -163,34 +216,69 @@ func remove_cod_lure() -> void:
 	get_parent().unselect_cod_lure()
 	
 func cod_lure_move_back() -> void:
-	if CfL_position > CodL_position:
-		$Node/ClownfishLure.position.x = CfL_position - 125
-		CfL_position = CfL_position - 125
+	if CfL_positionX > CodL_positionX:
+		$Node/ClownfishLure.position.x = CfL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
 		print("decreasing clownfish position")
-	if GfL_position > CodL_position:
-		$Node/GoldfishLure.position.x = GfL_position - 125
-		GfL_position = GfL_position - 125
+	elif CfL_positionY > CodL_positionY and CfL_positionX == 200:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
+	if GfL_positionX > CodL_positionX:
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
 		print("decreasing goldfish position")
-	if FC_position > CodL_position:
-		$Node/FatChance.position.x = FC_position - 125
-		FC_position = FC_position - 125
+	elif GfL_positionY > CodL_positionY and GfL_positionX == 200:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	if FC_positionX > CodL_positionX:
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
 		print("decreasing FC position")
-	if Trash_position > FC_position:
-		$Node/Trash.position.x = Trash_position - 125
-		Trash_position = Trash_position - 125
+	elif FC_positionY > CodL_positionY and FC_positionX == 200:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	if Trash_positionX > CodL_positionX:
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
 		print("decreasing trash position")
-	if SLuck_position > FC_position:
-		$Node/SLuck.position.x = SLuck_position - 125
-		SLuck_position = SLuck_position - 125
+	elif Trash_positionY > CodL_positionY and Trash_positionX == 200:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	if SLuck_positionX > CodL_positionX:
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
 		print("decreasing S Luck position")
-	if MLuck_position > FC_position:
-		$Node/MLuck.position.x = MLuck_position - 125
-		MLuck_position = MLuck_position - 125
+	elif SLuck_positionY > CodL_positionY and SLuck_positionX == 200:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	if MLuck_positionX > CodL_positionX:
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
 		print("decreasing M Luck position")
-	if LLuck_position > FC_position:
-		$Node/LLuck.position.x = LLuck_position - 125
-		LLuck_position = LLuck_position - 125
+	elif MLuck_positionY > CodL_positionY and MLuck_positionX == 200:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	if LLuck_positionX > CodL_positionX:
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX = LLuck_positionX - 125
 		print("decreasing L Luck position")
+	elif LLuck_positionY > CodL_positionY and LLuck_positionX == 200:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
 func add_goldfish_lure() -> void:
 	GoldfishLure_amount += 1
 	print(GoldfishLure_amount)
@@ -198,8 +286,15 @@ func add_goldfish_lure() -> void:
 	if get_parent().GfL_amount > 0 and get_parent().GfL_amount < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/GoldfishLure.position.x = (MainCharacter.store_num) * 125 + 75
-			GfL_position = $Node/GoldfishLure.position.x
 			$Node/GoldfishLure.position.y = 100
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/GoldfishLure.position.x = (MainCharacter.store_num) * 125 - 800
+			GoldfishLure_amount = $Node/GoldfishLure.position.x
+			$Node/GoldfishLure.position.y = 200
+		GfL_positionX = $Node/GoldfishLure.position.x
+		GfL_positionY = $Node/GoldfishLure.position.y
+		print("X Position is " +str(GfL_positionX))
+		print("Y Position is " +str(GfL_positionY))
 	
 func decrease_goldfish_lure() -> void:
 	GoldfishLure_amount += -1
@@ -216,36 +311,69 @@ func remove_goldfish_lure() -> void:
 	get_parent().unselect_goldfish_lure()
 	
 func goldfish_lure_move_back() -> void:
-	print("It works 2x")
-	if CfL_position > GfL_position:
-		$Node/ClownfishLure.position.x = CfL_position - 125
-		CfL_position = CfL_position - 125
-		print("decreasing clownfish position")
-	if CodL_position > GfL_position:
-		$Node/CodLure.position.x = CodL_position - 125
-		CodL_position = CodL_position - 125
+	if CodL_positionX > GfL_positionX:
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
 		print("decreasing cod position")
-	if FC_position > GfL_position:
-		$Node/FatChance.position.x = FC_position - 125
-		FC_position = FC_position - 125
-		print("decreasing fc position")
-	if Trash_position > FC_position:
-		$Node/Trash.position.x = Trash_position - 125
-		Trash_position = Trash_position - 125
+	elif CodL_positionY > GfL_positionY and CodL_positionX == 200:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	if CfL_positionX > GfL_positionX:
+		$Node/ClownfishLure.position.x = CfL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
+		print("decreasing clownfish position")
+	elif CfL_positionY > GfL_positionY and CfL_positionX == 200:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
+	if FC_positionX > GfL_positionX:
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
+		print("decreasing FC position")
+	elif FC_positionY > GfL_positionY and FC_positionX == 200:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	if Trash_positionX > GfL_positionX:
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
 		print("decreasing trash position")
-	if SLuck_position > FC_position:
-		$Node/SLuck.position.x = SLuck_position - 125
-		SLuck_position = SLuck_position - 125
+	elif Trash_positionY > GfL_positionY and Trash_positionX == 200:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	if SLuck_positionX > GfL_positionX:
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
 		print("decreasing S Luck position")
-	if MLuck_position > FC_position:
-		$Node/MLuck.position.x = MLuck_position - 125
-		MLuck_position = MLuck_position - 125
+	elif SLuck_positionY > GfL_positionY and SLuck_positionX == 200:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	if MLuck_positionX > GfL_positionX:
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
 		print("decreasing M Luck position")
-	if LLuck_position > FC_position:
-		$Node/LLuck.position.x = LLuck_position - 125
-		LLuck_position = LLuck_position - 125
+	elif MLuck_positionY > GfL_positionY and MLuck_positionX == 200:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	if LLuck_positionX > GfL_positionX:
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX = LLuck_positionX - 125
 		print("decreasing L Luck position")
-	print("It works 3x")
+	elif LLuck_positionY > GfL_positionY and LLuck_positionX == 200:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
 func add_fc_lure() -> void:
 	FatChanceLure_amount += 1
 	print(FatChanceLure_amount)
@@ -253,8 +381,14 @@ func add_fc_lure() -> void:
 	if get_parent().FC_amount > 0 and get_parent().FC_amount < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/FatChance.position.x = (MainCharacter.store_num) * 125 + 75
-			FC_position = $Node/FatChance.position.x
 			$Node/FatChance.position.y = 100
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/FatChance.position.x = (MainCharacter.store_num) * 125 - 800
+			$Node/FatChance.position.y = 200
+		FC_positionX = $Node/FatChance.position.x
+		FC_positionY = $Node/FatChance.position.y
+		print("X Position is " +str(FC_positionX))
+		print("Y Position is " +str(FC_positionY))
 			
 func decrease_fc() -> void:
 	FatChanceLure_amount += -1
@@ -271,34 +405,70 @@ func remove_fc_lure() -> void:
 	get_parent().unselect_fatchance()
 	print("it does work 2x")
 func fc_move_back() -> void:
-	if CfL_position > FC_position:
-		$Node/ClownfishLure.position.x = CfL_position - 125
-		CfL_position = CfL_position - 125
-		print("decreasing clownfish position")
-	if GfL_position > FC_position:
-		$Node/GoldfishLure.position.x = GfL_position - 125
-		GfL_position = GfL_position - 125
+
+	if GfL_positionX > FC_positionX:
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
 		print("decreasing goldfish_position")
-	if CodL_position > FC_position:
-		$Node/CodLure.position.x = CodL_position - 125
-		CodL_position = CodL_position - 125
+	elif GfL_positionY > FC_positionY and GfL_positionX == 200:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	if CodL_positionX > FC_positionX:
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
 		print("decreasing cod position")
-	if Trash_position > FC_position:
-		$Node/Trash.position.x = Trash_position - 125
-		Trash_position = Trash_position - 125
+	elif CodL_positionY > FC_positionY and CodL_positionX == 200:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	if CfL_positionX > FC_positionX:
+		$Node/ClownfishLure.position.x = CfL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
+		print("decreasing clownfish position")
+	elif CfL_positionY > FC_positionY and CfL_positionX == 200:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
+	if Trash_positionX > FC_positionX:
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
 		print("decreasing trash position")
-	if SLuck_position > FC_position:
-		$Node/SLuck.position.x = SLuck_position - 125
-		SLuck_position = SLuck_position - 125
+	elif Trash_positionY > FC_positionY and Trash_positionX == 200:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	if SLuck_positionX > FC_positionX:
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
 		print("decreasing S Luck position")
-	if MLuck_position > FC_position:
-		$Node/MLuck.position.x = MLuck_position - 125
-		MLuck_position = MLuck_position - 125
+	elif SLuck_positionY > FC_positionY and SLuck_positionX == 200:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	if MLuck_positionX > FC_positionX:
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
 		print("decreasing M Luck position")
-	if LLuck_position > FC_position:
-		$Node/LLuck.position.x = LLuck_position - 125
-		LLuck_position = LLuck_position - 125
+	elif MLuck_positionY > FC_positionY and MLuck_positionX == 200:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	if LLuck_positionX > FC_positionX:
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX = LLuck_positionX - 125
 		print("decreasing L Luck position")
+	elif LLuck_positionY > FC_positionY and LLuck_positionX == 200:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
 
 func add_trash() -> void:
 	TrashBag_amount += 1
@@ -307,8 +477,14 @@ func add_trash() -> void:
 	if get_parent().trash_amount > 0 and get_parent().trash_amount < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/Trash.position.x = (MainCharacter.store_num) * 125 + 75
-			Trash_position = $Node/Trash.position.x
 			$Node/Trash.position.y = 100
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/Trash.position.x = (MainCharacter.store_num) * 125 - 800
+			$Node/Trash.position.y = 200
+		Trash_positionX = $Node/Trash.position.x
+		Trash_positionY = $Node/Trash.position.y
+		print("X Position is " +str(Trash_positionX))
+		print("Y Position is " +str(Trash_positionY))
 		
 func remove_trash() -> void:
 	print(TrashBag_amount)
@@ -320,34 +496,69 @@ func remove_trash() -> void:
 		
 		
 func trash_move_back() -> void:
-	if CfL_position > Trash_position:
-		$Node/ClownfishLure.position.x = CfL_position - 125
-		CfL_position = CfL_position - 125
-		print("decreasing clownfish position")
-	if GfL_position > Trash_position:
-		$Node/GoldfishLure.position.x = GfL_position - 125
-		GfL_position = GfL_position - 125
-		print("decreasing goldfish_position")
-	if CodL_position > Trash_position:
-		$Node/CodLure.position.x = CodL_position - 125
-		CodL_position = CodL_position - 125
-		print("decreasing cod position")
-	if FC_position > Trash_position:
-		$Node/FatChance.position.x = FC_position - 125
-		FC_position = FC_position - 125
+	if FC_positionX > Trash_positionX:
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
 		print("decreasing FC position")
-	if SLuck_position > Trash_position:
-		$Node/SLuck.position.x = SLuck_position - 125
-		SLuck_position = SLuck_position - 125
+	elif FC_positionY > Trash_positionY and FC_positionX == 200:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	if GfL_positionX > Trash_positionX:
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
+		print("decreasing goldfish_position")
+	elif GfL_positionY > Trash_positionY and GfL_positionX == 200:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	if CodL_positionX > Trash_positionX:
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
+		print("decreasing cod position")
+	elif CodL_positionY > Trash_positionY and CodL_positionX == 200:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	if CfL_positionX > Trash_positionX:
+		$Node/ClownfishLure.position.x = CfL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
+		print("decreasing clownfish position")
+	elif CfL_positionY > Trash_positionY and CfL_positionX == 200:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
+	if SLuck_positionX > Trash_positionX:
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
 		print("decreasing S Luck position")
-	if MLuck_position > Trash_position:
-		$Node/MLuck.position.x = MLuck_position - 125
-		MLuck_position = MLuck_position - 125
+	elif SLuck_positionY > Trash_positionY and SLuck_positionX == 200:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	if MLuck_positionX > Trash_positionX:
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
 		print("decreasing M Luck position")
-	if LLuck_position > Trash_position:
-		$Node/LLuck.position.x = LLuck_position - 125
-		LLuck_position = LLuck_position - 125
+	elif MLuck_positionY > Trash_positionY and MLuck_positionX == 200:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	if LLuck_positionX > Trash_positionX:
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX = LLuck_positionX - 125
 		print("decreasing L Luck position")
+	elif LLuck_positionY > Trash_positionY and LLuck_positionX == 200:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
 func add_S_Luck_Potion() -> void:
 	SLuck_amount += 1
 	print(SLuck_amount)
@@ -355,8 +566,17 @@ func add_S_Luck_Potion() -> void:
 	if get_parent().SLuck > 0 and get_parent().SLuck < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/SLuck.position.x = (MainCharacter.store_num) * 125 + 75
-			SLuck_position = $Node/SLuck.position.x
+			SLuck_positionX = $Node/SLuck.position.x
 			$Node/SLuck.position.y = 100
+			SLuck_positionY = $Node/SLuck.position.y
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/SLuck.position.x = (MainCharacter.store_num) * 125 - 800
+			SLuck_positionX = $Node/SLuck.position.x
+			$Node/SLuck.position.y = 200
+			SLuck_positionY = $Node/SLuck.position.y
+		print("X Position is " +str(SLuck_positionX))
+		print("Y Position is " +str(SLuck_positionY))
+		
 			
 func remove_S_Luck_potion() -> void:
 	print(SLuck_amount)
@@ -366,34 +586,69 @@ func remove_S_Luck_potion() -> void:
 	$Node/SLuck.visible = false
 	S_Luck_Potion_Move_Back()
 func S_Luck_Potion_Move_Back() -> void:
-	if CfL_position > SLuck_position:
-		$Node/ClownfishLure.position.x = CfL_position - 125
-		CfL_position = CfL_position - 125
-		print("decreasing clownfish position")
-	if GfL_position > SLuck_position:
-		$Node/GoldfishLure.position.x = GfL_position - 125
-		GfL_position = GfL_position - 125
-		print("decreasing goldfish_position")
-	if CodL_position > SLuck_position:
-		$Node/CodLure.position.x = CodL_position - 125
-		CodL_position = CodL_position - 125
-		print("decreasing cod position")
-	if FC_position > SLuck_position:
-		$Node/FatChance.position.x = FC_position - 125
-		FC_position = FC_position - 125
-		print("decreasing FC position")
-	if Trash_position > SLuck_position:
-		$Node/Trash.position.x = Trash_position - 125
-		Trash_position = Trash_position - 125
+	if Trash_positionX > SLuck_positionX:
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
 		print("decreasing Trash position")
-	if MLuck_position > SLuck_position:
-		$Node/MLuck.position.x = MLuck_position - 125
-		MLuck_position = MLuck_position - 125
+	elif Trash_positionY > SLuck_positionY and Trash_positionX == 200:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	if FC_positionX > SLuck_positionX:
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
+		print("decreasing FC position")
+	elif FC_positionY > SLuck_positionY and FC_positionX == 200:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	if GfL_positionX > SLuck_positionX:
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
+		print("decreasing goldfish_position")
+	elif GfL_positionY > SLuck_positionY and GfL_positionX == 200:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	if CodL_positionX > SLuck_positionX:
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
+		print("decreasing cod position")
+	elif CodL_positionY > SLuck_positionY and CodL_positionX == 200:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	if CfL_positionX > SLuck_positionX:
+		$Node/ClownfishLure.position.x = CfL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
+		print("decreasing clownfish position")
+	elif CfL_positionY > SLuck_positionY and CfL_positionX == 200:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
+	if MLuck_positionX > SLuck_positionX:
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
 		print("decreasing M Luck position")
-	if LLuck_position > SLuck_position:
-		$Node/LLuck.position.x = LLuck_position - 125
-		LLuck_position = LLuck_position - 125
+	elif MLuck_positionY > SLuck_positionY and MLuck_positionX == 200:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	if LLuck_positionX > SLuck_positionX:
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX = LLuck_positionX - 125
 		print("decreasing L Luck position")
+	elif LLuck_positionY > SLuck_positionY and LLuck_positionX == 200:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
 func add_M_Luck_Potion() -> void:
 	MLuck_amount += 1
 	print(MLuck_amount)
@@ -401,8 +656,16 @@ func add_M_Luck_Potion() -> void:
 	if get_parent().MLuck > 0 and get_parent().MLuck < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/MLuck.position.x = (MainCharacter.store_num) * 125 + 75
-			MLuck_position = $Node/MLuck.position.x
+			MLuck_positionX = $Node/MLuck.position.x
 			$Node/MLuck.position.y = 100
+			MLuck_positionY = $Node/MLuck.position.y
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/MLuck.position.x = (MainCharacter.store_num) * 125 - 800
+			MLuck_positionX = $Node/MLuck.position.x
+			$Node/MLuck.position.y = 200
+			MLuck_positionY = $Node/MLuck.position.y
+		print("X position is " +str(MLuck_positionX))
+		print("Y position is " +str(MLuck_positionY))
 func remove_M_Luck_potion() -> void:
 	print(MLuck_amount)
 	$Node/MLuck/Label.text = ''
@@ -412,34 +675,69 @@ func remove_M_Luck_potion() -> void:
 	M_Luck_Potion_Move_Back()
 	
 func M_Luck_Potion_Move_Back() -> void:
-	if CfL_position > MLuck_position:
-		$Node/ClownfishLure.position.x = CfL_position - 125
-		CfL_position = CfL_position - 125
-		print("decreasing clownfish position")
-	if GfL_position > MLuck_position:
-		$Node/GoldfishLure.position.x = GfL_position - 125
-		GfL_position = GfL_position - 125
-		print("decreasing goldfish_position")
-	if CodL_position > MLuck_position:
-		$Node/CodLure.position.x = CodL_position - 125
-		CodL_position = CodL_position - 125
-		print("decreasing cod position")
-	if FC_position > MLuck_position:
-		$Node/FatChance.position.x = FC_position - 125
-		FC_position = FC_position - 125
-		print("decreasing FC position")
-	if Trash_position > MLuck_position:
-		$Node/Trash.position.x = Trash_position - 125
-		Trash_position = Trash_position - 125
-		print("decreasing Trash position")
-	if SLuck_position > MLuck_position:
-		$Node/SLuck.position.x = SLuck_position - 125
-		SLuck_position = SLuck_position - 125
+	if SLuck_positionX > MLuck_positionX:
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
 		print("decreasing S Luck position")
-	if LLuck_position > MLuck_position:
-		$Node/LLuck.position.x = LLuck_position - 125
-		LLuck_position = LLuck_position - 125
+	elif SLuck_positionY > MLuck_positionY and SLuck_positionX == 200:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	if Trash_positionX > MLuck_positionX:
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
+		print("decreasing Trash position")
+	elif Trash_positionY > MLuck_positionY and Trash_positionX == 200:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	if FC_positionX > MLuck_positionX:
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
+		print("decreasing FC position")
+	elif FC_positionY > MLuck_positionY and FC_positionX == 200:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	if GfL_positionX > MLuck_positionX:
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
+		print("decreasing goldfish_position")
+	elif GfL_positionY > MLuck_positionY and GfL_positionX == 200:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	if CodL_positionX > MLuck_positionX:
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
+		print("decreasing cod position")
+	elif CodL_positionY > MLuck_positionY and CodL_positionX == 200:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	if CfL_positionX > MLuck_positionX:
+		$Node/ClownfishLure.position.x = CfL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
+		print("decreasing clownfish position")
+	elif CfL_positionY > MLuck_positionY and CfL_positionX == 200:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
+	if LLuck_positionX > MLuck_positionX:
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX = LLuck_positionX - 125
 		print("decreasing L Luck position")
+	elif LLuck_positionY > MLuck_positionY and LLuck_positionX == 200:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
 	
 func add_L_Luck_Potion() -> void:
 	LLuck_amount += 1
@@ -448,8 +746,17 @@ func add_L_Luck_Potion() -> void:
 	if get_parent().LLuck > 0 and get_parent().LLuck < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/LLuck.position.x = (MainCharacter.store_num) * 125 + 75
-			LLuck_position = $Node/LLuck.position.x
+			LLuck_positionX = $Node/LLuck.position.x
 			$Node/LLuck.position.y = 100
+			LLuck_positionY = $Node/LLuck.position.y
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/LLuck.position.x = (MainCharacter.store_num) * 125 - 800
+			LLuck_positionX = $Node/LLuck.position.x
+			$Node/LLuck.position.y = 200
+			LLuck_positionY = $Node/LLuck.position.y
+		print("X Position is " +str(LLuck_positionX))
+		print("Y Position is " +str(LLuck_positionY))
+	LLuck_positionX = $Node/LLuck.position.x
 func remove_L_Luck_potion() -> void:
 	print(LLuck_amount)
 	$Node/LLuck/Label.text = ''
@@ -458,34 +765,69 @@ func remove_L_Luck_potion() -> void:
 	$Node/LLuck.visible = false
 
 func L_Luck_Potion_Move_Back() -> void:
-	if CfL_position > LLuck_position:
-		$Node/ClownfishLure.position.x = CfL_position - 125
-		CfL_position = CfL_position - 125
-		print("decreasing clownfish position")
-	if GfL_position > LLuck_position:
-		$Node/GoldfishLure.position.x = GfL_position - 125
-		GfL_position = GfL_position - 125
-		print("decreasing goldfish_position")
-	if CodL_position > LLuck_position:
-		$Node/CodLure.position.x = CodL_position - 125
-		CodL_position = CodL_position - 125
-		print("decreasing cod position")
-	if FC_position > LLuck_position:
-		$Node/FatChance.position.x = FC_position - 125
-		FC_position = FC_position - 125
-		print("decreasing FC position")
-	if Trash_position > LLuck_position:
-		$Node/Trash.position.x = Trash_position - 125
-		Trash_position = Trash_position - 125
-		print("decreasing Trash position")
-	if SLuck_position > LLuck_position:
-		$Node/SLuck.position.x = SLuck_position - 125
-		SLuck_position = SLuck_position - 125
-		print("decreasing S Luck position")
-	if MLuck_position > LLuck_position:
-		$Node/MLuck.position.x = MLuck_position - 125
-		MLuck_position = MLuck_position - 125
+	if MLuck_positionX > LLuck_positionX:
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
 		print("decreasing M Luck position")
+	elif MLuck_positionY > LLuck_positionY and MLuck_positionX == 200:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	if SLuck_positionX > LLuck_positionX:
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
+		print("decreasing S Luck position")
+	elif SLuck_positionY > LLuck_positionY and SLuck_positionX == 200:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	if Trash_positionX > LLuck_positionX:
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
+		print("decreasing Trash position")
+	elif Trash_positionY > LLuck_positionY and Trash_positionX == 200:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	if FC_positionX > LLuck_positionX:
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
+		print("decreasing FC position")
+	elif FC_positionY > LLuck_positionY and FC_positionX == 200:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	if GfL_positionX > LLuck_positionX:
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
+		print("decreasing goldfish_position")
+	elif GfL_positionY > LLuck_positionY and GfL_positionX == 200:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	if CodL_positionX > LLuck_positionX:
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
+		print("decreasing cod position")
+	elif CodL_positionY > LLuck_positionY and CodL_positionX == 200:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	if CfL_positionX > LLuck_positionX:
+		$Node/ClownfishLure.position.x = CfL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
+		print("decreasing clownfish position")
+	elif CfL_positionY > LLuck_positionY and CfL_positionX == 200:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
 func _on_close_pressed() -> void:
 	$".".visible = false
 	$Node/ClownfishLure.visible = false
@@ -579,12 +921,24 @@ func _on_use_pressed() -> void:
 	$UseBackground.position.x = -400
 	if UseLargeLuck:
 		get_parent().luck += 20
+		LLuck_amount += -1
+		get_parent().LLuck += -1
+		if get_parent().LLuck <= 0:
+			remove_L_Luck_potion()
 		UseLargeLuck = false
 	if UseMediumLuck:
 		get_parent().luck += 6
+		MLuck_amount += -1
+		get_parent().MLuck += -1
+		if get_parent().MLuck <= 0:
+			remove_M_Luck_potion()
 		UseMediumLuck = false
 	if UseSmallLuck:
 		get_parent().luck += 2
+		SLuck_amount += -1
+		get_parent().SLuck += -1
+		if get_parent().SLuck <= 0:
+			remove_S_Luck_potion()
 		UseSmallLuck = false
 	print("Luck is " + str(get_parent().luck))
 	
