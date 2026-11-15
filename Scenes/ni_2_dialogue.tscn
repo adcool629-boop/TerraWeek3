@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://itqupbxfatdb"]
+
+[ext_resource type="Script" uid="uid://5o7ls3pwx0y1" path="res://Scripts/ni_2_dialogue.gd" id="1_wodf2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_836ia"]
+bg_color = Color(0.86166275, 0.4824971, 0.35031402, 1)
+
+[node name="NI2Dialogue" type="CanvasLayer" unique_id=986857014]
+script = ExtResource("1_wodf2")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1116767307]
+offset_left = 142.0
+offset_top = 436.0
+offset_right = 1036.0
+offset_bottom = 613.0
+color = Color(0.6052743, 0.6052743, 0.6052743, 1)
+
+[node name="Text" type="Label" parent="ColorRect" unique_id=1802902757]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = 844.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+autowrap_mode = 3
+
+[node name="Next" type="Label" parent="ColorRect" unique_id=1292683240]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 145.0
+offset_right = 879.0
+offset_bottom = 167.33333
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Press Enter To Continue..."
+
+[node name="SeaStoneButton" type="Button" parent="." unique_id=1247362581]
+offset_left = 909.0
+offset_top = 470.0
+offset_right = 1024.0
+offset_bottom = 530.0
+text = "Give Seastone"
+
+[node name="RejectButton" type="Button" parent="." unique_id=170184681]
+offset_left = 910.0
+offset_top = 545.0
+offset_right = 1025.0
+offset_bottom = 605.0
+text = "Reject"
+
+[node name="Read1" type="Timer" parent="." unique_id=1073710374]
+wait_time = 0.5
+one_shot = true
+
+[node name="Read2" type="Timer" parent="." unique_id=562979389]
+wait_time = 0.5
+one_shot = true
+
+[node name="Panel" type="Panel" parent="." unique_id=738035454]
+offset_left = 142.0
+offset_top = 396.0
+offset_right = 338.0
+offset_bottom = 436.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_836ia")
+
+[node name="Label" type="Label" parent="Panel" unique_id=946526695]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 30.0
+text = "Forest Gatekeeper"

@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c6ueol4ki5jm4" path="res://Scenes/inventory.tscn" id="11_3sc2b"]
 [ext_resource type="PackedScene" uid="uid://cie1s6p2wish8" path="res://Scenes/potion_shop.tscn" id="12_cfck2"]
 [ext_resource type="PackedScene" uid="uid://eqsn80qkcdqn" path="res://Scenes/ni_dialogue.tscn" id="13_xvtj4"]
+[ext_resource type="PackedScene" uid="uid://ctubc6p7kgpk1" path="res://Scenes/fishing_shop_2.tscn" id="14_eatrk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t758c"]
 atlas = ExtResource("1_ul2td")
@@ -671,6 +672,12 @@ target_position = Vector2(0, 0)
 collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
+
+[node name="FShopDetector2" type="RayCast2D" parent="." unique_id=1426275260]
+target_position = Vector2(0, 25)
+collision_mask = 64
+
+[node name="FishingShop2" parent="." unique_id=1145389986 instance=ExtResource("14_eatrk")]
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

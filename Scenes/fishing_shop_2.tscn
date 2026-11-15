@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://ctubc6p7kgpk1"]
+
+[ext_resource type="Script" uid="uid://bel4upbdc0lrh" path="res://Scripts/fishing_shop_2.gd" id="1_varmu"]
+
+[node name="FishingShop2" type="CanvasLayer" unique_id=1145389986]
+scale = Vector2(2.3, 2.3)
+transform = Transform2D(2.3, 0, 0, 2.3, 0, 0)
+script = ExtResource("1_varmu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=691113217]
+offset_left = 109.565216
+offset_top = 18.652174
+offset_right = 356.56522
+offset_bottom = 281.65216
+color = Color(0.16862746, 0.1254902, 0.047058824, 1)
+
+[node name="Title" type="Label" parent="." unique_id=179540825]
+offset_left = 183.04349
+offset_top = 17.623186
+offset_right = 281.0435
+offset_bottom = 39.95652
+text = "Fishing Shop"
+
+[node name="Label" type="Label" parent="." unique_id=982522671]
+offset_left = 220.00002
+offset_top = 40.0
+offset_right = 247.00002
+offset_bottom = 55.354168
+theme_override_font_sizes/font_size = 11
+text = "Baits"
+
+[node name="Border" type="ColorRect" parent="." unique_id=528122133]
+offset_left = 109.56522
+offset_top = 126.95652
+offset_right = 356.56522
+offset_bottom = 128.95651

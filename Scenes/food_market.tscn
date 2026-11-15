@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://diyd7yql28048"]
+
+[node name="FoodMarket" type="CanvasLayer" unique_id=847863486]
+scale = Vector2(2.3, 2.3)
+transform = Transform2D(2.3, 0, 0, 2.3, 0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=727324595]
+offset_left = 109.565216
+offset_top = 18.652174
+offset_right = 356.56522
+offset_bottom = 281.65216
+color = Color(0.16862746, 0.1254902, 0.047058824, 1)
+
+[node name="Label" type="Label" parent="." unique_id=591348083]
+offset_left = 203.91306
+offset_top = 19.565218
+offset_right = 259.91306
+offset_bottom = 42.565216
+text = "Market"
+
+[node name="Label2" type="Label" parent="." unique_id=1929641737]
+offset_left = 222.17392
+offset_top = 36.956524
+offset_right = 246.17392
+offset_bottom = 50.91486
+theme_override_font_sizes/font_size = 10
+text = "Food"
+
+[node name="Border" type="ColorRect" parent="." unique_id=521755606]
+offset_left = 109.56522
+offset_top = 126.95652
+offset_right = 356.56522
+offset_bottom = 128.95651

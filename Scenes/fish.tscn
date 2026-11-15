@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cohlyyyrxhqnt" path="res://Scenes/trash.tscn" id="7_csmc7"]
 [ext_resource type="PackedScene" uid="uid://di34j6ej4dri5" path="res://Scenes/fantasia.tscn" id="8_lkfiq"]
 [ext_resource type="PackedScene" uid="uid://hvxbr3iuifnt" path="res://Scenes/squid.tscn" id="9_fl3e6"]
+[ext_resource type="PackedScene" uid="uid://4ixvu4uhfvau" path="res://Scenes/sea_stone.tscn" id="10_clm4a"]
 
 [node name="Fish" type="Node2D" unique_id=899732550]
 script = ExtResource("1_4fqy1")
@@ -45,5 +46,14 @@ offset_top = -80.0
 offset_right = 42.0
 offset_bottom = -57.0
 theme_override_colors/font_color = Color(0.14649862, 0.3706567, 1, 1)
+
+[node name="LegendaryCatch" type="Label" parent="." unique_id=1952720640]
+offset_left = -42.0
+offset_top = -80.0
+offset_right = 42.0
+offset_bottom = -57.0
+theme_override_colors/font_color = Color(0.14649862, 0.3706567, 1, 1)
+
+[node name="SeaStone" parent="." unique_id=756222465 instance=ExtResource("10_clm4a")]
 
 [connection signal="timeout" from="ShowFish" to="." method="_on_show_fish_timeout"]

@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dwngis2nojgrd"]
+
+[ext_resource type="Script" uid="uid://f0w1fl0af3mk" path="res://Scripts/first_time.gd" id="1_f84wh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f84wh"]
+bg_color = Color(0.86166275, 0.4824971, 0.35031402, 1)
+
+[node name="FirstTime" type="CanvasLayer" unique_id=54406111]
+script = ExtResource("1_f84wh")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1017048299]
+offset_left = 142.0
+offset_top = 436.0
+offset_right = 1036.0
+offset_bottom = 613.0
+color = Color(0.6052743, 0.6052743, 0.6052743, 1)
+
+[node name="Text" type="Label" parent="ColorRect" unique_id=393786370]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = 844.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+autowrap_mode = 3
+
+[node name="Next" type="Label" parent="ColorRect" unique_id=932783705]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 145.0
+offset_right = 879.0
+offset_bottom = 167.33333
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Press Enter To Continue..."
+
+[node name="ClaimButton" type="Button" parent="." unique_id=1354973948]
+offset_left = 912.0
+offset_top = 480.0
+offset_right = 1027.0
+offset_bottom = 540.0
+text = "Claim Apples"
+
+[node name="Read1" type="Timer" parent="." unique_id=1846779235]
+wait_time = 0.5
+one_shot = true
+
+[node name="Read2" type="Timer" parent="." unique_id=665695777]
+wait_time = 0.5
+one_shot = true
+
+[node name="Panel" type="Panel" parent="." unique_id=581147539]
+offset_left = 142.0
+offset_top = 396.0
+offset_right = 338.0
+offset_bottom = 436.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_f84wh")
+
+[node name="Label" type="Label" parent="Panel" unique_id=1921378769]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 30.0
+text = "Fishing Store Owner"

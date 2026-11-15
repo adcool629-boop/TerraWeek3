@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://utsb528sc4aj" path="res://Scripts/ni_dialogue.gd" id="1_xrr4e"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t1rta"]
+bg_color = Color(0.86166275, 0.4824971, 0.35031402, 1)
+
 [node name="NI_Dialogue" type="CanvasLayer" unique_id=946351177]
 script = ExtResource("1_xrr4e")
 
@@ -53,6 +56,21 @@ one_shot = true
 [node name="Read2" type="Timer" parent="." unique_id=1754748584]
 wait_time = 0.5
 one_shot = true
+
+[node name="Panel" type="Panel" parent="." unique_id=79667754]
+offset_left = 142.0
+offset_top = 396.0
+offset_right = 338.0
+offset_bottom = 436.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t1rta")
+
+[node name="Label" type="Label" parent="Panel" unique_id=1666685343]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 30.0
+text = "Adventurous Fisherman"
 
 [connection signal="pressed" from="YesButton" to="." method="_on_yes_button_pressed"]
 [connection signal="pressed" from="NoButton" to="." method="_on_no_button_pressed"]

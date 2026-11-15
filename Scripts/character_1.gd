@@ -15,6 +15,7 @@ var bad: bool = false
 var inv_closed: bool = true
 var value: int = 0
 var luck: int = 0
+var first_time = true
 #-----------------------------------------------
 #Baits
 #-----------------------------------------------
@@ -69,6 +70,7 @@ func process_movement() -> void:
 		$NPCDetector.target_position = direction * 32.0
 		$TrashDetector.target_position = direction * 5
 		$FShopDetector.target_position = direction * 32.0
+		$FShopDetector2.target_position = direction * 32.0
 	else:
 		velocity = Vector2.ZERO
 func process_animation() -> void:
@@ -133,6 +135,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			MainCharacter.InReach = true
 			print("Picking Up")
 			
+	if $FShopDetector2.is_colliding():
+		$ShopHelp.text = ('Press F to Pick Up')
+		if $FShopDetector2.is_colliding() and event.is_action_pressed('Interact'):
+			$FishingShop2.visible = true
+			$FishingShop2.set_process(true)
+			$FishingShop2.set_process_input(true)
+			shopping = true
 	if inv_closed:
 		if event.is_action_pressed('OpenInventory'):
 			get_child(15).openinv()

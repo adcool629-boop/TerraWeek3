@@ -589,6 +589,8 @@ animations = [{
 size = Vector2(12, 6)
 
 [node name="Character2" type="CharacterBody2D" unique_id=370639807]
+collision_layer = 33
+collision_mask = 33
 script = ExtResource("1_vynxn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=704743904]
@@ -656,8 +658,15 @@ collision_mask = 8
 [node name="NPCDetector" type="RayCast2D" parent="." unique_id=858315358]
 target_position = Vector2(0, 25)
 collision_mask = 16
+collide_with_areas = true
 
 [node name="NI_Dialogue" parent="." unique_id=946351177 instance=ExtResource("13_gge23")]
+
+[node name="TrashDetector" type="RayCast2D" parent="." unique_id=1464302220]
+target_position = Vector2(0, 0)
+collision_mask = 32
+hit_from_inside = true
+collide_with_areas = true
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

@@ -12,3 +12,17 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	$Area2D/Label.text = ("Barren Lands")
+	$Area2D/Timer.start()
+	print("Message Show")
+
+
+func _on_timer_timeout() -> void:
+	$Area2D.queue_free()
+	print("Message Cleared")
