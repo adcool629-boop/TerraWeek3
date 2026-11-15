@@ -39,7 +39,14 @@ var IRod: bool = false
 var ARod: bool = false
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fishing_detector: RayCast2D = $FishingDetector
-
+func _process(delta: float) -> void:
+	if MainCharacter.PickedUp:
+		MainCharacter.PickedUp = false
+		if trash_amount == 0:
+			trash_add()
+		elif trash_amount > 0:
+			get_child(15).add_trash()
+		MainCharacter.PickedUp = false
 func _physics_process(delta: float) -> void:
 	if fishing or shopping:
 		velocity = Vector2.ZERO
@@ -58,9 +65,10 @@ func process_movement() -> void:
 		velocity = direction * SPEED
 		LastDirection = direction
 		fishing_detector.target_position = direction * 32.0
-		$FShopDetector.target_position = direction * 32.0
 		$PShopDetector.target_position = direction * 32.0
 		$NPCDetector.target_position = direction * 32.0
+		$TrashDetector.target_position = direction * 5
+		$FShopDetector.target_position = direction * 32.0
 	else:
 		velocity = Vector2.ZERO
 func process_animation() -> void:
@@ -110,8 +118,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			$PotionShop.set_process_input(true)
 			$PotionShop.visible = true
 			shopping = true
-	elif not $PShopDetector.is_colliding():
-			$ShopHelp.text = ("")
+	
 	if $NPCDetector.is_colliding():
 		$ShopHelp.text = ('Press F to Interact')
 	if $NPCDetector.is_colliding() and event.is_action_pressed('Interact'):
@@ -120,6 +127,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		$NI_Dialogue.visible = true
 		shopping = true
 		get_child(19).text_one()
+	if $TrashDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Pick Up')
+		if $TrashDetector.is_colliding() and event.is_action_pressed('Interact'):
+			MainCharacter.InReach = true
+			print("Picking Up")
+			
 	if inv_closed:
 		if event.is_action_pressed('OpenInventory'):
 			get_child(15).openinv()
@@ -333,8 +346,10 @@ func unselect_fatchance() -> void:
 	get_child(9).FatChance = false
 
 func trash_add() -> void:
-	get_child(15).add_trash()
+	trash_amount += 1
 	MainCharacter.trash += 1
+	MainCharacter.store_num += 1
+	get_child(15).add_trash()
 	
 func trash_remove() -> void:
 	if trash_amount == 0:

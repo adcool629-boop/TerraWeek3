@@ -102,7 +102,7 @@ func add_clownfish_lure() -> void:
 			$Node/ClownfishLure.position.y = 100
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/ClownfishLure.position.x = (MainCharacter.store_num) * 125 - 800
-			$Node/ClownfishLure.position.y = 200
+			$Node/ClownfishLure.position.y = 250
 		CfL_positionX = $Node/ClownfishLure.position.x
 		CfL_positionY = $Node/ClownfishLure.position.y
 		print("X Position is " +str(CfL_positionX))
@@ -196,7 +196,7 @@ func add_cod_lure() -> void:
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/CodLure.position.x = (MainCharacter.store_num) * 125 - 800
 			CodLure_amount = $Node/CodLure.position.x
-			$Node/CodLure.position.y = 200
+			$Node/CodLure.position.y = 250
 		CodL_positionX = $Node/CodLure.position.x
 		CodL_positionY = $Node/CodLure.position.y
 		print("X Position is " +str(CodL_positionX))
@@ -290,7 +290,7 @@ func add_goldfish_lure() -> void:
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/GoldfishLure.position.x = (MainCharacter.store_num) * 125 - 800
 			GoldfishLure_amount = $Node/GoldfishLure.position.x
-			$Node/GoldfishLure.position.y = 200
+			$Node/GoldfishLure.position.y = 250
 		GfL_positionX = $Node/GoldfishLure.position.x
 		GfL_positionY = $Node/GoldfishLure.position.y
 		print("X Position is " +str(GfL_positionX))
@@ -384,7 +384,7 @@ func add_fc_lure() -> void:
 			$Node/FatChance.position.y = 100
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/FatChance.position.x = (MainCharacter.store_num) * 125 - 800
-			$Node/FatChance.position.y = 200
+			$Node/FatChance.position.y = 250
 		FC_positionX = $Node/FatChance.position.x
 		FC_positionY = $Node/FatChance.position.y
 		print("X Position is " +str(FC_positionX))
@@ -471,7 +471,8 @@ func fc_move_back() -> void:
 		LLuck_positionY = 100
 
 func add_trash() -> void:
-	TrashBag_amount += 1
+	TrashBag_amount += 100
+	MainCharacter.trash += 99
 	print(TrashBag_amount)
 	$Node/Trash/Label.text = str(TrashBag_amount)
 	if get_parent().trash_amount > 0 and get_parent().trash_amount < 2:
@@ -480,7 +481,7 @@ func add_trash() -> void:
 			$Node/Trash.position.y = 100
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/Trash.position.x = (MainCharacter.store_num) * 125 - 800
-			$Node/Trash.position.y = 200
+			$Node/Trash.position.y = 250
 		Trash_positionX = $Node/Trash.position.x
 		Trash_positionY = $Node/Trash.position.y
 		print("X Position is " +str(Trash_positionX))
@@ -572,7 +573,7 @@ func add_S_Luck_Potion() -> void:
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/SLuck.position.x = (MainCharacter.store_num) * 125 - 800
 			SLuck_positionX = $Node/SLuck.position.x
-			$Node/SLuck.position.y = 200
+			$Node/SLuck.position.y = 250
 			SLuck_positionY = $Node/SLuck.position.y
 		print("X Position is " +str(SLuck_positionX))
 		print("Y Position is " +str(SLuck_positionY))
@@ -662,7 +663,7 @@ func add_M_Luck_Potion() -> void:
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/MLuck.position.x = (MainCharacter.store_num) * 125 - 800
 			MLuck_positionX = $Node/MLuck.position.x
-			$Node/MLuck.position.y = 200
+			$Node/MLuck.position.y = 250
 			MLuck_positionY = $Node/MLuck.position.y
 		print("X position is " +str(MLuck_positionX))
 		print("Y position is " +str(MLuck_positionY))
@@ -752,7 +753,7 @@ func add_L_Luck_Potion() -> void:
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/LLuck.position.x = (MainCharacter.store_num) * 125 - 800
 			LLuck_positionX = $Node/LLuck.position.x
-			$Node/LLuck.position.y = 200
+			$Node/LLuck.position.y = 250
 			LLuck_positionY = $Node/LLuck.position.y
 		print("X Position is " +str(LLuck_positionX))
 		print("Y Position is " +str(LLuck_positionY))

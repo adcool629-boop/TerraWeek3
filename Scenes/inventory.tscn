@@ -144,24 +144,28 @@ gizmo_extents = 0.0
 [node name="Node" type="Node" parent="." unique_id=1257121477]
 
 [node name="Clownfish" type="Sprite2D" parent="Node" unique_id=1839751327]
+visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("2_yxepq")
 region_enabled = true
 region_rect = Rect2(16.856834, 0.57736635, 15.088448, 14.518154)
 
 [node name="Cod" type="Sprite2D" parent="Node" unique_id=1889122789]
+visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("2_yxepq")
 region_enabled = true
 region_rect = Rect2(0, 0, 16.679504, 16.636917)
 
 [node name="Goldfish" type="Sprite2D" parent="Node" unique_id=819332153]
+visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("2_yxepq")
 region_enabled = true
 region_rect = Rect2(15.368322, 32.060795, 16.517424, 16.460178)
 
 [node name="ClownfishLure" type="Sprite2D" parent="Node" unique_id=1310620807]
+visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
 region_enabled = true
@@ -182,6 +186,7 @@ offset_bottom = 28.2
 theme_override_font_sizes/font_size = 6
 
 [node name="CodLure" type="Sprite2D" parent="Node" unique_id=1296338786]
+visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
 region_enabled = true
@@ -200,6 +205,7 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
 [node name="GoldfishLure" type="Sprite2D" parent="Node" unique_id=603927012]
+visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
 region_enabled = true
@@ -218,6 +224,7 @@ offset_right = 9.0
 offset_bottom = 11.0
 
 [node name="FatChance" type="Sprite2D" parent="Node" unique_id=948689415]
+visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
 region_enabled = true
@@ -236,6 +243,7 @@ offset_right = 9.0
 offset_bottom = 11.0
 
 [node name="Trash" type="Sprite2D" parent="Node" unique_id=1066831592]
+visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("2_yxepq")
 region_enabled = true
@@ -247,6 +255,7 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
 [node name="SLuck" type="Sprite2D" parent="Node" unique_id=381105744]
+visible = false
 scale = Vector2(5, 5)
 
 [node name="Label" type="Label" parent="Node/SLuck" unique_id=619085599]
@@ -270,6 +279,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 15.538483, 15.702101)
 
 [node name="MLuck" type="Sprite2D" parent="Node" unique_id=1916966299]
+visible = false
 scale = Vector2(5, 5)
 region_enabled = true
 
@@ -295,6 +305,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16.205353, 15.558525)
 
 [node name="LLuck" type="Sprite2D" parent="Node" unique_id=1050052094]
+visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("4_c5ffv")
 region_enabled = true

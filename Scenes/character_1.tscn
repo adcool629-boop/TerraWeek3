@@ -589,6 +589,8 @@ animations = [{
 size = Vector2(12, 6)
 
 [node name="Character1" type="CharacterBody2D" unique_id=1799181464]
+collision_layer = 33
+collision_mask = 33
 script = ExtResource("1_j0ejx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=541881872]
@@ -625,7 +627,7 @@ one_shot = true
 
 [node name="Fish" parent="." unique_id=899732550 instance=ExtResource("9_rbena")]
 
-[node name="FShopDetector" type="RayCast2D" parent="." unique_id=1224952590]
+[node name="FShopDetector" type="RayCast2D" parent="." unique_id=1047608948]
 target_position = Vector2(0, 25)
 collision_mask = 4
 
@@ -663,6 +665,12 @@ collision_mask = 16
 collide_with_areas = true
 
 [node name="NI_Dialogue" parent="." unique_id=946351177 instance=ExtResource("13_xvtj4")]
+
+[node name="TrashDetector" type="RayCast2D" parent="." unique_id=1872363063]
+target_position = Vector2(0, 0)
+collision_mask = 32
+hit_from_inside = true
+collide_with_areas = true
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
