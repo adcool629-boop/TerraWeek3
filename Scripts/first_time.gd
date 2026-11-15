@@ -54,7 +54,13 @@ func close_dialogue() -> void:
 
 
 func _on_claim_button_pressed() -> void:
-	get_parent().apples += 10
+	if get_parent().apples == 0:
+		MainCharacter.store_num += 1
+	for i in range(10):
+		get_parent().apples += 1
+		get_parent().apples_add()
+
+	
 	$ClaimButton.visible = false
 	$ClaimButton.set_process(false)
 	$ClaimButton.set_process_input(false)

@@ -20,6 +20,8 @@ func _on_buy_timer_timeout() -> void:
 func _on_sl_potion_pressed() -> void:
 	if MainCharacter.trash >= 1:
 		MainCharacter.trash += -1
+		for i in range(1):
+			get_parent().trash_update()
 		$Purchase.playing = true
 		if get_parent().SLuck == 0:
 			MainCharacter.store_num += 1
@@ -41,6 +43,8 @@ func _on_sl_potion_pressed() -> void:
 func _on_ml_potion_pressed() -> void:
 	if MainCharacter.trash >= 3:
 		MainCharacter.trash += -3
+		for i in range(3):
+			get_parent().trash_update()
 		$Purchase.playing = true
 		if get_parent().MLuck == 0:
 			MainCharacter.store_num += 1
@@ -61,6 +65,8 @@ func _on_ml_potion_pressed() -> void:
 func _on_ll_potion_pressed() -> void:
 	if MainCharacter.trash >= 10:
 		MainCharacter.trash += -10
+		for i in range(10):
+			get_parent().trash_update()
 		$Purchase.playing = true
 		if get_parent().LLuck == 0:
 			MainCharacter.store_num += 1

@@ -1,6 +1,8 @@
 extends CanvasLayer
 var clownfish_num: int = 0
-#125.x gap between the each panel
+
+#-------------------Amounts-----------------------
+
 var ClownfishLure_amount: int = 0
 var CodLure_amount: int = 0
 var GoldfishLure_amount: int = 0
@@ -9,6 +11,10 @@ var TrashBag_amount: int = 0
 var SLuck_amount: int = 0
 var MLuck_amount: int = 0
 var LLuck_amount: int = 0
+var apple_amount: int = 0
+
+#-------------------Positions-----------------------
+
 var CfL_positionX: int
 var CfL_positionY: int
 var CodL_positionX: int
@@ -25,12 +31,18 @@ var MLuck_positionX: int
 var MLuck_positionY: int
 var LLuck_positionX: int
 var LLuck_positionY: int
+var Apple_positionX: int
+var Apple_positionY: int
+
+#-------------------Equipped/Using-----------------------
+
 var intermediate_equipped: bool = false
 var advanced_equipped: bool = false
 var basic_equipped: bool = true
 var UseLargeLuck: bool = false
 var UseMediumLuck: bool = false
 var UseSmallLuck: bool = false
+var EatApple: bool = false
 
 #-----------------
 #Add Fish
@@ -85,6 +97,8 @@ func openinv() -> void:
 		$Node/MLuck.visible = true
 	if get_parent().LLuck > 0:
 		$Node/LLuck.visible = true
+	if get_parent().apples > 0:
+		$Node/Apple.visible = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
@@ -109,6 +123,7 @@ func add_clownfish_lure() -> void:
 		CfL_positionY = $Node/ClownfishLure.position.y
 		print("X Position is " +str(CfL_positionX))
 		print("Y Position is " +str(CfL_positionY))
+		
 func decrease_clownfish_lure() -> void:
 	ClownfishLure_amount += -1
 	$Node/ClownfishLure/Amount.text = str(ClownfishLure_amount)
@@ -186,7 +201,16 @@ func clownfish_lure_move_back() -> void:
 		LLuck_positionX = 950
 		$Node/LLuck.position.y = 100
 		LLuck_positionY = 100
-	
+	if Apple_positionX > CfL_positionX:
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > CfL_positionY and Apple_positionX == 200:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+		
 func add_cod_lure() -> void:
 	CodLure_amount += 1
 	print(CodLure_amount)
@@ -281,6 +305,16 @@ func cod_lure_move_back() -> void:
 		LLuck_positionX = 950
 		$Node/LLuck.position.y = 100
 		LLuck_positionY = 100
+	if Apple_positionX > CodL_positionX:
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > CodL_positionY and Apple_positionX == 200:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+		
 func add_goldfish_lure() -> void:
 	GoldfishLure_amount += 1
 	print(GoldfishLure_amount)
@@ -376,6 +410,16 @@ func goldfish_lure_move_back() -> void:
 		LLuck_positionX = 950
 		$Node/LLuck.position.y = 100
 		LLuck_positionY = 100
+	if Apple_positionX > GfL_positionX:
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > GfL_positionY and Apple_positionX == 200:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+		
 func add_fc_lure() -> void:
 	FatChanceLure_amount += 1
 	print(FatChanceLure_amount)
@@ -406,6 +450,7 @@ func remove_fc_lure() -> void:
 	fc_move_back()
 	get_parent().unselect_fatchance()
 	print("it does work 2x")
+	
 func fc_move_back() -> void:
 
 	if GfL_positionX > FC_positionX:
@@ -471,7 +516,16 @@ func fc_move_back() -> void:
 		LLuck_positionX = 950
 		$Node/LLuck.position.y = 100
 		LLuck_positionY = 100
-
+	if Apple_positionX > FC_positionX:
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > FC_positionY and Apple_positionX == 200:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+		
 func add_trash() -> void:
 	TrashBag_amount += 100
 	MainCharacter.trash += 99
@@ -488,7 +542,8 @@ func add_trash() -> void:
 		Trash_positionY = $Node/Trash.position.y
 		print("X Position is " +str(Trash_positionX))
 		print("Y Position is " +str(Trash_positionY))
-		
+	get_parent().trash_amount += 99
+	
 func remove_trash() -> void:
 	print(TrashBag_amount)
 	$Node/Trash/Label.text = ''
@@ -496,6 +551,7 @@ func remove_trash() -> void:
 	$Node/Trash.position.y = 0
 	$Node/Trash.visible = false
 	trash_move_back()
+	get_parent().trash_remove()
 		
 		
 func trash_move_back() -> void:
@@ -562,6 +618,21 @@ func trash_move_back() -> void:
 		LLuck_positionX = 950
 		$Node/LLuck.position.y = 100
 		LLuck_positionY = 100
+	if Apple_positionX > Trash_positionX:
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > Trash_positionY and Apple_positionX == 200:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+		
+func update_trash() -> void:
+	TrashBag_amount += -1
+	print(TrashBag_amount)
+	$Node/Trash/Label.text = str(TrashBag_amount)
+	
 func add_S_Luck_Potion() -> void:
 	SLuck_amount += 1
 	print(SLuck_amount)
@@ -588,6 +659,9 @@ func remove_S_Luck_potion() -> void:
 	$Node/SLuck.position.y = 0
 	$Node/SLuck.visible = false
 	S_Luck_Potion_Move_Back()
+	
+	
+	
 func S_Luck_Potion_Move_Back() -> void:
 	if Trash_positionX > SLuck_positionX:
 		$Node/Trash.position.x = Trash_positionX - 125
@@ -652,6 +726,17 @@ func S_Luck_Potion_Move_Back() -> void:
 		LLuck_positionX = 950
 		$Node/LLuck.position.y = 100
 		LLuck_positionY = 100
+	if Apple_positionX > SLuck_positionX:
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > SLuck_positionY and Apple_positionX == 200:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+		
+		
 func add_M_Luck_Potion() -> void:
 	MLuck_amount += 1
 	print(MLuck_amount)
@@ -669,6 +754,7 @@ func add_M_Luck_Potion() -> void:
 			MLuck_positionY = $Node/MLuck.position.y
 		print("X position is " +str(MLuck_positionX))
 		print("Y position is " +str(MLuck_positionY))
+		
 func remove_M_Luck_potion() -> void:
 	print(MLuck_amount)
 	$Node/MLuck/Label.text = ''
@@ -676,6 +762,7 @@ func remove_M_Luck_potion() -> void:
 	$Node/MLuck.position.y = 0
 	$Node/MLuck.visible = false
 	M_Luck_Potion_Move_Back()
+	
 	
 func M_Luck_Potion_Move_Back() -> void:
 	if SLuck_positionX > MLuck_positionX:
@@ -741,7 +828,16 @@ func M_Luck_Potion_Move_Back() -> void:
 		LLuck_positionX = 950
 		$Node/LLuck.position.y = 100
 		LLuck_positionY = 100
-	
+	if Apple_positionX > MLuck_positionX:
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > MLuck_positionY and Apple_positionX == 200:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+		
 func add_L_Luck_Potion() -> void:
 	LLuck_amount += 1
 	print(LLuck_amount)
@@ -759,13 +855,16 @@ func add_L_Luck_Potion() -> void:
 			LLuck_positionY = $Node/LLuck.position.y
 		print("X Position is " +str(LLuck_positionX))
 		print("Y Position is " +str(LLuck_positionY))
-	LLuck_positionX = $Node/LLuck.position.x
+		
 func remove_L_Luck_potion() -> void:
 	print(LLuck_amount)
 	$Node/LLuck/Label.text = ''
 	$Node/LLuck.position.x = 0
 	$Node/LLuck.position.y = 0
 	$Node/LLuck.visible = false
+	L_Luck_Potion_Move_Back()
+	
+	
 
 func L_Luck_Potion_Move_Back() -> void:
 	if MLuck_positionX > LLuck_positionX:
@@ -831,6 +930,118 @@ func L_Luck_Potion_Move_Back() -> void:
 		CfL_positionX = 950
 		$Node/ClownfishLure.position.y = 100
 		CfL_positionY = 100
+	if Apple_positionX > LLuck_positionX:
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > LLuck_positionY and Apple_positionX == 200:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+		
+
+func add_apple() -> void:
+	apple_amount += 1
+	print(apple_amount)
+	$Node/Apple/Label.text = str(apple_amount)
+	if get_parent().apples > 0 and get_parent().apples < 2:
+		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+			$Node/Apple.position.x = (MainCharacter.store_num) * 125 + 75
+			Apple_positionX = $Node/Apple.position.x
+			$Node/Apple.position.y = 100
+			Apple_positionY = $Node/LLuck.position.y
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/Apple.position.x = (MainCharacter.store_num) * 125 - 800
+			Apple_positionX = $Node/Apple.position.x
+			$Node/Apple.position.y = 250
+			Apple_positionY = $Node/Apple.position.y
+		print("X Position is " +str(Apple_positionX))
+		print("Y Position is " +str(Apple_positionY))
+		
+func remove_apple() -> void:
+	print(apple_amount)
+	$Node/Apple/Label.text = ''
+	$Node/Apple.position.x = 0
+	$Node/Apple.position.y = 0
+	$Node/Apple.visible = false
+	apple_move_back()
+	
+func apple_move_back() -> void:
+	if MLuck_positionX > Apple_positionX:
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
+		print("decreasing M Luck position")
+	elif MLuck_positionY > Apple_positionY and MLuck_positionX == 200:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	if SLuck_positionX > Apple_positionX:
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
+		print("decreasing S Luck position")
+	elif SLuck_positionY > Apple_positionY and SLuck_positionX == 200:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	if Trash_positionX > Apple_positionX:
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
+		print("decreasing Trash position")
+	elif Trash_positionY > Apple_positionY and Trash_positionX == 200:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	if FC_positionX > Apple_positionX:
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
+		print("decreasing FC position")
+	elif FC_positionY > Apple_positionY and FC_positionX == 200:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	if GfL_positionX > Apple_positionX:
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
+		print("decreasing goldfish_position")
+	elif GfL_positionY > Apple_positionY and GfL_positionX == 200:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	if CodL_positionX > Apple_positionX:
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
+		print("decreasing cod position")
+	elif CodL_positionY > Apple_positionY and CodL_positionX == 200:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	if CfL_positionX > Apple_positionX:
+		$Node/ClownfishLure.position.x = CfL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
+		print("decreasing clownfish position")
+	elif CfL_positionY > Apple_positionY and CfL_positionX == 200:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
+	if LLuck_positionX > Apple_positionX:
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX  = LLuck_positionX - 125
+		print("decreasing L Luck position")
+	elif LLuck_positionY > Apple_positionY and LLuck_positionX == 200:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
+	
+
 func _on_close_pressed() -> void:
 	$".".visible = false
 	$Node/ClownfishLure.visible = false
@@ -849,6 +1060,8 @@ func _on_close_pressed() -> void:
 	$Node/LLuck.visible = false
 	$Node/Trash.visible = false
 	$UseBackground.visible = false
+	$Node/Apple.visible = false
+	$Node/SeaStone.visible = false
 	
 func _on_cf_l_button_pressed() -> void:
 	get_parent().select_clownfish_lure()
@@ -895,27 +1108,36 @@ func _on_unselect_all_pressed() -> void:
 func _on_s_luck_button_pressed() -> void:
 	$UseBackground.visible = true
 	$UseBackground.position.x = 400
+	$UseBackground/Use.text = 'Use'
+	$UseBackground/Back.text = 'Back'
 	$UseBackground/Label.text = "Do you want to use small luck potion to boost your luck for the next 2 casts?"
 	UseSmallLuck = true
 	UseLargeLuck = false
 	UseMediumLuck = false
+	EatApple = false
 
 
 func _on_m_luck_button_pressed() -> void:
 	$UseBackground.visible = true
 	$UseBackground.position.x = 400
+	$UseBackground/Use.text = 'Use'
+	$UseBackground/Back.text = 'Back'
 	$UseBackground/Label.text = "Do you want to use medium luck potion to boost your luck for the next 6 casts?"
 	UseMediumLuck = true
 	UseLargeLuck = false
 	UseSmallLuck = false
+	EatApple = false
 
 func _on_l_luck_button_pressed() -> void:
 	$UseBackground.visible = true
 	$UseBackground.position.x = 400
+	$UseBackground/Use.text = 'Use'
+	$UseBackground/Back.text = 'Back'
 	$UseBackground/Label.text = "Do you want to use large luck potion to boost your luck for the next 20 casts?"
 	UseLargeLuck = true
 	UseMediumLuck = false
 	UseSmallLuck = false
+	EatApple = false
 
 
 func _on_use_pressed() -> void:
@@ -927,21 +1149,55 @@ func _on_use_pressed() -> void:
 		LLuck_amount += -1
 		get_parent().LLuck += -1
 		if get_parent().LLuck <= 0:
-			remove_L_Luck_potion()
+			get_parent().L_Luck_Potion_remove()
 		UseLargeLuck = false
+		print("Luck is " + str(get_parent().luck))
 	if UseMediumLuck:
 		get_parent().luck += 6
 		MLuck_amount += -1
 		get_parent().MLuck += -1
 		if get_parent().MLuck <= 0:
-			remove_M_Luck_potion()
+			get_parent().M_Luck_Potion_remove()
 		UseMediumLuck = false
+		print("Luck is " + str(get_parent().luck))
 	if UseSmallLuck:
 		get_parent().luck += 2
 		SLuck_amount += -1
 		get_parent().SLuck += -1
 		if get_parent().SLuck <= 0:
-			remove_S_Luck_potion()
+			get_parent().S_Luck_Potion_remove()
 		UseSmallLuck = false
-	print("Luck is " + str(get_parent().luck))
+		print("Luck is " + str(get_parent().luck))
+	if EatApple:
+		get_parent().apple_ate()
+		apple_amount += -1
+		get_parent().apples += -1
+		if get_parent().apples <= 0:
+			get_parent().apples_remove()
+		EatApple = false
+		
+
+
+func _on_back_pressed() -> void:
+	$UseBackground.set_process(false)
+	$UseBackground.set_process_input(false)
+	$UseBackground.position.x = -400
+	$UseBackground/Use.text = ''
+	$UseBackground/Back.text = ''
+	$UseBackground/Label.text = ''
+	UseLargeLuck = false
+	UseMediumLuck = false
+	UseSmallLuck = false
+	EatApple = false
 	
+
+func _on_apple_button_pressed() -> void:
+	$UseBackground.visible = true
+	$UseBackground.position.x = 400
+	$UseBackground/Label.text = "Do you want to eat apple?"
+	$UseBackground/Use.text = 'Yes'
+	$UseBackground/Back.text = 'No'
+	UseLargeLuck = false
+	UseMediumLuck = false
+	UseSmallLuck = false
+	EatApple = true

@@ -11,6 +11,7 @@ var bridge1
 var RemoveableWater1
 var InReach: bool = false
 var PickedUp: bool = false
+var AddHunger: bool = false
 
 
 # Called when the node enters the scene tree for the first time.

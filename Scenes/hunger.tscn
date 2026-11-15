@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://devei6bkln6pw"]
+
+[ext_resource type="Script" uid="uid://ttoj2cvrehu" path="res://Scripts/hunger.gd" id="1_08had"]
+[ext_resource type="Texture2D" uid="uid://bivp32dv8xiub" path="res://assets/PNG/GUI-Kit-Pack-Free_59.png" id="1_y71ea"]
+[ext_resource type="Texture2D" uid="uid://b0e7xy7mj8kl3" path="res://assets/PNG/GUI-Kit-Pack-Free_32.png" id="2_08had"]
+[ext_resource type="Texture2D" uid="uid://c0eiuvymi3b7c" path="res://assets/padding/64px/white/5-food/bread.png" id="4_7is8e"]
+
+[node name="Hunger" type="CanvasLayer" unique_id=317609650]
+script = ExtResource("1_08had")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=346796189]
+offset_left = 1.0
+offset_top = 555.0
+offset_right = 352.0
+offset_bottom = 639.0
+texture = ExtResource("1_y71ea")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="TextureRect" unique_id=1199707957]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 16.0
+offset_right = 341.0
+offset_bottom = 63.0
+value = 100.0
+texture_progress = ExtResource("2_08had")
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect" unique_id=1423526990]
+position = Vector2(42, 38)
+texture = ExtResource("4_7is8e")
+
+[node name="Timer" type="Timer" parent="." unique_id=1127740718]
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

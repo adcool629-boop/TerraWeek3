@@ -327,13 +327,27 @@ offset_top = -8.0
 offset_right = 9.0
 offset_bottom = 11.0
 
+[node name="Apple" type="Sprite2D" parent="Node" unique_id=1553739373]
+visible = false
+scale = Vector2(5, 5)
+texture = ExtResource("6_trvqw")
+
+[node name="AppleButton" type="Button" parent="Node/Apple" unique_id=546358759]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Node/Apple" unique_id=1236587545]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
 [node name="SeaStone" type="Sprite2D" parent="Node" unique_id=1706276607]
+visible = false
 scale = Vector2(8, 8)
 texture = ExtResource("5_sd8fj")
-
-[node name="Apple" type="Sprite2D" parent="Node" unique_id=1553739373]
-scale = Vector2(3, 3)
-texture = ExtResource("6_trvqw")
 
 [node name="UseBackground" type="ColorRect" parent="." unique_id=1293145264]
 offset_left = 400.0
@@ -440,6 +454,8 @@ text = "Current Rod:"
 [connection signal="pressed" from="Node/SLuck/SLuckButton" to="." method="_on_s_luck_button_pressed"]
 [connection signal="pressed" from="Node/MLuck/MLuckButton" to="." method="_on_m_luck_button_pressed"]
 [connection signal="pressed" from="Node/LLuck/LLuckButton" to="." method="_on_l_luck_button_pressed"]
+[connection signal="pressed" from="Node/Apple/AppleButton" to="." method="_on_apple_button_pressed"]
 [connection signal="pressed" from="UseBackground/Use" to="." method="_on_use_pressed"]
+[connection signal="pressed" from="UseBackground/Back" to="." method="_on_back_pressed"]
 [connection signal="timeout" from="BaitSelected/BaitSelectedTimer" to="." method="_on_bait_selected_timer_timeout"]
 [connection signal="pressed" from="UnselectAll" to="." method="_on_unselect_all_pressed"]

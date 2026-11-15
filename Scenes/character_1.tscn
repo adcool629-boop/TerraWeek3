@@ -18,6 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://m13u6u8nugut" path="res://assets/Audios/freesound_community-tiny-splash-83778.mp3" id="16_fml7b"]
 [ext_resource type="AudioStream" uid="uid://dudu5w58upl1f" path="res://assets/Audios/soumages-walking-on-grass-363353.mp3" id="17_veqrb"]
 [ext_resource type="AudioStream" uid="uid://cawhnih0hpf7e" path="res://assets/Audios/fishingreel.mp3" id="18_6awtb"]
+[ext_resource type="PackedScene" uid="uid://devei6bkln6pw" path="res://Scenes/hunger.tscn" id="19_pqf27"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t758c"]
 atlas = ExtResource("1_ul2td")
@@ -701,6 +702,8 @@ stream = ExtResource("18_6awtb")
 volume_db = -5.368
 pitch_scale = 1.71
 parameters/looping = true
+
+[node name="Hunger" parent="." unique_id=317609650 instance=ExtResource("19_pqf27")]
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

@@ -42,6 +42,7 @@ var ARod: bool = false
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fishing_detector: RayCast2D = $FishingDetector
 func _process(delta: float) -> void:
+	
 	if MainCharacter.PickedUp:
 		MainCharacter.PickedUp = false
 		if trash_amount == 0:
@@ -387,6 +388,8 @@ func trash_remove() -> void:
 	if trash_amount == 0:
 		get_child(15).remove_trash()
 		MainCharacter.store_num += -1
+func trash_update() -> void:
+	get_child(15).update_trash()
 func advanced_rod() -> void:
 	get_child(15).advanced_equipped = true
 	get_child(15).basic_equipped = false
@@ -411,7 +414,7 @@ func M_Luck_Potion_add() -> void:
 
 func M_Luck_Potion_remove() -> void:
 	if MLuck == 0:
-		get_child(15).remove_M_Luck_Potion()
+		get_child(15).remove_M_Luck_potion()
 		MainCharacter.store_num += -1
 	
 
@@ -421,4 +424,15 @@ func L_Luck_Potion_add() -> void:
 func L_Luck_Potion_remove() -> void:
 	if LLuck == 0:
 		get_child(15).remove_L_Luck_Potion()
+		MainCharacter.store_num += -1
+func apples_add() -> void:
+	get_child(15).add_apple()
+func apple_ate() -> void:
+	print(get_children(27))
+	print(get_child_count())
+	$Hunger.eating_apple()
+
+func apples_remove() -> void:
+	if apples == 0:
+		get_child(15).remove_apple()
 		MainCharacter.store_num += -1
