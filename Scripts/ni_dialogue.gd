@@ -25,10 +25,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		if bought:
 			close_dialogue()
 		else:
+			first_text = false
 			text_two()
 		
 	if second_text and event.is_action_pressed("Next"):
-		first_text = false
+		second_text = false
 		text_three()
 	if close_ready and event.is_action_pressed("Next"):
 		close_dialogue()
@@ -48,7 +49,7 @@ func text_two() -> void:
 func text_three() -> void:
 	$ColorRect/Text.text = "Give Adventurous Fisherman 50,000 Coins?"
 	print("Third Message")
-	second_text = false
+	
 	$ColorRect/Next.text = ""
 	$YesButton.visible = true
 	$NoButton.visible = true

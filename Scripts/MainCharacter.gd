@@ -3,7 +3,7 @@ extends Node
 var chosen_character: int = 0
 var fishables: bool = false
 var moveables: bool = true
-var total_coins: int = 100000
+var total_coins: int = 1000000
 var trash: int = 0
 var store_num: int = 0
 var store: int = 0

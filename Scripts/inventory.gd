@@ -57,6 +57,8 @@ func _ready() -> void:
 	$Node/SLuck.visible = false
 	$Node/MLuck.visible = false
 	$Node/LLuck.visible = false
+	$Node/SeaStone.visible = false
+	$Node/Apple.visible = false
 	$UseBackground.position.x = -400
 func openinv() -> void:
 	$".".visible = true

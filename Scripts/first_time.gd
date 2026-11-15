@@ -1,14 +1,14 @@
 extends CanvasLayer
 
-var first_text = false
-var second_text = false
-var close_ready
+var first_text: bool = false
+var second_text: bool = false
+var close_ready: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$YesButton.visible = false
-	$YesButton.set_process(false)
-	$YesButton.set_process_input(false)
+	$ClaimButton.visible = false
+	$ClaimButton.set_process(false)
+	$ClaimButton.set_process_input(false)
 	$".".visible = false
 	$".".set_process(false)
 	$".".set_process_input(false)
@@ -19,10 +19,11 @@ func _process(delta: float) -> void:
 	pass
 func _unhandled_input(event: InputEvent) -> void:
 	if first_text and event.is_action_pressed("Next"):
+		first_text = false
 		text_two()
 		
 	if second_text and event.is_action_pressed("Next"):
-		first_text = false
+		second_text = false
 		text_three()
 	if close_ready and event.is_action_pressed("Next"):
 		close_dialogue()
@@ -38,21 +39,31 @@ func text_two() -> void:
 func text_three() -> void:
 	$ColorRect/Text.text = "Fair Warning, the fish around here aren't exactly the best for eating."
 	print("Third Message")
-	second_text = false
 	$ColorRect/Next.text = ""
 	$ClaimButton.visible = true
 
 func directions() -> void:
-	$ColorRect/Text.text = "Make sure to stay safe and fed."
+	$ColorRect/Text.text = "Talk to me again to open the shop."
 	close_ready = true
 	$ColorRect/Next.text = "Press Enter to Close"
-
-func come_back() -> void:
-	$ColorRect/Text.text = "Such a shame. Come back when you are ready to advance to the next island."
-	close_ready = true
 	
 func close_dialogue() -> void:
-	$".".visible = false
-	$".".set_process(false)
-	$".".set_process_input(false)
+	$".".queue_free()
 	get_parent().shopping = false
+	
+
+
+func _on_claim_button_pressed() -> void:
+	get_parent().apples += 10
+	$ClaimButton.visible = false
+	$ClaimButton.set_process(false)
+	$ClaimButton.set_process_input(false)
+	directions()
+
+
+func _on_read_1_timeout() -> void:
+	first_text = true
+
+
+func _on_read_2_timeout() -> void:
+	second_text = true

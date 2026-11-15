@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cajaadqcd0knk" path="res://assets/All Potions/Green potions/poç╞o verde.png" id="4_c5ffv"]
 [ext_resource type="Texture2D" uid="uid://dnfw7adgpaau1" path="res://assets/Tiny Coast Pack/Other/fishing_rod_16x16.png" id="5_k1vlg"]
 [ext_resource type="Texture2D" uid="uid://dktlgwcx215fi" path="res://assets/Tiny Coast Pack/Tiny Adventure Pack/Other/Blue_orb.png" id="5_sd8fj"]
+[ext_resource type="Texture2D" uid="uid://cvpm1pqlpanvi" path="res://assets/freefishinggame/4 Icons/apple.png" id="6_trvqw"]
 
 [node name="Inventory" type="CanvasLayer" unique_id=340463798]
 script = ExtResource("1_wdn4f")
@@ -329,6 +330,10 @@ offset_bottom = 11.0
 [node name="SeaStone" type="Sprite2D" parent="Node" unique_id=1706276607]
 scale = Vector2(8, 8)
 texture = ExtResource("5_sd8fj")
+
+[node name="Apple" type="Sprite2D" parent="Node" unique_id=1553739373]
+scale = Vector2(3, 3)
+texture = ExtResource("6_trvqw")
 
 [node name="UseBackground" type="ColorRect" parent="." unique_id=1293145264]
 offset_left = 400.0

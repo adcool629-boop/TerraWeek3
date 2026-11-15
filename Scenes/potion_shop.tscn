@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://scrg7cc55vlb" path="res://Scripts/potion_shop.gd" id="1_uyf3o"]
 [ext_resource type="Texture2D" uid="uid://cajaadqcd0knk" path="res://assets/All Potions/Green potions/poç╞o verde.png" id="2_caquo"]
 [ext_resource type="Texture2D" uid="uid://bea2o3h7xg8ek" path="res://assets/fishing_free/global_free_recoloured.png" id="3_62vsi"]
+[ext_resource type="AudioStream" uid="uid://baifxgydk5heb" path="res://assets/Audios/dragon-studio-cash-register-kaching-376867.mp3" id="4_tmybs"]
+[ext_resource type="AudioStream" uid="uid://btfej6j1iiyrt" path="res://assets/Audios/soundshelfstudio-ui-error-pop-515668.mp3" id="5_6xdok"]
 
 [node name="PotionShop" type="CanvasLayer" unique_id=873678996]
 scale = Vector2(2.3, 2.3)
@@ -178,6 +180,15 @@ offset_top = 138.69566
 offset_right = 335.0435
 offset_bottom = 161.69566
 text = "New Potions Coming Soon..."
+
+[node name="Purchase" type="AudioStreamPlayer" parent="." unique_id=57913043]
+stream = ExtResource("4_tmybs")
+volume_db = -5.901
+pitch_scale = 0.94
+
+[node name="Error" type="AudioStreamPlayer" parent="." unique_id=1315391763]
+stream = ExtResource("5_6xdok")
+pitch_scale = 0.9
 
 [connection signal="pressed" from="Luck PotionS/SLPotion" to="." method="_on_sl_potion_pressed"]
 [connection signal="pressed" from="Luck PotionM/MLPotion" to="." method="_on_ml_potion_pressed"]

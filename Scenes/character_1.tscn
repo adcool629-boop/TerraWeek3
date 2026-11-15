@@ -14,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://cie1s6p2wish8" path="res://Scenes/potion_shop.tscn" id="12_cfck2"]
 [ext_resource type="PackedScene" uid="uid://eqsn80qkcdqn" path="res://Scenes/ni_dialogue.tscn" id="13_xvtj4"]
 [ext_resource type="PackedScene" uid="uid://ctubc6p7kgpk1" path="res://Scenes/fishing_shop_2.tscn" id="14_eatrk"]
+[ext_resource type="PackedScene" uid="uid://dwngis2nojgrd" path="res://Scenes/first_time.tscn" id="15_sxdl4"]
+[ext_resource type="AudioStream" uid="uid://m13u6u8nugut" path="res://assets/Audios/freesound_community-tiny-splash-83778.mp3" id="16_fml7b"]
+[ext_resource type="AudioStream" uid="uid://dudu5w58upl1f" path="res://assets/Audios/soumages-walking-on-grass-363353.mp3" id="17_veqrb"]
+[ext_resource type="AudioStream" uid="uid://cawhnih0hpf7e" path="res://assets/Audios/fishingreel.mp3" id="18_6awtb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t758c"]
 atlas = ExtResource("1_ul2td")
@@ -678,6 +682,25 @@ target_position = Vector2(0, 25)
 collision_mask = 64
 
 [node name="FishingShop2" parent="." unique_id=1145389986 instance=ExtResource("14_eatrk")]
+
+[node name="FirstTime" parent="." unique_id=54406111 instance=ExtResource("15_sxdl4")]
+
+[node name="CastEnd" type="AudioStreamPlayer" parent="." unique_id=1914627565]
+stream = ExtResource("16_fml7b")
+volume_db = 5.902
+pitch_scale = 1.99
+
+[node name="Walking" type="AudioStreamPlayer" parent="." unique_id=1773300568]
+stream = ExtResource("17_veqrb")
+volume_db = -7.376
+pitch_scale = 1.29
+parameters/looping = true
+
+[node name="Reeling" type="AudioStreamPlayer" parent="." unique_id=473273786]
+stream = ExtResource("18_6awtb")
+volume_db = -5.368
+pitch_scale = 1.71
+parameters/looping = true
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

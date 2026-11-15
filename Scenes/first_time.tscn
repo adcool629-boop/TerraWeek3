@@ -64,3 +64,7 @@ offset_top = 7.0
 offset_right = 45.0
 offset_bottom = 30.0
 text = "Fishing Store Owner"
+
+[connection signal="pressed" from="ClaimButton" to="." method="_on_claim_button_pressed"]
+[connection signal="timeout" from="Read1" to="." method="_on_read_1_timeout"]
+[connection signal="timeout" from="Read2" to="." method="_on_read_2_timeout"]

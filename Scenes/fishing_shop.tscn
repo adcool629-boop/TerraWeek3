@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dufiecr48cm2h" path="res://Scripts/fishing_shop.gd" id="1_60buo"]
 [ext_resource type="Texture2D" uid="uid://h2f24yyyj123" path="res://assets/Tiny Coast Pack/Other/baits_16x16.png" id="2_fen1w"]
 [ext_resource type="Texture2D" uid="uid://dnfw7adgpaau1" path="res://assets/Tiny Coast Pack/Other/fishing_rod_16x16.png" id="3_60buo"]
+[ext_resource type="AudioStream" uid="uid://baifxgydk5heb" path="res://assets/Audios/dragon-studio-cash-register-kaching-376867.mp3" id="4_3w1oc"]
+[ext_resource type="AudioStream" uid="uid://btfej6j1iiyrt" path="res://assets/Audios/soundshelfstudio-ui-error-pop-515668.mp3" id="5_de1mw"]
 
 [node name="FishingShop" type="CanvasLayer" unique_id=434899543]
 scale = Vector2(2.3, 2.3)
@@ -320,6 +322,15 @@ offset_right = 298.34784
 offset_bottom = 52.5625
 theme_override_font_sizes/font_size = 8
 text = "Coins: 0"
+
+[node name="Purchase" type="AudioStreamPlayer" parent="." unique_id=2059812625]
+stream = ExtResource("4_3w1oc")
+volume_db = -5.901
+pitch_scale = 0.94
+
+[node name="Error" type="AudioStreamPlayer" parent="." unique_id=231020719]
+stream = ExtResource("5_de1mw")
+pitch_scale = 0.9
 
 [connection signal="pressed" from="ClownfishLure/ClownfishButton" to="." method="_on_clownfish_button_pressed"]
 [connection signal="pressed" from="CodLure/CodButton" to="." method="_on_cod_button_pressed"]

@@ -41,18 +41,11 @@ one_shot = true
 [node name="Squid" parent="." unique_id=474590968 instance=ExtResource("9_fl3e6")]
 
 [node name="RareCatch" type="Label" parent="." unique_id=520411464]
-offset_left = -42.0
-offset_top = -80.0
-offset_right = 42.0
-offset_bottom = -57.0
-theme_override_colors/font_color = Color(0.14649862, 0.3706567, 1, 1)
-
-[node name="LegendaryCatch" type="Label" parent="." unique_id=1952720640]
-offset_left = -42.0
-offset_top = -80.0
-offset_right = 42.0
-offset_bottom = -57.0
-theme_override_colors/font_color = Color(0.14649862, 0.3706567, 1, 1)
+offset_left = -64.0
+offset_top = -84.0
+offset_right = 65.0
+offset_bottom = -61.0
+theme_override_colors/font_color = Color(1, 0.78039217, 0, 1)
 
 [node name="SeaStone" parent="." unique_id=756222465 instance=ExtResource("10_clm4a")]
 

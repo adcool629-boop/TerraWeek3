@@ -7,6 +7,7 @@ var pin_position: float
 var pin_direction: float = 1.0
 var tries: int = 3
 var active: bool = false
+var won: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Label.visible = false
@@ -49,13 +50,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				tries += -1
 				$TriesLeft.text = ('Tries Left '+ str(tries))
 				print(tries)
-			elif tries <= 0:
-				print("Lose")
-				$TriesLeft.text = "Out of tries. Try again next time"
-				$LoseTimer.start()
-				set_process(false)
-				set_process_input(false)
-				active = false
+				lose()
 		elif event.is_action_pressed("PressSpaceBar") and tries > 0 and get_parent().ARod:
 			print("Pass limited to ARod Range")
 			if pin_position >= 439 and pin_position <= 467:
@@ -72,13 +67,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				tries += -1
 				$TriesLeft.text = ('Tries Left '+ str(tries))
 				print(tries)
-			elif tries <= 0:
-				print("Lose")
-				$TriesLeft.text = "Out of tries. Try again next time"
-				$LoseTimer.start()
-				set_process(false)
-				set_process_input(false)
-				active = false
+				lose()
 		elif event.is_action_pressed("PressSpaceBar") and tries > 0 and not get_parent().IRod and not get_parent().ARod:
 			if pin_position >= 400 and pin_position <= 510:
 				print("Pass")
@@ -94,15 +83,16 @@ func _unhandled_input(event: InputEvent) -> void:
 				tries += -1
 				$TriesLeft.text = ('Tries Left '+ str(tries))
 				print(tries)
-			elif tries <= 0:
-				print("Lose")
-				$TriesLeft.text = "Out of tries. Try again next time"
-				$LoseTimer.start()
-				set_process(false)
-				set_process_input(false)
-				active = false
+				lose()
 
-
+func lose() -> void:
+	if tries <= 0 and not won:
+		print("Lose")
+		$TriesLeft.text = "Out of tries. Try again next time"
+		$LoseTimer.start()
+		set_process(false)
+		set_process_input(false)
+		active = false
 
 func _on_win_timer_timeout() -> void:
 	

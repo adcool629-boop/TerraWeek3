@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ctubc6p7kgpk1"]
 
 [ext_resource type="Script" uid="uid://bel4upbdc0lrh" path="res://Scripts/fishing_shop_2.gd" id="1_varmu"]
+[ext_resource type="Texture2D" uid="uid://h2f24yyyj123" path="res://assets/Tiny Coast Pack/Other/baits_16x16.png" id="2_58ir5"]
 
 [node name="FishingShop2" type="CanvasLayer" unique_id=1145389986]
 scale = Vector2(2.3, 2.3)
@@ -34,3 +35,25 @@ offset_left = 109.56522
 offset_top = 126.95652
 offset_right = 356.56522
 offset_bottom = 128.95651
+
+[node name="Close" type="Button" parent="." unique_id=67492429]
+offset_left = 335.21738
+offset_top = 21.739132
+offset_right = 354.95654
+offset_bottom = 46.52174
+theme_override_font_sizes/font_size = 11
+text = "X"
+
+[node name="fantasialure" type="Sprite2D" parent="." unique_id=428386928]
+position = Vector2(146.08696, 66.52174)
+texture = ExtResource("2_58ir5")
+region_enabled = true
+region_rect = Rect2(17.578945, 17.323666, 14.269783, 13.675209)
+
+[node name="squidlure" type="Sprite2D" parent="." unique_id=92384620]
+position = Vector2(200.86957, 66.95653)
+texture = ExtResource("2_58ir5")
+region_enabled = true
+region_rect = Rect2(32.5941, 17.237164, 15.607574, 14.864357)
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

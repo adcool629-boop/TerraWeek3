@@ -27,6 +27,7 @@ var trash_amount: int = 0
 var SLuck: int = 0
 var MLuck: int = 0
 var LLuck: int = 0
+var apples: int = 0
 #-----------------------------------------------
 #store fish
 #-----------------------------------------------
@@ -51,6 +52,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if fishing or shopping:
 		velocity = Vector2.ZERO
+		$Walking.playing = false
 		move_and_slide()
 		return
 	process_movement()
@@ -63,6 +65,7 @@ func process_movement() -> void:
 	var direction := Input.get_vector("Left","Right","Down","Up")
 	
 	if direction != Vector2.ZERO:
+		
 		velocity = direction * SPEED
 		LastDirection = direction
 		fishing_detector.target_position = direction * 32.0
@@ -73,12 +76,20 @@ func process_movement() -> void:
 		$FShopDetector2.target_position = direction * 32.0
 	else:
 		velocity = Vector2.ZERO
+		
 func process_animation() -> void:
 	
 	if velocity != Vector2.ZERO:
+		if not $Walking.playing:
+			$Walking.playing = true
 		play_animation('Walk', LastDirection)
+		
 	else:
+		if $Walking.playing:
+			$Walking.playing = false
 		play_animation('Idle', LastDirection)
+		
+		
 		
 
 func play_animation(prefix:String, dir: Vector2) -> void:
@@ -136,11 +147,18 @@ func _unhandled_input(event: InputEvent) -> void:
 			print("Picking Up")
 			
 	if $FShopDetector2.is_colliding():
-		$ShopHelp.text = ('Press F to Pick Up')
+		$ShopHelp.text = ('Press F to Interact')
 		if $FShopDetector2.is_colliding() and event.is_action_pressed('Interact'):
-			$FishingShop2.visible = true
-			$FishingShop2.set_process(true)
-			$FishingShop2.set_process_input(true)
+			if first_time:
+				first_time = false
+				$FirstTime.visible = true
+				$FirstTime.set_process(true)
+				$FirstTime.set_process_input(true)
+				get_child(23).text_one()
+			elif not first_time:
+				$FishingShop2.visible = true
+				$FishingShop2.set_process(true)
+				$FishingShop2.set_process_input(true)
 			shopping = true
 	if inv_closed:
 		if event.is_action_pressed('OpenInventory'):
@@ -163,6 +181,7 @@ func cast_end() -> void:
 	$FishingSC.set_process_input(false)
 	casting = false
 	cast_finished = true
+	$CastEnd.play()
 	process_wait()
 	
 	
@@ -201,7 +220,7 @@ func _on_error_timer_timeout() -> void:
 #Fishing Mini Games
 #-----------------------------------------------
 func wait_time() -> void:
-	var waiting = randf() * 20
+	var waiting = randf() * 2
 	if ARod:
 		waiting = waiting * 1/4
 		$WaitTimer.wait_time = waiting
@@ -226,9 +245,9 @@ func _on_wait_timer_timeout() -> void:
 func minigame_select() -> void:
 	# When more minigames are made use this to randomly select one.
 	var minigame = randf()
-	if minigame > 0.5:
+	if minigame > 1:
 		quick_time_start()
-	elif minigame < 0.5:
+	elif minigame < 1:
 		skill_check_start()
 	elif minigame == 0.5:
 		minigame_select()
@@ -247,6 +266,7 @@ func quick_time_end() -> void:
 		$MiniGame1.visible = false
 		$MiniGame1.set_process(false)
 		$MiniGame1.set_process_input(false)
+		$Reeling.playing = false
 func skill_check_start() -> void:
 	if reeling:
 		$MiniGame2.visible = true
@@ -260,8 +280,10 @@ func skill_check_end() -> void:
 	$MiniGame2.visible = false
 	$MiniGame2.set_process(false)
 	$MiniGame2.set_process_input(false)
+	$Reeling.playing = false
 func process_reel() -> void:
 	if reeling:
+		$Reeling.playing = true
 		play_reel('Reel', LastDirection)
 		
 func play_reel(prefix:String, dir: Vector2) -> void:
@@ -276,6 +298,7 @@ func play_reel(prefix:String, dir: Vector2) -> void:
 		
 func fish_caught() -> void:
 	get_child(9).pick_fish()
+	
 
 #-----------------------------------------------
 #Shops

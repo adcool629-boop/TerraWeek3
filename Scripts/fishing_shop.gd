@@ -24,6 +24,7 @@ func _on_buy_message_timer_timeout() -> void:
 #Clownfish Lure
 func _on_clownfish_button_pressed() -> void:
 	if MainCharacter.total_coins >= 200:
+		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 200
 		if get_parent().CfL_amount == 0:
 			MainCharacter.store_num += 1
@@ -37,11 +38,13 @@ func _on_clownfish_button_pressed() -> void:
 		$CoinsAmount.text = ("Coins: " +str(MainCharacter.total_coins))
 	else:
 		$BuyMessage.text = ("Not enough Coins")
+		$Error.playing = true
 		$BuyMessage/BuyMessageTimer.start()
 
 
 func _on_cod_button_pressed() -> void:
 	if MainCharacter.total_coins >= 300:
+		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 300
 		if get_parent().CodL_amount == 0:
 			MainCharacter.store_num += 1
@@ -55,11 +58,13 @@ func _on_cod_button_pressed() -> void:
 		$CoinsAmount.text = ("Coins: " +str(MainCharacter.total_coins))
 	else:
 		$BuyMessage.text = ("Not enough Coins")
+		$Error.playing = true
 		$BuyMessage/BuyMessageTimer.start()
 
 
 func _on_goldfish_button_pressed() -> void:
 	if MainCharacter.total_coins >= 150:
+		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 150
 		if get_parent().GfL_amount == 0:
 			MainCharacter.store_num += 1
@@ -73,11 +78,13 @@ func _on_goldfish_button_pressed() -> void:
 		$CoinsAmount.text = ("Coins: " +str(MainCharacter.total_coins))
 	else:
 		$BuyMessage.text = ("Not enough Coins")
+		$Error.playing = true
 		$BuyMessage/BuyMessageTimer.start()
 
 
 func _on_fat_chance_button_pressed() -> void:
 	if MainCharacter.total_coins >= 500:
+		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 500
 		if get_parent().FC_amount == 0:
 			MainCharacter.store_num += 1
@@ -91,6 +98,7 @@ func _on_fat_chance_button_pressed() -> void:
 		$CoinsAmount.text = ("Coins: " +str(MainCharacter.total_coins))
 	else:
 		$BuyMessage.text = ("Not enough Coins")
+		$Error.playing = true
 		$BuyMessage/BuyMessageTimer.start()
 
 
@@ -108,6 +116,7 @@ func _on_i_rod_button_pressed() -> void:
 		$BuyMessage.text = "You already have this rod equipped"
 		$BuyMessage/BuyMessageTimer.start()
 	elif MainCharacter.total_coins >= 5000:
+		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 5000
 		irod_owned = true
 		get_parent().IRod = true
@@ -120,6 +129,7 @@ func _on_i_rod_button_pressed() -> void:
 		$CoinsAmount.text = ("Coins: " +str(MainCharacter.total_coins))
 	else:
 		$BuyMessage.text = ("Not enough Coins")
+		$Error.playing = true
 		$BuyMessage/BuyMessageTimer.start()
 
 func _on_a_rod_button_pressed() -> void:
@@ -135,6 +145,7 @@ func _on_a_rod_button_pressed() -> void:
 		get_parent().advanced_rod()
 		$BuyMessage/BuyMessageTimer.start()
 	elif MainCharacter.total_coins >= 20000:
+		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 20000
 		get_parent().ARod = true
 		get_parent().IRod = false
@@ -147,6 +158,7 @@ func _on_a_rod_button_pressed() -> void:
 		$CoinsAmount.text = ("Coins: " +str(MainCharacter.total_coins))
 	else:
 		$BuyMessage.text = ("Not enough Coins")
+		$Error.playing = true
 		$BuyMessage/BuyMessageTimer.start()
 
 

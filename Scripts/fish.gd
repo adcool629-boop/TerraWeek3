@@ -23,6 +23,7 @@ func _ready() -> void:
 	$Trash.visible = false
 	$Fantasia.visible = false
 	$Squid.visible = false
+	$SeaStone.visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -324,6 +325,7 @@ func pick_fish() -> void:
 				pick_fish()
 			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
 				pick_fish()
+				
 			
 			
 		elif get_parent().GfL_amount > 0 and goldfish_lure:
@@ -405,7 +407,12 @@ func pick_fish() -> void:
 			elif get_parent().luck <= 0 and pick > 0.95:
 				pick_fish()
 			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-				pick_fish()
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
 	#-----------------------------------------------------------------------------------------------------------------------------
 	#------------------------------------Basic Rod--------------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------------------------------------
@@ -577,6 +584,8 @@ func _on_show_fish_timeout() -> void:
 	$Bluegill.visible = false
 	$Trash.visible = false
 	$Fantasia.visible = false
+	$Squid.visible = false
+	$SeaStone.visible = false
 	$Label.text = ('')
 	$RareCatch.text = ""
 func clownfish_picked() -> void:
@@ -845,6 +854,11 @@ func squid_picked() -> void:
 	print("Squid Caught")
 	print(total)
 	inventory_value()
+
+func seastone_picked() -> void:
+	if get_parent().seastone > 0 and get_parent().seastone < 2:
+		MainCharacter.store_num += 1
+		get_parent().seastone_add()
 func inventory_value() -> void:
 	#until you can store the value for each caught fish 
 	MainCharacter.total_coins = int(total) + MainCharacter.total_coins
