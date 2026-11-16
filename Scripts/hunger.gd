@@ -25,3 +25,4 @@ func _on_timer_timeout() -> void:
 func eating_apple() -> void:
 	$TextureRect/TextureProgressBar.value += 20
 	print("Apple Consumed, Restoring Saturation")
+	$AudioStreamPlayer.play()

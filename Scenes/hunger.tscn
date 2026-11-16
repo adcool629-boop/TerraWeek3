@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bivp32dv8xiub" path="res://assets/PNG/GUI-Kit-Pack-Free_59.png" id="1_y71ea"]
 [ext_resource type="Texture2D" uid="uid://b0e7xy7mj8kl3" path="res://assets/PNG/GUI-Kit-Pack-Free_32.png" id="2_08had"]
 [ext_resource type="Texture2D" uid="uid://c0eiuvymi3b7c" path="res://assets/padding/64px/white/5-food/bread.png" id="4_7is8e"]
+[ext_resource type="AudioStream" uid="uid://ykwdnk8dmif2" path="res://assets/Audios/freesound_community-apple-munch-40169.mp3" id="5_x16x5"]
 
 [node name="Hunger" type="CanvasLayer" unique_id=317609650]
 script = ExtResource("1_08had")
@@ -29,6 +30,11 @@ position = Vector2(42, 38)
 texture = ExtResource("4_7is8e")
 
 [node name="Timer" type="Timer" parent="." unique_id=1127740718]
-wait_time = 10.0
+wait_time = 60.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1697923169]
+stream = ExtResource("5_x16x5")
+volume_db = -2.213
+pitch_scale = 1.17
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

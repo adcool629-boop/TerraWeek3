@@ -16,6 +16,7 @@ var inv_closed: bool = true
 var value: int = 0
 var luck: int = 0
 var first_time = true
+
 #-----------------------------------------------
 #Baits
 #-----------------------------------------------
@@ -24,21 +25,33 @@ var CodL_amount: int = 0
 var GfL_amount: int = 0
 var FC_amount: int = 0
 var trash_amount: int = 0
+var fanta_amount: int = 0
+var squid_amount: int = 0
+
+#------------------Potions-------------------
+
 var SLuck: int = 0
 var MLuck: int = 0
 var LLuck: int = 0
+
+#------------------Food-------------------
+
 var apples: int = 0
+var cake: int = 0
+var bread: int = 0
 #-----------------------------------------------
 #store fish
 #-----------------------------------------------
 var store_clownfish: bool = false
 var store_cod: bool = false
 var store_goldfish: bool = false
+
 #-----------------------------------------------
 #Rods
 #-----------------------------------------------
 var IRod: bool = false
 var ARod: bool = false
+var GRod: bool = false
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fishing_detector: RayCast2D = $FishingDetector
 func _process(delta: float) -> void:
@@ -75,6 +88,7 @@ func process_movement() -> void:
 		$TrashDetector.target_position = direction * 5
 		$FShopDetector.target_position = direction * 32.0
 		$FShopDetector2.target_position = direction * 32.0
+		$MShopDetector.target_position = direction * 32.0
 	else:
 		velocity = Vector2.ZERO
 		
@@ -160,6 +174,13 @@ func _unhandled_input(event: InputEvent) -> void:
 				$FishingShop2.visible = true
 				$FishingShop2.set_process(true)
 				$FishingShop2.set_process_input(true)
+			shopping = true
+	if $MShopDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $MShopDetector.is_colliding() and event.is_action_pressed("Interact"):
+			$FoodMarket.set_process(true)
+			$FoodMarket.set_process_input(true)
+			$FoodMarket.visible = true
 			shopping = true
 	if inv_closed:
 		if event.is_action_pressed('OpenInventory'):
@@ -311,6 +332,12 @@ func done_shopping() -> void:
 	$PotionShop.visible = false
 	$PotionShop.set_process(false)
 	$PotionShop.set_process_input(false)
+	$FoodMarket.visible = false
+	$FoodMarket.set_process(false)
+	$FoodMarket.set_process_input(false)
+	$FishingShop2.visible = false
+	$FishingShop2.set_process(false)
+	$FishingShop2.set_process_input(false)
 	shopping = false
 
 #-----------------------------------------------
@@ -436,3 +463,19 @@ func apples_remove() -> void:
 	if apples == 0:
 		get_child(15).remove_apple()
 		MainCharacter.store_num += -1
+func fanta_lure_add() -> void:
+	get_child(15).add_fanta_lure()
+	
+func fanta_lure_remove() -> void:
+	if fanta_amount == 0:
+		get_child(15).remove_fanta
+		MainCharacter.store_num += -1
+func squid_lure_add() -> void:
+	get_child(15).add_squid_lure()
+
+func bread_add() -> void:
+	get_child(15).add_bread()
+	
+
+func cake_add() -> void:
+	get_child(15).add_cake()

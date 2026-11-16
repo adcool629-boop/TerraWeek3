@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://diyd7yql28048"]
 
+[ext_resource type="Texture2D" uid="uid://cvpm1pqlpanvi" path="res://assets/Foods N Stuff/free_bread_bites/individual_icons/apple.png" id="1_06ck8"]
+[ext_resource type="Script" uid="uid://p6q4wbvqew2w" path="res://Scripts/food_market.gd" id="1_wsuhy"]
+[ext_resource type="Texture2D" uid="uid://b5djesbc4iyhm" path="res://assets/Foods N Stuff/free_bread_bites/individual_icons/free_bread_bites_01.png" id="2_o88da"]
+[ext_resource type="Texture2D" uid="uid://bl0yo3mm0hx2i" path="res://assets/Foods N Stuff/Free_pixel_food_16x16/Icons/cake_chocolate.png" id="3_cqr2t"]
+[ext_resource type="AudioStream" uid="uid://baifxgydk5heb" path="res://assets/Audios/dragon-studio-cash-register-kaching-376867.mp3" id="5_3vq61"]
+[ext_resource type="AudioStream" uid="uid://btfej6j1iiyrt" path="res://assets/Audios/soundshelfstudio-ui-error-pop-515668.mp3" id="6_vji8x"]
+
 [node name="FoodMarket" type="CanvasLayer" unique_id=847863486]
 scale = Vector2(2.3, 2.3)
 transform = Transform2D(2.3, 0, 0, 2.3, 0, 0)
+script = ExtResource("1_wsuhy")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=727324595]
 offset_left = 109.565216
@@ -31,3 +39,126 @@ offset_left = 109.56522
 offset_top = 126.95652
 offset_right = 356.56522
 offset_bottom = 128.95651
+
+[node name="Apple" type="Sprite2D" parent="." unique_id=1756321011]
+position = Vector2(134.86957, 70.565216)
+scale = Vector2(0.98913, 1.0163045)
+texture = ExtResource("1_06ck8")
+
+[node name="Description" type="Label" parent="Apple" unique_id=1189020165]
+offset_left = -22.945053
+offset_top = 23.828875
+offset_right = 48.054947
+offset_bottom = 55.16221
+theme_override_font_sizes/font_size = 4
+text = "You're probably thinking what apple
+costs 20k. Have you seen the market
+Inflation and tariffs. Its  crazy!
+Restores 20/100 Hunger"
+
+[node name="AppleButton" type="Button" parent="Apple" unique_id=164356372]
+offset_left = -20.307707
+offset_top = 7.144383
+offset_right = 22.692293
+offset_bottom = 24.144382
+theme_override_font_sizes/font_size = 6
+text = "20000 Coins"
+
+[node name="Title" type="Label" parent="Apple" unique_id=644967120]
+offset_left = -10.637374
+offset_top = -18.524057
+offset_right = 9.362626
+offset_bottom = -8.753224
+theme_override_font_sizes/font_size = 7
+text = "Apple"
+
+[node name="Bread" type="Sprite2D" parent="." unique_id=1397185520]
+position = Vector2(223.04349, 66.95652)
+texture = ExtResource("2_o88da")
+
+[node name="BreadButton" type="Button" parent="Bread" unique_id=1578153462]
+offset_left = -20.0
+offset_top = 10.869572
+offset_right = 17.0
+offset_bottom = 25.869572
+theme_override_font_sizes/font_size = 5
+text = "25000 Coins"
+
+[node name="Description" type="Label" parent="Bread" unique_id=1414941033]
+offset_left = -30.0
+offset_top = 26.956524
+offset_right = 28.0
+offset_bottom = 33.93569
+theme_override_font_sizes/font_size = 5
+text = "Restores 25/100 Hunger"
+
+[node name="Title" type="Label" parent="Bread" unique_id=1915791277]
+offset_left = -11.739131
+offset_top = -16.086958
+offset_right = 9.260869
+offset_bottom = -6.316125
+theme_override_font_sizes/font_size = 7
+text = "Bread"
+
+[node name="Cake" type="Sprite2D" parent="." unique_id=277034132]
+position = Vector2(305.6522, 66.08696)
+texture = ExtResource("3_cqr2t")
+
+[node name="Title" type="Label" parent="Cake" unique_id=780810263]
+offset_left = -7.826087
+offset_top = -16.52174
+offset_right = 9.173913
+offset_bottom = -6.750907
+theme_override_font_sizes/font_size = 7
+text = "Cake"
+
+[node name="CakeButton" type="Button" parent="Cake" unique_id=398328715]
+offset_left = -18.695679
+offset_top = 9.130428
+offset_right = 18.304321
+offset_bottom = 24.130428
+theme_override_font_sizes/font_size = 5
+text = "30000 Coins"
+
+[node name="Description" type="Label" parent="Cake" unique_id=837725345]
+offset_left = -32.608715
+offset_top = 23.913046
+offset_right = 43.913013
+offset_bottom = 46.913044
+theme_override_font_sizes/font_size = 5
+text = "Restores 25/100 Hunger and increases luck by 5"
+autowrap_mode = 3
+
+[node name="CoinsNumber" type="Label" parent="." unique_id=327375620]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Purchase" type="AudioStreamPlayer" parent="." unique_id=1476111052]
+stream = ExtResource("5_3vq61")
+volume_db = -5.901
+pitch_scale = 0.94
+
+[node name="Error" type="AudioStreamPlayer" parent="." unique_id=484149952]
+stream = ExtResource("6_vji8x")
+pitch_scale = 0.9
+
+[node name="BuyMessage" type="Label" parent="." unique_id=1926566761]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BuyTimer" type="Timer" parent="." unique_id=97153819]
+one_shot = true
+
+[node name="Close" type="Button" parent="." unique_id=48183754]
+offset_left = 335.2174
+offset_top = 20.434782
+offset_right = 353.91306
+offset_bottom = 41.434784
+theme_override_font_sizes/font_size = 9
+text = "X"
+
+[connection signal="pressed" from="Apple/AppleButton" to="." method="_on_apple_button_pressed"]
+[connection signal="pressed" from="Bread/BreadButton" to="." method="_on_bread_button_pressed"]
+[connection signal="pressed" from="Cake/CakeButton" to="." method="_on_cake_button_pressed"]
+[connection signal="timeout" from="BuyTimer" to="." method="_on_buy_timer_timeout"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

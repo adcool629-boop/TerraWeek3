@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bel4upbdc0lrh" path="res://Scripts/fishing_shop_2.gd" id="1_varmu"]
 [ext_resource type="Texture2D" uid="uid://h2f24yyyj123" path="res://assets/Tiny Coast Pack/Other/baits_16x16.png" id="2_58ir5"]
+[ext_resource type="Texture2D" uid="uid://bjjy6hcl85r1i" path="res://assets/freefishinggame/3 Objects/Fish-rod.png" id="3_qqk4k"]
+[ext_resource type="AudioStream" uid="uid://baifxgydk5heb" path="res://assets/Audios/dragon-studio-cash-register-kaching-376867.mp3" id="4_0we0f"]
+[ext_resource type="AudioStream" uid="uid://btfej6j1iiyrt" path="res://assets/Audios/soundshelfstudio-ui-error-pop-515668.mp3" id="5_h5e7x"]
 
 [node name="FishingShop2" type="CanvasLayer" unique_id=1145389986]
 scale = Vector2(2.3, 2.3)
@@ -14,6 +17,7 @@ offset_top = 18.652174
 offset_right = 356.56522
 offset_bottom = 281.65216
 color = Color(0.16862746, 0.1254902, 0.047058824, 1)
+metadata/_edit_lock_ = true
 
 [node name="Title" type="Label" parent="." unique_id=179540825]
 offset_left = 183.04349
@@ -21,6 +25,7 @@ offset_top = 17.623186
 offset_right = 281.0435
 offset_bottom = 39.95652
 text = "Fishing Shop"
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="." unique_id=982522671]
 offset_left = 220.00002
@@ -43,17 +48,152 @@ offset_right = 354.95654
 offset_bottom = 46.52174
 theme_override_font_sizes/font_size = 11
 text = "X"
+metadata/_edit_lock_ = true
 
 [node name="fantasialure" type="Sprite2D" parent="." unique_id=428386928]
-position = Vector2(146.08696, 66.52174)
+position = Vector2(135.21739, 70.434784)
 texture = ExtResource("2_58ir5")
 region_enabled = true
 region_rect = Rect2(17.578945, 17.323666, 14.269783, 13.675209)
 
+[node name="Title" type="Label" parent="fantasialure" unique_id=24868483]
+offset_left = -16.52174
+offset_top = -24.347828
+offset_right = 12.608707
+offset_bottom = -7.389494
+theme_override_font_sizes/font_size = 5
+text = "Fantasia Lure"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="FantasiaLureButton" type="Button" parent="fantasialure" unique_id=1682566181]
+offset_left = -18.260872
+offset_top = 7.3913107
+offset_right = 18.739128
+offset_bottom = 22.391312
+theme_override_font_sizes/font_size = 5
+text = "10000 Coins"
+
+[node name="Description" type="Label" parent="fantasialure" unique_id=2004052106]
+offset_left = -22.608694
+offset_top = 21.73913
+offset_right = 35.217392
+offset_bottom = 53.072464
+theme_override_font_sizes/font_size = 4
+text = "Greatly Increases the chance of catching a Fantasia
+*Works only with advanced rod or better"
+autowrap_mode = 2
+
 [node name="squidlure" type="Sprite2D" parent="." unique_id=92384620]
-position = Vector2(200.86957, 66.95653)
+position = Vector2(204.34782, 69.13044)
 texture = ExtResource("2_58ir5")
 region_enabled = true
 region_rect = Rect2(32.5941, 17.237164, 15.607574, 14.864357)
 
+[node name="Title" type="Label" parent="squidlure" unique_id=1955064823]
+offset_left = -16.52174
+offset_top = -16.956522
+offset_right = 14.47826
+offset_bottom = -8.581522
+theme_override_font_sizes/font_size = 6
+text = "Squid Lure"
+
+[node name="SquidLureButton" type="Button" parent="squidlure" unique_id=138967405]
+offset_left = -17.39129
+offset_top = 8.695652
+offset_right = 19.60871
+offset_bottom = 23.695652
+theme_override_font_sizes/font_size = 5
+text = "20000 Coins"
+
+[node name="Description" type="Label" parent="squidlure" unique_id=582742357]
+offset_left = -24.782608
+offset_top = 24.347826
+offset_right = 30.434784
+offset_bottom = 55.68116
+theme_override_font_sizes/font_size = 4
+text = "Greatly Increase the chance of catching a squid
+*Works only with the advanced rod or better"
+autowrap_mode = 2
+
+[node name="GamblersRod" type="Sprite2D" parent="." unique_id=120553289]
+position = Vector2(229.13045, 177.8261)
+texture = ExtResource("3_qqk4k")
+
+[node name="Title" type="Label" parent="GamblersRod" unique_id=1608738130]
+anchors_preset = -1
+anchor_left = -2.0270002
+anchor_top = -0.721
+anchor_right = -2.0270002
+anchor_bottom = -0.721
+offset_left = 0.2580948
+offset_top = -10.384438
+offset_right = 62.258095
+offset_bottom = 2.1780624
+theme_override_font_sizes/font_size = 9
+text = "Gamblers Rod"
+
+[node name="GRodButton" type="Button" parent="GamblersRod" unique_id=855443533]
+offset_left = -24.347828
+offset_top = 14.782597
+offset_right = 29.652172
+offset_bottom = 45.782597
+text = "40000"
+
+[node name="Description" type="Label" parent="GamblersRod" unique_id=2128311399]
+offset_left = -88.69566
+offset_top = 44.34783
+offset_right = 89.5652
+offset_bottom = 98.014496
+theme_override_font_sizes/font_size = 8
+text = "No one knows what this rod may surface or what secrets lie within it
+Maybe you'll win big or maybe you'll lose it all
+*Purchase at your own risk"
+autowrap_mode = 3
+
+[node name="Coming Soon" type="Label" parent="GamblersRod" unique_id=187330117]
+offset_left = -50.434788
+offset_top = -50.4348
+offset_right = 64.565216
+offset_bottom = -28.101465
+text = "Coming Soon"
+
+[node name="Weekly Deal" type="Label" parent="." unique_id=466828073]
+visible = false
+offset_left = 174.34784
+offset_top = 130.86957
+offset_right = 284.34784
+offset_bottom = 153.86957
+text = "WEEKLY DEAL!"
+
+[node name="Coins" type="Label" parent="." unique_id=2052950618]
+offset_left = 274.78262
+offset_top = 36.52174
+offset_right = 325.6522
+offset_bottom = 44.89674
+theme_override_font_sizes/font_size = 6
+text = "coins: 000 "
+autowrap_mode = 1
+
+[node name="BuyMessage" type="Label" parent="." unique_id=398320035]
+offset_left = 121.30435
+offset_top = 20.434784
+offset_right = 179.56523
+offset_bottom = 43.434784
+
+[node name="BuyTimer" type="Timer" parent="." unique_id=1196087602]
+one_shot = true
+
+[node name="Purchase" type="AudioStreamPlayer" parent="." unique_id=1353818350]
+stream = ExtResource("4_0we0f")
+volume_db = -5.901
+pitch_scale = 0.94
+
+[node name="Error" type="AudioStreamPlayer" parent="." unique_id=1579647129]
+stream = ExtResource("5_h5e7x")
+pitch_scale = 0.9
+
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="fantasialure/FantasiaLureButton" to="." method="_on_fantasia_lure_button_pressed"]
+[connection signal="pressed" from="squidlure/SquidLureButton" to="." method="_on_squid_lure_button_pressed"]
+[connection signal="timeout" from="BuyTimer" to="." method="_on_buy_timer_timeout"]

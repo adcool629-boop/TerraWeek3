@@ -12,7 +12,10 @@ var SLuck_amount: int = 0
 var MLuck_amount: int = 0
 var LLuck_amount: int = 0
 var apple_amount: int = 0
-
+var fantalure_amount: int = 0
+var squidlure_amount: int = 0
+var bread_amount: int = 0
+var cake_amount: int = 0
 #-------------------Positions-----------------------
 
 var CfL_positionX: int
@@ -33,6 +36,16 @@ var LLuck_positionX: int
 var LLuck_positionY: int
 var Apple_positionX: int
 var Apple_positionY: int
+var FantaL_positionX: int
+var FantaL_positionY: int
+var SquidL_positionX: int 
+var SquidL_positionY: int
+var bread_positionX: int
+var bread_positionY: int
+var cake_positionX: int
+var cake_positionY: int
+
+
 
 #-------------------Equipped/Using-----------------------
 
@@ -71,6 +84,8 @@ func _ready() -> void:
 	$Node/LLuck.visible = false
 	$Node/SeaStone.visible = false
 	$Node/Apple.visible = false
+	$Node/FantasiaLure.visible = false
+	$Node/SquidLure.visible = false
 	$UseBackground.position.x = -400
 func openinv() -> void:
 	$".".visible = true
@@ -99,6 +114,10 @@ func openinv() -> void:
 		$Node/LLuck.visible = true
 	if get_parent().apples > 0:
 		$Node/Apple.visible = true
+	if get_parent().Fanta_amount > 0:
+		$Node/FantasiaLure.visible = true
+	if get_parent().Squid_amount > 0:
+		$Node/SquidLure.visible = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
@@ -950,7 +969,7 @@ func add_apple() -> void:
 			$Node/Apple.position.x = (MainCharacter.store_num) * 125 + 75
 			Apple_positionX = $Node/Apple.position.x
 			$Node/Apple.position.y = 100
-			Apple_positionY = $Node/LLuck.position.y
+			Apple_positionY = $Node/Apple.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/Apple.position.x = (MainCharacter.store_num) * 125 - 800
 			Apple_positionX = $Node/Apple.position.x
@@ -1041,7 +1060,46 @@ func apple_move_back() -> void:
 		$Node/LLuck.position.y = 100
 		LLuck_positionY = 100
 	
+func add_fanta_lure() -> void:
+	fantalure_amount += 1
+	print(fantalure_amount)
+	$Node/FantasiaLure/Label.text = str(fantalure_amount)
+	if get_parent().fanta_amount > 0 and get_parent().fanta_amount < 2:
+		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+			$Node/FantasiaLure.position.x = (MainCharacter.store_num) * 125 + 75
+			FantaL_positionX = $Node/FantasiaLure.position.x
+			$Node/FantasiaLure.position.y = 100
+			FantaL_positionY = $Node/FantasiaLure.position.y
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/FantasiaLure.position.x = (MainCharacter.store_num) * 125 - 800
+			FantaL_positionX = $Node/FantasiaLure.position.x
+			$Node/FantasiaLure.position.y = 250
+			FantaL_positionY = $Node/FantasiaLure.position.y
+		print("X Position is " +str(FantaL_positionX))
+		print("Y Position is " +str(FantaL_positionY))
 
+func add_squid_lure() -> void:
+	squidlure_amount += 1
+	print(squidlure_amount)
+	$Node/SquidLure/Label.text = str(squidlure_amount)
+	if get_parent().squid_amount > 0 and get_parent().squid_amount < 2:
+		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+			$Node/SquidLure.position.x = (MainCharacter.store_num) * 125 + 75
+			SquidL_positionX = $Node/SquidLure.position.x
+			$Node/SquidLure.position.y = 100
+			SquidL_positionY = $Node/SquidLure.position.y
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/SquidLure.position.x = (MainCharacter.store_num) * 125 - 800
+			SquidL_positionX = $Node/SquidLure.position.x
+			$Node/SquidLure.position.y = 250
+			SquidL_positionY = $Node/SquidLure.position.y
+		print("X Position is " +str(SquidL_positionX))
+		print("Y Position is " +str(SquidL_positionY))
+		
+func add_bread() -> void:
+	pass
+
+func add_cake() -> void:
 func _on_close_pressed() -> void:
 	$".".visible = false
 	$Node/ClownfishLure.visible = false

@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cajaadqcd0knk" path="res://assets/All Potions/Green potions/poç╞o verde.png" id="4_c5ffv"]
 [ext_resource type="Texture2D" uid="uid://dnfw7adgpaau1" path="res://assets/Tiny Coast Pack/Other/fishing_rod_16x16.png" id="5_k1vlg"]
 [ext_resource type="Texture2D" uid="uid://dktlgwcx215fi" path="res://assets/Tiny Coast Pack/Tiny Adventure Pack/Other/Blue_orb.png" id="5_sd8fj"]
-[ext_resource type="Texture2D" uid="uid://cvpm1pqlpanvi" path="res://assets/freefishinggame/4 Icons/apple.png" id="6_trvqw"]
+[ext_resource type="Texture2D" uid="uid://cvpm1pqlpanvi" path="res://assets/Foods N Stuff/free_bread_bites/individual_icons/apple.png" id="6_trvqw"]
 
 [node name="Inventory" type="CanvasLayer" unique_id=340463798]
 script = ExtResource("1_wdn4f")
@@ -307,7 +307,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16.205353, 15.558525)
 
 [node name="LLuck" type="Sprite2D" parent="Node" unique_id=1050052094]
-visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("4_c5ffv")
 region_enabled = true
@@ -328,7 +327,6 @@ offset_right = 9.0
 offset_bottom = 11.0
 
 [node name="Apple" type="Sprite2D" parent="Node" unique_id=1553739373]
-visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("6_trvqw")
 
@@ -348,6 +346,40 @@ theme_override_font_sizes/font_size = 6
 visible = false
 scale = Vector2(8, 8)
 texture = ExtResource("5_sd8fj")
+
+[node name="FantasiaLure" type="Sprite2D" parent="Node" unique_id=1656769418]
+scale = Vector2(5, 5)
+texture = ExtResource("3_0n8tc")
+region_enabled = true
+region_rect = Rect2(16.241795, 15.723975, 16.102215, 16.147392)
+
+[node name="FantaLButton" type="Button" parent="Node/FantasiaLure" unique_id=1623027688]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Node/FantasiaLure" unique_id=1544653940]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SquidLure" type="Sprite2D" parent="Node" unique_id=664717223]
+scale = Vector2(5, 5)
+texture = ExtResource("3_0n8tc")
+region_enabled = true
+region_rect = Rect2(32.17509, 16.646086, 16.256413, 15.515139)
+
+[node name="SquidLButton" type="Button" parent="Node/SquidLure" unique_id=392636720]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Node/SquidLure" unique_id=52138799]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="UseBackground" type="ColorRect" parent="." unique_id=1293145264]
 offset_left = 400.0
