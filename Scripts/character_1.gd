@@ -430,6 +430,9 @@ func intermediate_rod() -> void:
 func S_Luck_Potion_add() -> void:
 	get_child(15).add_S_Luck_Potion()
 
+func S_Luck_Potion_decrease() -> void:
+	get_child(15).decrease_S_Luck_Potion()
+	
 func S_Luck_Potion_remove() -> void:
 	if SLuck == 0:
 		get_child(15).remove_S_Luck_Potion()
@@ -439,6 +442,10 @@ func S_Luck_Potion_remove() -> void:
 func M_Luck_Potion_add() -> void:
 	get_child(15).add_M_Luck_Potion()
 
+func M_Luck_Potion_decrease() -> void:
+	MLuck += -1
+	get_child(15).decrease_M_Luck_Potion()
+	
 func M_Luck_Potion_remove() -> void:
 	if MLuck == 0:
 		get_child(15).remove_M_Luck_potion()
@@ -448,12 +455,21 @@ func M_Luck_Potion_remove() -> void:
 func L_Luck_Potion_add() -> void:
 	get_child(15).add_L_Luck_Potion()
 
+func L_Luck_Potion_decrease() -> void:
+	LLuck += -1
+	get_child(15).decrease_L_Luck_Potion()
+	
 func L_Luck_Potion_remove() -> void:
 	if LLuck == 0:
 		get_child(15).remove_L_Luck_Potion()
 		MainCharacter.store_num += -1
+		
 func apples_add() -> void:
 	get_child(15).add_apple()
+	
+func apples_decrease() -> void:
+	apples += -1
+	get_child(15).decrease_apple()
 func apple_ate() -> void:
 	print(get_children(27))
 	print(get_child_count())
@@ -463,19 +479,60 @@ func apples_remove() -> void:
 	if apples == 0:
 		get_child(15).remove_apple()
 		MainCharacter.store_num += -1
+		
 func fanta_lure_add() -> void:
 	get_child(15).add_fanta_lure()
 	
 func fanta_lure_remove() -> void:
 	if fanta_amount == 0:
-		get_child(15).remove_fanta
+		get_child(15).remove_fanta_lure()
 		MainCharacter.store_num += -1
+	
+func fanta_decrease() -> void:
+	fanta_amount += -1
+	get_child(15).decrease_fanta_lure()
+	
 func squid_lure_add() -> void:
 	get_child(15).add_squid_lure()
 
+func squid_lure_remove() -> void:
+	if squid_amount == 0:
+		get_child(15).remove_squid_lure()
+		MainCharacter.store_num += -1
+		
+func squid_decrease() -> void:
+	squid_amount += -1
+	get_child(15).decrease_squid_lure()
+	
 func bread_add() -> void:
 	get_child(15).add_bread()
 	
-
+func bread_remove() -> void:
+	if bread == 0:
+		get_child(15).remove_bread()
+		MainCharacter.store_num += -1
+		
+func bread_ate() -> void:
+	$Hunger.eating_bread()
+	
+func bread_decrease() -> void:
+	bread += -1
+	get_child(15).decrease_bread()
+	
 func cake_add() -> void:
 	get_child(15).add_cake()
+
+func cake_remove() -> void:
+	if cake == 0:
+		get_child(15).remove_cake()
+		MainCharacter.store_num += -1
+		
+func cake_ate() -> void:
+	$Hunger.eating_cake()
+
+func cake_decrease() -> void:
+	cake += -1
+	get_child(15).decrease_cake()
+	
+func seastone_add() -> void:
+	get_child(15).add_seastone()

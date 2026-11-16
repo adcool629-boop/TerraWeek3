@@ -858,7 +858,7 @@ func squid_picked() -> void:
 func seastone_picked() -> void:
 	if get_parent().seastone > 0 and get_parent().seastone < 2:
 		MainCharacter.store_num += 1
-		get_parent().seastone_add()
+	get_parent().seastone_add()
 func inventory_value() -> void:
 	#until you can store the value for each caught fish 
 	MainCharacter.total_coins = int(total) + MainCharacter.total_coins

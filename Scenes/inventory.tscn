@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dnfw7adgpaau1" path="res://assets/Tiny Coast Pack/Other/fishing_rod_16x16.png" id="5_k1vlg"]
 [ext_resource type="Texture2D" uid="uid://dktlgwcx215fi" path="res://assets/Tiny Coast Pack/Tiny Adventure Pack/Other/Blue_orb.png" id="5_sd8fj"]
 [ext_resource type="Texture2D" uid="uid://cvpm1pqlpanvi" path="res://assets/Foods N Stuff/free_bread_bites/individual_icons/apple.png" id="6_trvqw"]
+[ext_resource type="Texture2D" uid="uid://bl0yo3mm0hx2i" path="res://assets/Foods N Stuff/Free_pixel_food_16x16/Icons/cake_chocolate.png" id="7_aqnmd"]
+[ext_resource type="Texture2D" uid="uid://b5djesbc4iyhm" path="res://assets/Foods N Stuff/free_bread_bites/individual_icons/free_bread_bites_01.png" id="7_o4ksx"]
 
 [node name="Inventory" type="CanvasLayer" unique_id=340463798]
 script = ExtResource("1_wdn4f")
@@ -167,7 +169,6 @@ region_enabled = true
 region_rect = Rect2(15.368322, 32.060795, 16.517424, 16.460178)
 
 [node name="ClownfishLure" type="Sprite2D" parent="Node" unique_id=1310620807]
-visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
 region_enabled = true
@@ -188,7 +189,6 @@ offset_bottom = 28.2
 theme_override_font_sizes/font_size = 6
 
 [node name="CodLure" type="Sprite2D" parent="Node" unique_id=1296338786]
-visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
 region_enabled = true
@@ -207,7 +207,6 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
 [node name="GoldfishLure" type="Sprite2D" parent="Node" unique_id=603927012]
-visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
 region_enabled = true
@@ -226,7 +225,6 @@ offset_right = 9.0
 offset_bottom = 11.0
 
 [node name="FatChance" type="Sprite2D" parent="Node" unique_id=948689415]
-visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
 region_enabled = true
@@ -245,7 +243,6 @@ offset_right = 9.0
 offset_bottom = 11.0
 
 [node name="Trash" type="Sprite2D" parent="Node" unique_id=1066831592]
-visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("2_yxepq")
 region_enabled = true
@@ -257,7 +254,6 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
 [node name="SLuck" type="Sprite2D" parent="Node" unique_id=381105744]
-visible = false
 scale = Vector2(5, 5)
 
 [node name="Label" type="Label" parent="Node/SLuck" unique_id=619085599]
@@ -281,7 +277,6 @@ region_enabled = true
 region_rect = Rect2(0, 0, 15.538483, 15.702101)
 
 [node name="MLuck" type="Sprite2D" parent="Node" unique_id=1916966299]
-visible = false
 scale = Vector2(5, 5)
 region_enabled = true
 
@@ -343,7 +338,6 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
 [node name="SeaStone" type="Sprite2D" parent="Node" unique_id=1706276607]
-visible = false
 scale = Vector2(8, 8)
 texture = ExtResource("5_sd8fj")
 
@@ -363,6 +357,7 @@ offset_bottom = 11.0
 [node name="Label" type="Label" parent="Node/FantasiaLure" unique_id=1544653940]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
 
 [node name="SquidLure" type="Sprite2D" parent="Node" unique_id=664717223]
 scale = Vector2(5, 5)
@@ -380,6 +375,40 @@ offset_bottom = 11.0
 [node name="Label" type="Label" parent="Node/SquidLure" unique_id=52138799]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
+[node name="Bread" type="Sprite2D" parent="Node" unique_id=1513168077]
+scale = Vector2(5, 5)
+texture = ExtResource("7_o4ksx")
+
+[node name="BreadButton" type="Button" parent="Node/Bread" unique_id=623436873]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Node/Bread" unique_id=1373247992]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
+[node name="Cake" type="Sprite2D" parent="Node" unique_id=612883611]
+scale = Vector2(5, 5)
+texture = ExtResource("7_aqnmd")
+region_rect = Rect2(744.30164, 888.4244, 90.60272, 70.90918)
+
+[node name="CakeButton" type="Button" parent="Node/Cake" unique_id=638357851]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Node/Cake" unique_id=853360473]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
 
 [node name="UseBackground" type="ColorRect" parent="." unique_id=1293145264]
 offset_left = 400.0
@@ -487,6 +516,8 @@ text = "Current Rod:"
 [connection signal="pressed" from="Node/MLuck/MLuckButton" to="." method="_on_m_luck_button_pressed"]
 [connection signal="pressed" from="Node/LLuck/LLuckButton" to="." method="_on_l_luck_button_pressed"]
 [connection signal="pressed" from="Node/Apple/AppleButton" to="." method="_on_apple_button_pressed"]
+[connection signal="pressed" from="Node/Bread/BreadButton" to="." method="_on_bread_button_pressed"]
+[connection signal="pressed" from="Node/Cake/CakeButton" to="." method="_on_cake_button_pressed"]
 [connection signal="pressed" from="UseBackground/Use" to="." method="_on_use_pressed"]
 [connection signal="pressed" from="UseBackground/Back" to="." method="_on_back_pressed"]
 [connection signal="timeout" from="BaitSelected/BaitSelectedTimer" to="." method="_on_bait_selected_timer_timeout"]

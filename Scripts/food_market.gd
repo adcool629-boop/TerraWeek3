@@ -32,7 +32,7 @@ func _on_apple_button_pressed() -> void:
 		get_parent().apples += 1
 		if get_parent().apples > 0:
 			get_parent().apples_add()
-		$BuyMessage.text = "Fantasia Lure Bought"
+		$BuyMessage.text = "Apple Bought"
 		$BuyTimer.start()
 	else:
 		$BuyMessage.text = "Not Enough Coins"
@@ -41,4 +41,35 @@ func _on_apple_button_pressed() -> void:
 
 
 func _on_bread_button_pressed() -> void:
-	pass # Replace with function body.
+	if MainCharacter.total_coins >= 20000:
+		MainCharacter.total_coins - 20000
+		if get_parent().bread == 0:
+			MainCharacter.store_num += 1
+		$Purchase.playing = true
+		get_parent().bread += 1
+		if get_parent().bread > 0:
+			get_parent().bread_add()
+		$BuyMessage.text = "Bread Bought"
+		$BuyTimer.start()
+	else:
+		$BuyMessage.text = "Not Enough Coins"
+		$Error.playing = true
+		$BuyTimer.start()
+
+
+func _on_cake_button_pressed() -> void:
+	if MainCharacter.total_coins >= 20000:
+		MainCharacter.total_coins - 20000
+		if get_parent().cake == 0:
+			MainCharacter.store_num += 1
+		$Purchase.playing = true
+		get_parent().cake += 1
+		if get_parent().cake > 0:
+			get_parent().cake_add()
+		get_parent().luck += 5
+		$BuyMessage.text = "Chocolate Cake Bought"
+		$BuyTimer.start()
+	else:
+		$BuyMessage.text = "Not Enough Coins"
+		$Error.playing = true
+		$BuyTimer.start()
