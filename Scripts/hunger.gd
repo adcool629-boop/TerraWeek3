@@ -21,8 +21,21 @@ func hunger_start() -> void:
 func _on_timer_timeout() -> void:
 	print("Decreasing Hunger")
 	$TextureRect/TextureProgressBar.value += -10
+	if $TextureRect/TextureProgressBar.value == 0:
+		MainCharacter.game_over = true
 	
 func eating_apple() -> void:
 	$TextureRect/TextureProgressBar.value += 20
 	print("Apple Consumed, Restoring Saturation")
 	$AudioStreamPlayer.play()
+
+func eating_bread() -> void:
+	$TextureRect/TextureProgressBar.value += 25
+	print("Bread Consumed")
+	$AudioStreamPlayer.play()
+
+func eating_cake() -> void:
+	$TextureRect/TextureProgressBar.value += 25
+	print("Cake Consumed")
+	$AudioStreamPlayer.play()
+	

@@ -10,7 +10,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	$CoinsNumber.text = ("Coins: " +str(MainCharacter.total_coins))
 
 
 func _on_close_pressed() -> void:
@@ -25,7 +25,7 @@ func _on_buy_timer_timeout() -> void:
 
 func _on_apple_button_pressed() -> void:
 	if MainCharacter.total_coins >= 20000:
-		MainCharacter.total_coins - 20000
+		MainCharacter.total_coins = MainCharacter.total_coins - 20000
 		if get_parent().apples == 0:
 			MainCharacter.store_num += 1
 		$Purchase.playing = true
@@ -42,7 +42,7 @@ func _on_apple_button_pressed() -> void:
 
 func _on_bread_button_pressed() -> void:
 	if MainCharacter.total_coins >= 20000:
-		MainCharacter.total_coins - 20000
+		MainCharacter.total_coins = MainCharacter.total_coins - 25000
 		if get_parent().bread == 0:
 			MainCharacter.store_num += 1
 		$Purchase.playing = true
@@ -59,7 +59,7 @@ func _on_bread_button_pressed() -> void:
 
 func _on_cake_button_pressed() -> void:
 	if MainCharacter.total_coins >= 20000:
-		MainCharacter.total_coins - 20000
+		MainCharacter.total_coins = MainCharacter.total_coins - 30000
 		if get_parent().cake == 0:
 			MainCharacter.store_num += 1
 		$Purchase.playing = true

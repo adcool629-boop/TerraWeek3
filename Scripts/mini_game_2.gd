@@ -21,6 +21,7 @@ func _ready() -> void:
 func minigame_start() -> void:
 	active = true
 	$TriesLeft.visible = true
+	$TriesLeft.text = ('Tries Left '+ str(tries))
 	$Instructions.visible = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -93,6 +94,7 @@ func lose() -> void:
 		set_process(false)
 		set_process_input(false)
 		active = false
+		tries = 3
 
 func _on_win_timer_timeout() -> void:
 	

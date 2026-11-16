@@ -27,7 +27,7 @@ var FC_amount: int = 0
 var trash_amount: int = 0
 var fanta_amount: int = 0
 var squid_amount: int = 0
-
+var seastones: int = 0
 #------------------Potions-------------------
 
 var SLuck: int = 0
@@ -63,6 +63,60 @@ func _process(delta: float) -> void:
 		elif trash_amount > 0:
 			get_child(15).add_trash()
 		MainCharacter.PickedUp = false
+	if MainCharacter.game_over:
+		LastDirection = Vector2.RIGHT
+		fishing = false
+		cast_finished = false
+		casting = false
+		reeling = false
+		shopping= false
+		perfect = false
+		good = false
+		meh = false
+		bad = false
+		inv_closed = true
+		value = 0
+		luck = 0
+		first_time = true
+
+		#-----------------------------------------------
+		#Baits
+		#-----------------------------------------------
+		CfL_amount = 0
+		CodL_amount = 0
+		GfL_amount = 0
+		FC_amount = 0
+		trash_amount = 0
+		fanta_amount = 0
+		squid_amount = 0
+		seastones = 0
+		#------------------Potions-------------------
+
+		SLuck = 0
+		MLuck = 0
+		LLuck = 0
+
+		#------------------Food-------------------
+
+		apples = 0
+		cake = 0
+		bread = 0
+		#-----------------------------------------------
+		#store fish
+		#-----------------------------------------------
+		store_clownfish = false
+		store_cod = false
+		store_goldfish = false
+
+		#-----------------------------------------------
+		#Rods
+		#-----------------------------------------------
+		IRod = false
+		ARod = false
+		GRod = false
+		get_tree().reload_current_scene()
+		
+		
 func _physics_process(delta: float) -> void:
 	if fishing or shopping:
 		velocity = Vector2.ZERO
@@ -242,7 +296,7 @@ func _on_error_timer_timeout() -> void:
 #Fishing Mini Games
 #-----------------------------------------------
 func wait_time() -> void:
-	var waiting = randf() * 2
+	var waiting = randf() * 20
 	if ARod:
 		waiting = waiting * 1/4
 		$WaitTimer.wait_time = waiting
@@ -267,9 +321,9 @@ func _on_wait_timer_timeout() -> void:
 func minigame_select() -> void:
 	# When more minigames are made use this to randomly select one.
 	var minigame = randf()
-	if minigame > 1:
+	if minigame > 0.5:
 		quick_time_start()
-	elif minigame < 1:
+	elif minigame < 0.5:
 		skill_check_start()
 	elif minigame == 0.5:
 		minigame_select()
@@ -417,6 +471,7 @@ func trash_remove() -> void:
 		MainCharacter.store_num += -1
 func trash_update() -> void:
 	get_child(15).update_trash()
+	
 func advanced_rod() -> void:
 	get_child(15).advanced_equipped = true
 	get_child(15).basic_equipped = false
@@ -470,6 +525,7 @@ func apples_add() -> void:
 func apples_decrease() -> void:
 	apples += -1
 	get_child(15).decrease_apple()
+	
 func apple_ate() -> void:
 	print(get_children(27))
 	print(get_child_count())
@@ -492,6 +548,12 @@ func fanta_decrease() -> void:
 	fanta_amount += -1
 	get_child(15).decrease_fanta_lure()
 	
+func select_fanta_lure() -> void:
+	get_child(9).fanta_lure = true
+	
+func unselect_fanta_lure() -> void:
+	get_child(9).fanta_lure = false
+	
 func squid_lure_add() -> void:
 	get_child(15).add_squid_lure()
 
@@ -504,6 +566,11 @@ func squid_decrease() -> void:
 	squid_amount += -1
 	get_child(15).decrease_squid_lure()
 	
+func select_squid_lure() -> void:
+	get_child(9).squid_lure = true
+
+func unselect_squid_lure() -> void:
+	get_child(9).squid_lure = false
 func bread_add() -> void:
 	get_child(15).add_bread()
 	
@@ -529,10 +596,12 @@ func cake_remove() -> void:
 		
 func cake_ate() -> void:
 	$Hunger.eating_cake()
+	luck += 5
 
 func cake_decrease() -> void:
 	cake += -1
 	get_child(15).decrease_cake()
 	
 func seastone_add() -> void:
+	seastones += 1
 	get_child(15).add_seastone()

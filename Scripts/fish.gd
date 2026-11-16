@@ -12,6 +12,8 @@ var clownfish_lure = false
 var cod_lure = false
 var goldfish_lure = false
 var FatChance = false
+var fanta_lure = false
+var squid_lure = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -81,7 +83,12 @@ func pick_fish() -> void:
 			elif get_parent().luck <= 0 and pick > 0.95:
 				pick_fish()
 			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-				pick_fish()
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
 			
 			
 		elif get_parent().CodL_amount > 0 and cod_lure:
@@ -132,7 +139,12 @@ func pick_fish() -> void:
 			elif get_parent().luck <= 0 and pick > 0.95:
 				pick_fish()
 			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-				pick_fish()
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
 			
 			
 		elif get_parent().GfL_amount > 0 and goldfish_lure:
@@ -183,7 +195,12 @@ func pick_fish() -> void:
 			elif get_parent().luck <= 0 and pick > 0.95:
 				pick_fish()
 			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-				pick_fish()
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
 			
 		else:
 			if pick < 0.05:
@@ -229,7 +246,12 @@ func pick_fish() -> void:
 			elif get_parent().luck <= 0 and pick > 0.95:
 				pick_fish()
 			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-				pick_fish()
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
 	#-----------------------------------------------------------------------------------------------------------------------------
 	#------------------------------------Advanced Rod-----------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------------------------------------
@@ -278,7 +300,12 @@ func pick_fish() -> void:
 			elif get_parent().luck <= 0 and pick > 0.95:
 				pick_fish()
 			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-				pick_fish()
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
 			
 			
 		elif get_parent().CodL_amount > 0 and cod_lure:
@@ -324,7 +351,12 @@ func pick_fish() -> void:
 			elif get_parent().luck <= 0 and pick > 0.95:
 				pick_fish()
 			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-				pick_fish()
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
 				
 			
 			
@@ -371,8 +403,107 @@ func pick_fish() -> void:
 			elif get_parent().luck <= 0 and pick > 0.95:
 				pick_fish()
 			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
+				
+				
+		elif get_parent().fanta_amount > 0 and fanta_lure:
+			get_parent().fanta_decrease()
+			if get_parent().fanta_amount == 0:
+				get_parent().fanta_lure_remove()
+			print("Fantasia Lure Used")
+			if pick < 0.05:
+				$Trash.visible = true
+				trash_picked()
+				$ShowFish.start()
+				$Label.text = ("You Got Trash")
+				get_parent().trash_add()
+			if pick > 0.20 and pick < 0.35:
+				$Skullfish.visible = true
+				skullfish_picked()
+				$ShowFish.start()
+				$Label.text = "You caught a Skullfish"
+			if pick > 0.05 and pick < 0.20:
+				$Bluegill.visible = true
+				bluegill_picked()
+				$ShowFish.start ()
+				$Label.text = "You caught a Bluegill"
+			if pick > 0.35 and pick < 0.95:
+				$Fantasia.visible = true
+				fantasia_picked()
+				$ShowFish.start()
+				$Label.text = "You caught a Fantasia"
+			if get_parent().luck > 0 and pick > 0.95:
+				get_parent().luck += -1
+				$Squid.visible = true
+				squid_picked()
+				$ShowFish.start()
+				$Label.text = "You caught a Squid"
+				$RareCatch.add_theme_color_override("font_color", Color("255fff"))
+				$RareCatch.text = "Rare Catch"
+			elif get_parent().luck <= 0 and pick > 0.95:
 				pick_fish()
+			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.35 or pick == 0.95:
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
 			
+			
+		elif get_parent().squid_amount > 0 and squid_lure:
+			get_parent().squid_decrease()
+			if get_parent().fanta_amount == 0:
+				get_parent().fanta_lure_remove()
+			print("Fantasia Lure Used")
+			if pick < 0.05:
+				$Trash.visible = true
+				trash_picked()
+				$ShowFish.start()
+				$Label.text = ("You Got Trash")
+				get_parent().trash_add()
+			if pick > 0.20 and pick < 0.35:
+				$Skullfish.visible = true
+				skullfish_picked()
+				$ShowFish.start()
+				$Label.text = "You caught a Skullfish"
+			if pick > 0.05 and pick < 0.20:
+				$Bluegill.visible = true
+				bluegill_picked()
+				$ShowFish.start ()
+				$Label.text = "You caught a Bluegill"
+			if pick > 0.35 and pick < 0.5:
+				$Fantasia.visible = true
+				fantasia_picked()
+				$ShowFish.start()
+				$Label.text = "You caught a Fantasia"
+			if pick > 0.5 and pick < 0.95:
+				$Squid.visible = true
+				squid_picked()
+				$ShowFish.start()
+				$Label.text = "You caught a Squid"
+			if get_parent().luck > 0 and pick > 0.95:
+				get_parent().luck += -1
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
+			elif get_parent().luck <= 0 and pick > 0.95:
+				pick_fish()
+			if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.35 or pick == 0.5 or pick == 0.95:
+				$SeaStone.visible = true
+				seastone_picked()
+				$ShowFish.start()
+				$Label.text = "You got A SeaStone"
+				$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+				$RareCatch.text = "LEGENDARY CATCH"
 			
 		else:
 			if pick > 0.05 and pick < 0.25:
@@ -454,7 +585,12 @@ func pick_fish() -> void:
 		elif get_parent().luck <= 0 and pick > 0.95:
 			pick_fish()
 		if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-			pick_fish()
+			$SeaStone.visible = true
+			seastone_picked()
+			$ShowFish.start()
+			$Label.text = "You got A SeaStone"
+			$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+			$RareCatch.text = "LEGENDARY CATCH"
 			
 			
 	elif get_parent().CodL_amount > 0 and cod_lure and not get_parent().IRod and not get_parent().ARod:
@@ -495,7 +631,12 @@ func pick_fish() -> void:
 		elif get_parent().luck <= 0 and pick > 0.95:
 			pick_fish()
 		if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-			pick_fish()
+			$SeaStone.visible = true
+			seastone_picked()
+			$ShowFish.start()
+			$Label.text = "You got A SeaStone"
+			$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+			$RareCatch.text = "LEGENDARY CATCH"
 			
 			
 	elif get_parent().GfL_amount > 0 and goldfish_lure and not get_parent().IRod and not get_parent().ARod:
@@ -536,7 +677,12 @@ func pick_fish() -> void:
 		elif get_parent().luck <= 0 and pick > 0.95:
 			pick_fish()
 		if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-			pick_fish()
+			$SeaStone.visible = true
+			seastone_picked()
+			$ShowFish.start()
+			$Label.text = "You got A SeaStone"
+			$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+			$RareCatch.text = "LEGENDARY CATCH"
 		
 			
 			
@@ -574,7 +720,12 @@ func pick_fish() -> void:
 		elif get_parent().luck <= 0 and pick > 0.95:
 			pick_fish()
 		if pick == 0.05 or pick == 0.1 or pick == 0.15 or pick == 0.4 or pick == 0.5 or pick == 0.95:
-			pick_fish()
+			$SeaStone.visible = true
+			seastone_picked()
+			$ShowFish.start()
+			$Label.text = "You got A SeaStone"
+			$RareCatch.add_theme_color_override("font_color", Color("ffc700"))
+			$RareCatch.text = "LEGENDARY CATCH"
 			
 func _on_show_fish_timeout() -> void:
 	$Clownfish.visible = false

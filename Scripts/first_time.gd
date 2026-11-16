@@ -33,7 +33,7 @@ func text_one() -> void:
 	$Read1.start()
 
 func text_two() -> void:
-	$ColorRect/Text.text = "Take these apples, not much grows here."
+	$ColorRect/Text.text = "See that yellow bar in the bottom left? That your hunger. New perks are applied to your character evertime you go to a new island. Your hungry decrease by 10/100 every 60 seconds. Here take these apples, not much grows here."
 	print("Second Message")
 	$Read2.start()
 func text_three() -> void:

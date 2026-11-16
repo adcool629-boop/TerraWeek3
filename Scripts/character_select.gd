@@ -20,7 +20,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if MainCharacter.game_over:
+		var moveable: bool = false
+		get_tree().reload_current_scene()
 
 
 func _on_button_1_pressed() -> void:

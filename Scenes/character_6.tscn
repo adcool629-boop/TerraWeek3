@@ -13,6 +13,13 @@
 [ext_resource type="PackedScene" uid="uid://c6ueol4ki5jm4" path="res://Scenes/inventory.tscn" id="11_3v4ju"]
 [ext_resource type="PackedScene" uid="uid://cie1s6p2wish8" path="res://Scenes/potion_shop.tscn" id="12_3v4ju"]
 [ext_resource type="PackedScene" uid="uid://eqsn80qkcdqn" path="res://Scenes/ni_dialogue.tscn" id="13_qx8sr"]
+[ext_resource type="PackedScene" uid="uid://ctubc6p7kgpk1" path="res://Scenes/fishing_shop_2.tscn" id="14_p7jtd"]
+[ext_resource type="PackedScene" uid="uid://dwngis2nojgrd" path="res://Scenes/first_time.tscn" id="15_sidki"]
+[ext_resource type="AudioStream" uid="uid://m13u6u8nugut" path="res://assets/Audios/freesound_community-tiny-splash-83778.mp3" id="16_pvovv"]
+[ext_resource type="AudioStream" uid="uid://dudu5w58upl1f" path="res://assets/Audios/soumages-walking-on-grass-363353.mp3" id="17_32nvl"]
+[ext_resource type="AudioStream" uid="uid://cawhnih0hpf7e" path="res://assets/Audios/fishingreel.mp3" id="18_5pje2"]
+[ext_resource type="PackedScene" uid="uid://devei6bkln6pw" path="res://Scenes/hunger.tscn" id="19_trt5n"]
+[ext_resource type="PackedScene" uid="uid://diyd7yql28048" path="res://Scenes/food_market.tscn" id="20_yln8p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5jcj6"]
 atlas = ExtResource("1_ctnxk")
@@ -651,13 +658,14 @@ one_shot = true
 
 [node name="PShopDetector" type="RayCast2D" parent="." unique_id=1565376889]
 target_position = Vector2(0, 25)
-collision_mask = 4
+collision_mask = 8
 
 [node name="PotionShop" parent="." unique_id=873678996 instance=ExtResource("12_3v4ju")]
 
 [node name="NPCDetector" type="RayCast2D" parent="." unique_id=1873181037]
 target_position = Vector2(0, 25)
 collision_mask = 16
+collide_with_areas = true
 
 [node name="NI_Dialogue" parent="." unique_id=946351177 instance=ExtResource("13_qx8sr")]
 
@@ -666,6 +674,39 @@ target_position = Vector2(0, 0)
 collision_mask = 32
 hit_from_inside = true
 collide_with_areas = true
+
+[node name="FShopDetector2" type="RayCast2D" parent="." unique_id=1912280044]
+target_position = Vector2(0, 25)
+collision_mask = 64
+
+[node name="FishingShop2" parent="." unique_id=1145389986 instance=ExtResource("14_p7jtd")]
+
+[node name="FirstTime" parent="." unique_id=54406111 instance=ExtResource("15_sidki")]
+
+[node name="CastEnd" type="AudioStreamPlayer" parent="." unique_id=695746506]
+stream = ExtResource("16_pvovv")
+volume_db = 5.902
+pitch_scale = 1.99
+
+[node name="Walking" type="AudioStreamPlayer" parent="." unique_id=1780708416]
+stream = ExtResource("17_32nvl")
+volume_db = -7.376
+pitch_scale = 1.29
+parameters/looping = true
+
+[node name="Reeling" type="AudioStreamPlayer" parent="." unique_id=500072469]
+stream = ExtResource("18_5pje2")
+volume_db = -5.368
+pitch_scale = 1.71
+parameters/looping = true
+
+[node name="Hunger" parent="." unique_id=317609650 instance=ExtResource("19_trt5n")]
+
+[node name="MShopDetector" type="RayCast2D" parent="." unique_id=1410448946]
+target_position = Vector2(0, 25)
+collision_mask = 128
+
+[node name="FoodMarket" parent="." unique_id=847863486 instance=ExtResource("20_yln8p")]
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

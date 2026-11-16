@@ -16,6 +16,7 @@ var fantalure_amount: int = 0
 var squidlure_amount: int = 0
 var bread_amount: int = 0
 var cake_amount: int = 0
+var seastone_amount: int = 0
 #-------------------Positions-----------------------
 
 var CfL_positionX: int
@@ -44,7 +45,8 @@ var bread_positionX: int
 var bread_positionY: int
 var cake_positionX: int
 var cake_positionY: int
-
+var seastone_positionX: int
+var seastone_positionY: int
 
 
 #-------------------Equipped/Using-----------------------
@@ -273,6 +275,15 @@ func clownfish_lure_move_back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
+	if seastone_positionX > CfL_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > CfL_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 		
 func add_cod_lure() -> void:
 	CodLure_amount += 1
@@ -413,6 +424,15 @@ func cod_lure_move_back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
+	if seastone_positionX > CodL_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > CodL_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 		
 func add_goldfish_lure() -> void:
 	GoldfishLure_amount += 1
@@ -554,6 +574,15 @@ func goldfish_lure_move_back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
+	if seastone_positionX > GfL_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > GfL_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 		
 func add_fc_lure() -> void:
 	FatChanceLure_amount += 1
@@ -834,6 +863,15 @@ func trash_move_back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
+	if seastone_positionX > Trash_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > Trash_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 		
 func update_trash() -> void:
 	TrashBag_amount += -1
@@ -859,7 +897,7 @@ func add_S_Luck_Potion() -> void:
 		print("Y Position is " +str(SLuck_positionY))
 		
 			
-func remove_S_Luck_potion() -> void:
+func remove_S_Luck_Potion() -> void:
 	print(SLuck_amount)
 	$Node/SLuck/Label.text = ''
 	$Node/SLuck.position.x = 0
@@ -978,7 +1016,15 @@ func S_Luck_Potion_Move_Back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
-		
+	if seastone_positionX > SLuck_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > SLuck_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 		
 func add_M_Luck_Potion() -> void:
 	MLuck_amount += 1
@@ -1116,7 +1162,15 @@ func M_Luck_Potion_Move_Back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
-		
+	if seastone_positionX > MLuck_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > MLuck_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 		
 func add_L_Luck_Potion() -> void:
 	LLuck_amount += 1
@@ -1255,6 +1309,15 @@ func L_Luck_Potion_Move_Back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
+	if seastone_positionX > LLuck_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > LLuck_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 		
 
 func add_apple() -> void:
@@ -1397,6 +1460,15 @@ func apple_move_back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
+	if seastone_positionX > Apple_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > Apple_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 		
 func add_fanta_lure() -> void:
 	fantalure_amount += 1
@@ -1538,7 +1610,16 @@ func fantasia_move_back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
-	
+	if seastone_positionX > FantaL_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > FantaL_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
+		
 func add_squid_lure() -> void:
 	squidlure_amount += 1
 	print(squidlure_amount)
@@ -1679,7 +1760,15 @@ func squid_move_back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
-	
+	if seastone_positionX > SquidL_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > SquidL_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 	
 func add_bread() -> void:
 	bread_amount += 1
@@ -1821,7 +1910,15 @@ func bread_move_back() -> void:
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
 		cake_positionY = 100
-	
+	if seastone_positionX > bread_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > bread_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
 	
 func add_cake() -> void:
 	cake_amount += 1
@@ -1946,24 +2043,178 @@ func cake_move_back() -> void:
 		$Node/FantasiaLure.position.y = 100
 		FantaL_positionY = 100
 	if SquidL_positionX > cake_positionX:
-		$Node/Bread.position.x = SquidL_positionX - 125
+		$Node/SquidLure.position.x = SquidL_positionX - 125
 		SquidL_positionX = SquidL_positionX - 125
 		print("decreasing squid position")
 	elif SquidL_positionY > cake_positionY and SquidL_positionX == 200:
-		$Node/Bread.position.x = 950
+		$Node/SquidLure.position.x = 950
 		SquidL_positionX = 950
-		$Node/Bread.position.y = 100
+		$Node/SquidLure.position.y = 100
 		SquidL_positionY = 100
 	if bread_positionX > cake_positionX:
-		$Node/Cake.position.x = bread_positionX - 125
+		$Node/Bread.position.x = bread_positionX - 125
 		bread_positionX = bread_positionX - 125
 		print("decreasing bread position")
-	elif bread_positionY > cake_positionY and cake_positionX == 200:
+	elif bread_positionY > cake_positionY and bread_positionX == 200:
+		$Node/Bread.position.x = 950
+		bread_positionX = 950
+		$Node/Bread.position.y = 100
+		bread_positionY = 100
+	if seastone_positionX > cake_positionX:
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > cake_positionY and seastone_positionX == 200:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
+	
+	
+func add_seastone() -> void:
+	seastone_amount += 1
+	print(seastone_amount)
+	$Node/SeaStone/Label.text = str(seastone_amount)
+	if get_parent().seastones > 0 and get_parent().seastones < 2:
+		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+			$Node/SeaStone.position.x = (MainCharacter.store_num) * 125 + 75
+			seastone_positionX = $Node/SeaStone.position.x
+			$Node/SeaStone.position.y = 100
+			seastone_positionY = $Node/SeaStone.position.y
+		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+			$Node/SeaStone.position.x = (MainCharacter.store_num) * 125 - 800
+			seastone_positionX = $Node/SeaStone.position.x
+			$Node/SeaStone.position.y = 250
+			seastone_positionY = $Node/SeaStone.position.y
+		print("X Position is " +str(seastone_positionX))
+		print("Y Position is " +str(seastone_positionY))
+	
+func remove_seastone() -> void:
+	print(seastone_amount)
+	$Node/SeaStone/Label.text = ''
+	$Node/SeaStone.position.x = 0
+	$Node/SeaStone.position.y = 0
+	$Node/SeaStone.visible = false
+	seastone_move_back()
+	
+func seastone_move_back() -> void:
+	if MLuck_positionX > seastone_positionX:
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
+		print("decreasing M Luck position")
+	elif MLuck_positionY > seastone_positionY and MLuck_positionX == 200:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	if SLuck_positionX > seastone_positionX:
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
+		print("decreasing S Luck position")
+	elif SLuck_positionY > seastone_positionY and SLuck_positionX == 200:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	if Trash_positionX > seastone_positionX:
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
+		print("decreasing Trash position")
+	elif Trash_positionY > seastone_positionY and Trash_positionX == 200:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	if FC_positionX > seastone_positionX:
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
+		print("decreasing FC position")
+	elif FC_positionY > seastone_positionY and FC_positionX == 200:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	if GfL_positionX > seastone_positionX:
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
+		print("decreasing goldfish_position")
+	elif GfL_positionY > seastone_positionY and GfL_positionX == 200:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	if CodL_positionX > seastone_positionX:
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
+		print("decreasing cod position")
+	elif CodL_positionY > seastone_positionY and CodL_positionX == 200:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	if CfL_positionX > seastone_positionX:
+		$Node/ClownfishLure.position.x = CfL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
+		print("decreasing clownfish position")
+	elif CfL_positionY > seastone_positionY and CfL_positionX == 200:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
+	if LLuck_positionX > seastone_positionX:
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX  = LLuck_positionX - 125
+		print("decreasing L Luck position")
+	elif LLuck_positionY > seastone_positionY and LLuck_positionX == 200:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
+	if Apple_positionX > seastone_positionX:
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > seastone_positionY and Apple_positionX == 200:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+	if FantaL_positionX > seastone_positionX:
+		$Node/FantasiaLure.position.x = FantaL_positionX - 125
+		FantaL_positionX = FantaL_positionX - 125
+		print("decreasing fantasia position")
+	elif FantaL_positionY > seastone_positionY and FantaL_positionX == 200:
+		$Node/FantasiaLure.position.x = 950
+		FantaL_positionX = 950
+		$Node/FantasiaLure.position.y = 100
+		FantaL_positionY = 100
+	if SquidL_positionX > seastone_positionX:
+		$Node/SquidLure.position.x = SquidL_positionX - 125
+		SquidL_positionX = SquidL_positionX - 125
+		print("decreasing squid position")
+	elif SquidL_positionY > seastone_positionY and SquidL_positionX == 200:
+		$Node/SquidLure.position.x = 950
+		SquidL_positionX = 950
+		$Node/SquidLure.position.y = 100
+		SquidL_positionY = 100
+	if bread_positionX > seastone_positionX:
+		$Node/Bread.position.x = bread_positionX - 125
+		bread_positionX = bread_positionX - 125
+		print("decreasing bread position")
+	elif bread_positionY > seastone_positionY and bread_positionX == 200:
+		$Node/Bread.position.x = 950
+		bread_positionX = 950
+		$Node/Bread.position.y = 100
+		bread_positionY = 100
+	if cake_positionX > seastone_positionX:
+		$Node/Cake.position.x = cake_positionX - 125
+		cake_positionX = cake_positionX - 125
+		print("decreasing SeaStone position")
+	elif cake_positionY > seastone_positionY and cake_positionX == 200:
 		$Node/Cake.position.x = 950
 		cake_positionX = 950
 		$Node/Cake.position.y = 100
-		bread_positionY = 100
-	
+		cake_positionY = 100
 	
 	
 func _on_close_pressed() -> void:
@@ -1986,6 +2237,10 @@ func _on_close_pressed() -> void:
 	$UseBackground.visible = false
 	$Node/Apple.visible = false
 	$Node/SeaStone.visible = false
+	$Node/FantasiaLure.visible = false
+	$Node/SquidLure.visible = false
+	$Node/Bread.visible = false
+	$Node/Cake.visible = false
 	
 func _on_cf_l_button_pressed() -> void:
 	get_parent().select_clownfish_lure()
@@ -2032,6 +2287,8 @@ func _on_unselect_all_pressed() -> void:
 	get_parent().unselect_cod_lure()
 	get_parent().unselect_goldfish_lure()
 	get_parent().unselect_fatchance()
+	get_parent().unselect_fanta_lure()
+	get_parent().unselect_squid_lure()
 	$BaitSelected.text = "Unselected All Lures and Baits"
 
 
@@ -2060,6 +2317,7 @@ func _on_m_luck_button_pressed() -> void:
 	EatApple = false
 	eatbread = false
 	eatcake = false
+	
 func _on_l_luck_button_pressed() -> void:
 	$UseBackground.visible = true
 	$UseBackground.position.x = 400
@@ -2104,7 +2362,7 @@ func _on_use_pressed() -> void:
 		print("Luck is " + str(get_parent().luck))
 	if EatApple:
 		get_parent().apple_ate()
-		get_parent().apple_decrease()
+		get_parent().apples_decrease()
 		if get_parent().apples <= 0:
 			get_parent().apples_remove()
 		EatApple = false
@@ -2177,14 +2435,20 @@ func _on_cake_button_pressed() -> void:
 
 
 func _on_fanta_l_button_pressed() -> void:
-	get_parent().select_clownfish_lure()
+	get_parent().unselect_clownfish_lure()
 	get_parent().unselect_cod_lure()
 	get_parent().unselect_goldfish_lure()
-	get_parent().unselect_fanta_lure()
+	get_parent().select_fanta_lure()
 	get_parent().unselect_squid_lure()
-	$BaitSelected.text = "Clownfish Lure Selected"
+	$BaitSelected.text = "Fantasia Lure Selected"
 	$BaitSelected/BaitSelectedTimer.start()
 
 
 func _on_squid_l_button_pressed() -> void:
-	pass # Replace with function body.
+	get_parent().unselect_clownfish_lure()
+	get_parent().unselect_cod_lure()
+	get_parent().unselect_goldfish_lure()
+	get_parent().unselect_fanta_lure()
+	get_parent().select_squid_lure()
+	$BaitSelected.text = "Squid Lure Selected"
+	$BaitSelected/BaitSelectedTimer.start()

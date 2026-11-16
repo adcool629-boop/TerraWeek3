@@ -85,7 +85,7 @@ text = "Greatly Increases the chance of catching a Fantasia
 autowrap_mode = 2
 
 [node name="squidlure" type="Sprite2D" parent="." unique_id=92384620]
-position = Vector2(204.34782, 69.13044)
+position = Vector2(202.6087, 63.04348)
 texture = ExtResource("2_58ir5")
 region_enabled = true
 region_rect = Rect2(32.5941, 17.237164, 15.607574, 14.864357)
@@ -107,13 +107,13 @@ theme_override_font_sizes/font_size = 5
 text = "20000 Coins"
 
 [node name="Description" type="Label" parent="squidlure" unique_id=582742357]
-offset_left = -24.782608
-offset_top = 24.347826
-offset_right = 30.434784
-offset_bottom = 55.68116
+offset_left = -29.565216
+offset_top = 23.043478
+offset_right = 40.434784
+offset_bottom = 62.960144
 theme_override_font_sizes/font_size = 4
 text = "Greatly Increase the chance of catching a squid
-*Works only with the advanced rod or better"
+*Works only with the advanced rod or better  and inadvertantly increases seastone chance"
 autowrap_mode = 2
 
 [node name="GamblersRod" type="Sprite2D" parent="." unique_id=120553289]

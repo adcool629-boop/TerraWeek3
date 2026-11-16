@@ -29,3 +29,6 @@ func _process(delta: float) -> void:
 	var direction := Input.get_vector("Left","Right","Down","Up")
 	if direction != Vector2.ZERO:
 		last_direction = direction
+	if MainCharacter.game_over:
+		get_tree().reload_current_scene()
+		

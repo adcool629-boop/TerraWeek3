@@ -12,6 +12,7 @@ var RemoveableWater1
 var InReach: bool = false
 var PickedUp: bool = false
 var AddHunger: bool = false
+var game_over: bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,4 +22,22 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+		if game_over:
+			game_over = false
+			reset_game()
+func reset_game() -> void:
+	print("restarting")
+	chosen_character = 0
+	fishables = false
+	moveables = true
+	total_coins = 1000000
+	trash = 0
+	store_num = 0
+	store = 0
+	bridge1
+	RemoveableWater1
+	InReach = false
+	PickedUp = false
+	AddHunger = false
+	game_over = false
+	get_tree().reload_current_scene()

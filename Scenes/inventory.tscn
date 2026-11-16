@@ -338,8 +338,17 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
 [node name="SeaStone" type="Sprite2D" parent="Node" unique_id=1706276607]
-scale = Vector2(8, 8)
+scale = Vector2(5, 5)
 texture = ExtResource("5_sd8fj")
+
+[node name="Label" type="Label" parent="Node/SeaStone" unique_id=1180113074]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
+[node name="SeastoneButton" type="Button" parent="Node/SeaStone" unique_id=550230821]
+offset_right = 8.0
+offset_bottom = 8.0
 
 [node name="FantasiaLure" type="Sprite2D" parent="Node" unique_id=1656769418]
 scale = Vector2(5, 5)
@@ -516,6 +525,8 @@ text = "Current Rod:"
 [connection signal="pressed" from="Node/MLuck/MLuckButton" to="." method="_on_m_luck_button_pressed"]
 [connection signal="pressed" from="Node/LLuck/LLuckButton" to="." method="_on_l_luck_button_pressed"]
 [connection signal="pressed" from="Node/Apple/AppleButton" to="." method="_on_apple_button_pressed"]
+[connection signal="pressed" from="Node/FantasiaLure/FantaLButton" to="." method="_on_fanta_l_button_pressed"]
+[connection signal="pressed" from="Node/SquidLure/SquidLButton" to="." method="_on_squid_l_button_pressed"]
 [connection signal="pressed" from="Node/Bread/BreadButton" to="." method="_on_bread_button_pressed"]
 [connection signal="pressed" from="Node/Cake/CakeButton" to="." method="_on_cake_button_pressed"]
 [connection signal="pressed" from="UseBackground/Use" to="." method="_on_use_pressed"]
