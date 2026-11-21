@@ -61,7 +61,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if pick > 0.15 and pick < 0.40:
 				$Skullfish.visible = true
 				skullfish_picked()
@@ -117,7 +117,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if pick > 0.15 and pick < 0.40:
 				$Skullfish.visible = true
 				skullfish_picked()
@@ -173,7 +173,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if pick > 0.15 and pick < 0.40:
 				$Skullfish.visible = true
 				skullfish_picked()
@@ -224,7 +224,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if pick > 0.20 and pick < 0.60:
 				$Skullfish.visible = true
 				skullfish_picked()
@@ -272,7 +272,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if pick > 0.20 and pick < 0.35:
 				$Skullfish.visible = true
 				skullfish_picked()
@@ -324,7 +324,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if pick > 0.20 and pick < 0.35:
 				$Skullfish.visible = true
 				skullfish_picked()
@@ -376,7 +376,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if pick > 0.20 and pick < 0.35:
 				$Skullfish.visible = true
 				skullfish_picked()
@@ -421,7 +421,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if pick > 0.20 and pick < 0.35:
 				$Skullfish.visible = true
 				skullfish_picked()
@@ -466,7 +466,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if pick > 0.20 and pick < 0.35:
 				$Skullfish.visible = true
 				skullfish_picked()
@@ -526,7 +526,7 @@ func pick_fish() -> void:
 				trash_picked()
 				$ShowFish.start()
 				$Label.text = ("You Got Trash")
-				get_parent().trash_add()
+				
 			if get_parent().luck > 0 and pick > 0.95:
 				get_parent().luck += -1
 				$Squid.visible = true
@@ -573,7 +573,7 @@ func pick_fish() -> void:
 			trash_picked()
 			$ShowFish.start()
 			$Label.text = ("You Got Trash")
-			get_parent().trash_add()
+			
 		if get_parent().luck > 0 and pick > 0.95:
 				get_parent().luck += -1
 				$Skullfish.visible = true
@@ -619,7 +619,7 @@ func pick_fish() -> void:
 			trash_picked()
 			$ShowFish.start()
 			$Label.text = ("You Got Trash")
-			get_parent().trash_add()
+			
 		if get_parent().luck > 0 and pick > 0.95:
 				get_parent().luck += -1
 				$Skullfish.visible = true
@@ -665,7 +665,7 @@ func pick_fish() -> void:
 			trash_picked()
 			$ShowFish.start()
 			$Label.text = ("You Got Trash")
-			get_parent().trash_add()
+			
 		if get_parent().luck > 0 and pick > 0.95:
 				get_parent().luck += -1
 				$Skullfish.visible = true
@@ -708,7 +708,7 @@ func pick_fish() -> void:
 			trash_picked()
 			$ShowFish.start()
 			$Label.text = ("You Got Trash")
-			get_parent().trash_add()
+			
 		if get_parent().luck > 0 and pick > 0.95:
 				get_parent().luck += -1
 				$Skullfish.visible = true

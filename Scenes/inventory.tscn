@@ -452,6 +452,42 @@ offset_top = -8.0
 offset_right = 9.0
 offset_bottom = 11.0
 
+[node name="FantasiaLure" type="Sprite2D" parent="Node" unique_id=1656769418]
+scale = Vector2(5, 5)
+texture = ExtResource("3_0n8tc")
+region_enabled = true
+region_rect = Rect2(16.241795, 15.723975, 16.102215, 16.147392)
+
+[node name="FantaLButton" type="Button" parent="Node/FantasiaLure" unique_id=1623027688]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Node/FantasiaLure" unique_id=1544653940]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
+[node name="SquidLure" type="Sprite2D" parent="Node" unique_id=664717223]
+scale = Vector2(5, 5)
+texture = ExtResource("3_0n8tc")
+region_enabled = true
+region_rect = Rect2(32.17509, 16.646086, 16.256413, 15.515139)
+
+[node name="SquidLButton" type="Button" parent="Node/SquidLure" unique_id=392636720]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="Node/SquidLure" unique_id=52138799]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
 [node name="Trash" type="Sprite2D" parent="Node" unique_id=1066831592]
 scale = Vector2(5, 5)
 texture = ExtResource("2_yxepq")
@@ -547,55 +583,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
-[node name="SeaStone" type="Sprite2D" parent="Node" unique_id=1706276607]
-scale = Vector2(5, 5)
-texture = ExtResource("5_sd8fj")
-
-[node name="Label" type="Label" parent="Node/SeaStone" unique_id=1180113074]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 6
-
-[node name="SeastoneButton" type="Button" parent="Node/SeaStone" unique_id=550230821]
-offset_right = 8.0
-offset_bottom = 8.0
-
-[node name="FantasiaLure" type="Sprite2D" parent="Node" unique_id=1656769418]
-scale = Vector2(5, 5)
-texture = ExtResource("3_0n8tc")
-region_enabled = true
-region_rect = Rect2(16.241795, 15.723975, 16.102215, 16.147392)
-
-[node name="FantaLButton" type="Button" parent="Node/FantasiaLure" unique_id=1623027688]
-z_index = -1
-offset_left = -10.0
-offset_top = -8.0
-offset_right = 9.0
-offset_bottom = 11.0
-
-[node name="Label" type="Label" parent="Node/FantasiaLure" unique_id=1544653940]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 6
-
-[node name="SquidLure" type="Sprite2D" parent="Node" unique_id=664717223]
-scale = Vector2(5, 5)
-texture = ExtResource("3_0n8tc")
-region_enabled = true
-region_rect = Rect2(32.17509, 16.646086, 16.256413, 15.515139)
-
-[node name="SquidLButton" type="Button" parent="Node/SquidLure" unique_id=392636720]
-z_index = -1
-offset_left = -10.0
-offset_top = -8.0
-offset_right = 9.0
-offset_bottom = 11.0
-
-[node name="Label" type="Label" parent="Node/SquidLure" unique_id=52138799]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 6
-
 [node name="Bread" type="Sprite2D" parent="Node" unique_id=1513168077]
 scale = Vector2(5, 5)
 texture = ExtResource("7_o4ksx")
@@ -628,6 +615,19 @@ offset_bottom = 11.0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
+
+[node name="SeaStone" type="Sprite2D" parent="Node" unique_id=1706276607]
+scale = Vector2(5, 5)
+texture = ExtResource("5_sd8fj")
+
+[node name="Label" type="Label" parent="Node/SeaStone" unique_id=1180113074]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 6
+
+[node name="SeastoneButton" type="Button" parent="Node/SeaStone" unique_id=550230821]
+offset_right = 8.0
+offset_bottom = 8.0
 
 [node name="UseBackground" type="ColorRect" parent="." unique_id=1293145264]
 visible = false
@@ -733,12 +733,12 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="Node/CodLure/CodLButton" to="." method="_on_cod_l_button_pressed"]
 [connection signal="pressed" from="Node/GoldfishLure/GfLButton" to="." method="_on_gf_l_button_pressed"]
 [connection signal="pressed" from="Node/FatChance/FCButton" to="." method="_on_fc_button_pressed"]
+[connection signal="pressed" from="Node/FantasiaLure/FantaLButton" to="." method="_on_fanta_l_button_pressed"]
+[connection signal="pressed" from="Node/SquidLure/SquidLButton" to="." method="_on_squid_l_button_pressed"]
 [connection signal="pressed" from="Node/SLuck/SLuckButton" to="." method="_on_s_luck_button_pressed"]
 [connection signal="pressed" from="Node/MLuck/MLuckButton" to="." method="_on_m_luck_button_pressed"]
 [connection signal="pressed" from="Node/LLuck/LLuckButton" to="." method="_on_l_luck_button_pressed"]
 [connection signal="pressed" from="Node/Apple/AppleButton" to="." method="_on_apple_button_pressed"]
-[connection signal="pressed" from="Node/FantasiaLure/FantaLButton" to="." method="_on_fanta_l_button_pressed"]
-[connection signal="pressed" from="Node/SquidLure/SquidLButton" to="." method="_on_squid_l_button_pressed"]
 [connection signal="pressed" from="Node/Bread/BreadButton" to="." method="_on_bread_button_pressed"]
 [connection signal="pressed" from="Node/Cake/CakeButton" to="." method="_on_cake_button_pressed"]
 [connection signal="pressed" from="UseBackground/Use" to="." method="_on_use_pressed"]
