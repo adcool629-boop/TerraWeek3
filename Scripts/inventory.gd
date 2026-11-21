@@ -216,6 +216,12 @@ func add_clownfish() -> void:
 		store_fish[cf_name].position.y = 385
 		cfPY = 385
 		print("adding clownfish to row 3")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[cf_name].position.x = (MainCharacter.store_num) * 125 - 2500
+		cfPX = (MainCharacter.store_num) * 125 - 2550
+		store_fish[cf_name].position.y = 530
+		cfPY = 530
+		print("adding clownfish to row 4")
 	store_fish[cfX] = cfPX
 	store_fish[cfY] = cfPY
 	print(store_fish[cf_name])
@@ -246,6 +252,7 @@ func hide_clownfish() -> void:
 		cf_show_num += 1
 	cf_show_num = 1
 	
+
 func add_cod() -> void:
 	var add_fish = $Node/Cod.duplicate()
 	var label = Label.new()
@@ -284,7 +291,12 @@ func add_cod() -> void:
 		codPX = (MainCharacter.store_num) * 125 - 1675
 		store_fish[cod_name].position.y = 385
 		codPY = 385
-		print("adding cod to row 3")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[cod_name].position.x = (MainCharacter.store_num) * 125 - 2550
+		codPX = (MainCharacter.store_num) * 125 - 2550 
+		store_fish[cod_name].position.y = 530
+		codPY = 530
+		print("adding cod to row 4")
 	store_fish[codX] = codPX
 	store_fish[codY] = codPY
 	print(store_fish[cod_name])
@@ -356,6 +368,12 @@ func add_goldfish() -> void:
 		store_fish[gf_name].position.y = 385
 		gfPY = 385
 		print("adding Goldfish to row 3")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[gf_name].position.x = (MainCharacter.store_num) * 125 - 2550
+		gfPX = (MainCharacter.store_num) * 125 - 2550
+		store_fish[gf_name].position.y = 530
+		gfPY = 530
+		print("adding Goldfish to row 4")
 	store_fish[gfX] = gfPX
 	store_fish[gfY] = gfPY
 	print(store_fish[gf_name])
@@ -427,6 +445,12 @@ func add_skullfish() -> void:
 		store_fish[sf_name].position.y = 385
 		sfPY = 385
 		print("adding Skullfish to row 3")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[sf_name].position.x = (MainCharacter.store_num) * 125 - 2550
+		sfPX = (MainCharacter.store_num) * 125 - 2550
+		store_fish[sf_name].position.y = 530
+		sfPY = 530
+		print("adding Skullfish to row 4")
 	store_fish[sfX] = sfPX
 	store_fish[sfY] = sfPY
 	print(store_fish[sf_name])
@@ -497,6 +521,12 @@ func add_bluegill() -> void:
 		store_fish[bg_name].position.y = 385
 		bgPY = 385
 		print("adding Bluegill to row 3")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[bg_name].position.x = (MainCharacter.store_num) * 125 - 2550
+		bgPX = (MainCharacter.store_num) * 125 - 2550
+		store_fish[bg_name].position.y = 530
+		bgPY = 530
+		print("adding Bluegill to row 4")
 	store_fish[bgX] = bgPX
 	store_fish[bgY] = bgPY
 	print(store_fish[bg_name])
@@ -568,6 +598,12 @@ func add_fantasia() -> void:
 		store_fish[fanta_name].position.y = 385
 		fantaPY = 385
 		print("adding Fantasia to row 3")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[fanta_name].position.x = (MainCharacter.store_num) * 125 - 2550
+		fantaPX = (MainCharacter.store_num) * 125 - 2550
+		store_fish[fanta_name].position.y = 530
+		fantaPY = 530
+		print("adding Fantasia to row 4")
 	store_fish[fantaX] = fantaPX
 	store_fish[fantaY] = fantaPY
 	print(store_fish[fanta_name])
@@ -639,6 +675,12 @@ func add_squid() -> void:
 		store_fish[squid_name].position.y = 385
 		squidPY = 385
 		print("adding Squid to row 3")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[squid_name].position.x = (MainCharacter.store_num) * 125 - 2550
+		squidPX = (MainCharacter.store_num) * 125 - 2550
+		store_fish[squid_name].position.y = 530
+		squidPY = 530
+		print("adding Squid to row 4")
 	store_fish[squidX] = squidPX
 	store_fish[squidY] = squidPY
 	print(store_fish[squid_name])
@@ -684,6 +726,9 @@ func add_clownfish_lure() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/ClownfishLure.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/ClownfishLure.position.y = 385
+		elif MainCharacter.store_num < 21 and MainCharacter.store_num < 29:
+			$Node/ClownfishLure.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/ClownfishLure.position.y = 530
 		CfL_positionX = $Node/ClownfishLure.position.x
 		CfL_positionY = $Node/ClownfishLure.position.y
 		print("X Position is " +str(CfL_positionX))
@@ -706,7 +751,7 @@ func clownfish_lure_move_back() -> void:
 	if CodL_positionX > CfL_positionX:
 		$Node/CodLure.position.x = CodL_positionX - 125
 		CodL_positionX = CodL_positionX - 125
-		print("decreasing cod position")
+		print("decreasing cod lure position")
 	elif CodL_positionY > CfL_positionY and CodL_positionX == 200:
 		$Node/CodLure.position.x = 950
 		CodL_positionX = 950
@@ -715,7 +760,7 @@ func clownfish_lure_move_back() -> void:
 	if GfL_positionX > CfL_positionX:
 		$Node/GoldfishLure.position.x = GfL_positionX - 125
 		GfL_positionX = GfL_positionX - 125
-		print("decreasing goldfish position")
+		print("decreasing goldfish lure position")
 	elif GfL_positionY > CfL_positionY and GfL_positionX == 200:
 		$Node/GoldfishLure.position.x = 950
 		GfL_positionX = 950
@@ -820,7 +865,40 @@ func clownfish_lure_move_back() -> void:
 		seastone_positionX = 950
 		$Node/SeaStone.position.y = 100
 		seastone_positionY = 100
-		
+	var cf_move_num: int  = 1
+	var cf_move: String
+	var cf_moveX: String
+	var cf_moveY: String
+	for i in range(28):
+		cf_move = "Clownfish" +str(cf_move_num)
+		cf_moveX = "Clownfish" +str(cf_move_num) + "X"
+		cf_moveY = "Clownfish" +str(cf_move_num) + "Y"
+		if store_fish.has(cf_move) and is_instance_valid(store_fish[cf_move]):
+			if store_fish[cf_moveX] > CfL_positionX:
+				store_fish[cf_move].position.x = store_fish[cf_moveX] - 125
+				store_fish[cf_moveX] = store_fish[cf_moveX] -125
+				print("decreasing clownfish position")
+			elif store_fish[cf_moveY] > CfL_positionY and store_fish[cf_moveX] == 200 and store_fish[cf_moveY] == 250:
+				store_fish[cf_move].position.x = 950
+				print(store_fish[cf_move].position.x)
+				store_fish[cf_moveX] = 950
+				print(store_fish[cf_moveX])
+				store_fish[cf_move].position.y = 100
+				print(store_fish[cf_move].position.y)
+				store_fish[cf_moveY] = 100
+				print(store_fish[cf_moveY])
+			elif store_fish[cf_moveY] > CfL_positionY and store_fish[cf_moveX] == 200 and store_fish[cf_moveY] == 385:
+				store_fish[cf_move].position.x = 950
+				store_fish[cf_moveX] = 950
+				store_fish[cf_move].position.y = 250
+				store_fish[cf_moveY] = 250
+			elif store_fish[cf_moveY] > CfL_positionY and store_fish[cf_moveX] == 200 and store_fish[cf_moveY] == 530:
+				store_fish[cf_move].position.x = 950
+				store_fish[cf_moveX] = 950
+				store_fish[cf_move].position.y = 385
+				store_fish[cf_moveY] = 385
+		cf_move_num += 1
+	cf_move_num = 1
 func add_cod_lure() -> void:
 	CodLure_amount += 1
 	print(CodLure_amount)
