@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://x5ip86na0qcy" path="res://Scripts/inventory.gd" id="1_wdn4f"]
 [ext_resource type="Texture2D" uid="uid://bea2o3h7xg8ek" path="res://assets/fishing_free/global_free_recoloured.png" id="2_yxepq"]
 [ext_resource type="Texture2D" uid="uid://h2f24yyyj123" path="res://assets/Tiny Coast Pack/Other/baits_16x16.png" id="3_0n8tc"]
-[ext_resource type="Texture2D" uid="uid://dxhnfaee28w1u" path="res://Scripts/coin.png" id="4_0n8tc"]
+[ext_resource type="Texture2D" uid="uid://do0xcdtlhv5se" path="res://assets/Tiny Coast Pack/Other/FishIcons_n_junk_16x16.png" id="3_5qg7d"]
+[ext_resource type="Texture2D" uid="uid://dxhnfaee28w1u" path="res://assets/fishing_free/coin.png" id="4_0n8tc"]
 [ext_resource type="Texture2D" uid="uid://cajaadqcd0knk" path="res://assets/All Potions/Green potions/poç╞o verde.png" id="4_c5ffv"]
 [ext_resource type="Texture2D" uid="uid://dnfw7adgpaau1" path="res://assets/Tiny Coast Pack/Other/fishing_rod_16x16.png" id="5_k1vlg"]
 [ext_resource type="Texture2D" uid="uid://dktlgwcx215fi" path="res://assets/Tiny Coast Pack/Tiny Adventure Pack/Other/Blue_orb.png" id="5_sd8fj"]
@@ -133,6 +134,104 @@ offset_top = 200.0
 offset_right = 997.0
 offset_bottom = 296.0
 
+[node name="Panel15" type="Panel" parent="panels" unique_id=842270328]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 340.0
+offset_right = 997.0
+offset_bottom = 436.0
+
+[node name="Panel16" type="Panel" parent="panels" unique_id=2001845856]
+layout_mode = 0
+offset_left = 775.0
+offset_top = 340.0
+offset_right = 872.0
+offset_bottom = 436.0
+
+[node name="Panel17" type="Panel" parent="panels" unique_id=1476026764]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 340.0
+offset_right = 747.0
+offset_bottom = 436.0
+
+[node name="Panel18" type="Panel" parent="panels" unique_id=823080243]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 340.0
+offset_right = 622.0
+offset_bottom = 436.0
+
+[node name="Panel19" type="Panel" parent="panels" unique_id=646652292]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 340.0
+offset_right = 497.0
+offset_bottom = 436.0
+
+[node name="Panel20" type="Panel" parent="panels" unique_id=650837177]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 340.0
+offset_right = 372.0
+offset_bottom = 436.0
+
+[node name="Panel21" type="Panel" parent="panels" unique_id=1677488461]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 340.0
+offset_right = 247.0
+offset_bottom = 436.0
+
+[node name="Panel22" type="Panel" parent="panels" unique_id=1184923862]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 480.0
+offset_right = 247.0
+offset_bottom = 576.0
+
+[node name="Panel23" type="Panel" parent="panels" unique_id=937597983]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 480.0
+offset_right = 372.0
+offset_bottom = 576.0
+
+[node name="Panel24" type="Panel" parent="panels" unique_id=841057082]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 480.0
+offset_right = 497.0
+offset_bottom = 576.0
+
+[node name="Panel25" type="Panel" parent="panels" unique_id=923944203]
+layout_mode = 0
+offset_left = 525.0
+offset_top = 480.0
+offset_right = 622.0
+offset_bottom = 576.0
+
+[node name="Panel26" type="Panel" parent="panels" unique_id=1489876043]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 480.0
+offset_right = 747.0
+offset_bottom = 576.0
+
+[node name="Panel27" type="Panel" parent="panels" unique_id=2016232582]
+layout_mode = 0
+offset_left = 775.0
+offset_top = 480.0
+offset_right = 872.0
+offset_bottom = 576.0
+
+[node name="Panel28" type="Panel" parent="panels" unique_id=1471599917]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 480.0
+offset_right = 997.0
+offset_bottom = 576.0
+
 [node name="Close" type="Button" parent="." unique_id=498692334]
 offset_left = 988.0
 offset_top = 11.0
@@ -142,7 +241,7 @@ theme_override_font_sizes/font_size = 27
 text = "X"
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=1907055063]
-position = Vector2(-206, 91)
+position = Vector2(203, 113)
 gizmo_extents = 0.0
 
 [node name="Node" type="Node" parent="." unique_id=1257121477]
@@ -154,6 +253,13 @@ texture = ExtResource("2_yxepq")
 region_enabled = true
 region_rect = Rect2(16.856834, 0.57736635, 15.088448, 14.518154)
 
+[node name="CfButton" type="Button" parent="Node/Clownfish" unique_id=2016062127]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
 [node name="Cod" type="Sprite2D" parent="Node" unique_id=1889122789]
 visible = false
 scale = Vector2(5, 5)
@@ -161,12 +267,85 @@ texture = ExtResource("2_yxepq")
 region_enabled = true
 region_rect = Rect2(0, 0, 16.679504, 16.636917)
 
+[node name="CodButton" type="Button" parent="Node/Cod" unique_id=543149453]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
 [node name="Goldfish" type="Sprite2D" parent="Node" unique_id=819332153]
 visible = false
 scale = Vector2(5, 5)
 texture = ExtResource("2_yxepq")
 region_enabled = true
 region_rect = Rect2(15.368322, 32.060795, 16.517424, 16.460178)
+
+[node name="GfButton" type="Button" parent="Node/Goldfish" unique_id=371034604]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Skullfish" type="Sprite2D" parent="Node" unique_id=548411888]
+visible = false
+scale = Vector2(5, 5)
+texture = ExtResource("2_yxepq")
+region_enabled = true
+region_rect = Rect2(0, 31.66753, 15.532657, 16.881931)
+
+[node name="SfButton" type="Button" parent="Node/Skullfish" unique_id=1258636327]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="Bluegill" type="Sprite2D" parent="Node" unique_id=1094959539]
+visible = false
+scale = Vector2(5, 5)
+texture = ExtResource("2_yxepq")
+region_enabled = true
+region_rect = Rect2(0, 16.052658, 15.858219, 15.321922)
+
+[node name="BgButton" type="Button" parent="Node/Bluegill" unique_id=1006063888]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Fantasia" type="Sprite2D" parent="Node" unique_id=1462925647]
+visible = false
+scale = Vector2(5, 5)
+texture = ExtResource("2_yxepq")
+region_enabled = true
+region_rect = Rect2(15.724419, 16.541645, 15.858219, 15.321922)
+
+[node name="FantaButton" type="Button" parent="Node/Fantasia" unique_id=689831902]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Squid" type="Sprite2D" parent="Node" unique_id=956119947]
+visible = false
+scale = Vector2(5, 5)
+texture = ExtResource("3_5qg7d")
+region_enabled = true
+region_rect = Rect2(0.086603165, 336.81165, 13.716309, 15.242279)
+
+[node name="SquidButton" type="Button" parent="Node/Squid" unique_id=968792444]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+metadata/_edit_use_anchors_ = true
 
 [node name="ClownfishLure" type="Sprite2D" parent="Node" unique_id=1310620807]
 scale = Vector2(5, 5)
@@ -420,6 +599,7 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
 [node name="UseBackground" type="ColorRect" parent="." unique_id=1293145264]
+visible = false
 offset_left = 400.0
 offset_top = 150.0
 offset_right = 440.0
@@ -471,10 +651,10 @@ region_enabled = true
 region_rect = Rect2(1.8410339, 1.4041672, 12.376564, 12.376568)
 
 [node name="BaitSelected" type="Label" parent="." unique_id=1478168737]
-offset_left = 80.0
-offset_top = 10.0
-offset_right = 244.0
-offset_bottom = 77.0
+offset_left = 74.0
+offset_top = 47.0
+offset_right = 238.0
+offset_bottom = 114.0
 theme_override_font_sizes/font_size = 32
 
 [node name="BaitSelectedTimer" type="Timer" parent="BaitSelected" unique_id=388315896]

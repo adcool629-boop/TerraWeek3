@@ -20,6 +20,7 @@ var first_time = true
 #-----------------------------------------------
 #Baits
 #-----------------------------------------------
+
 var CfL_amount: int = 0
 var CodL_amount: int = 0
 var GfL_amount: int = 0
@@ -39,21 +40,28 @@ var LLuck: int = 0
 var apples: int = 0
 var cake: int = 0
 var bread: int = 0
+
 #-----------------------------------------------
 #store fish
 #-----------------------------------------------
+
 var store_clownfish: bool = false
 var store_cod: bool = false
 var store_goldfish: bool = false
+var fish_value: int
 
 #-----------------------------------------------
 #Rods
 #-----------------------------------------------
+
 var IRod: bool = false
 var ARod: bool = false
 var GRod: bool = false
+
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fishing_detector: RayCast2D = $FishingDetector
+
 func _process(delta: float) -> void:
 	
 	if MainCharacter.PickedUp:
@@ -296,7 +304,7 @@ func _on_error_timer_timeout() -> void:
 #Fishing Mini Games
 #-----------------------------------------------
 func wait_time() -> void:
-	var waiting = randf() * 20
+	var waiting = randf() * 3
 	if ARod:
 		waiting = waiting * 1/4
 		$WaitTimer.wait_time = waiting
@@ -321,11 +329,11 @@ func _on_wait_timer_timeout() -> void:
 func minigame_select() -> void:
 	# When more minigames are made use this to randomly select one.
 	var minigame = randf()
-	if minigame > 0.5:
+	if minigame > 1:
 		quick_time_start()
-	elif minigame < 0.5:
+	elif minigame < 1:
 		skill_check_start()
-	elif minigame == 0.5:
+	elif minigame == 1:
 		minigame_select()
 func quick_time_start() -> void:
 	if reeling:
@@ -462,7 +470,8 @@ func unselect_fatchance() -> void:
 func trash_add() -> void:
 	trash_amount += 1
 	MainCharacter.trash += 1
-	MainCharacter.store_num += 1
+	if MainCharacter.trash > 0 and MainCharacter.trash < 2:
+		MainCharacter.store_num += 1
 	get_child(15).add_trash()
 	
 func trash_remove() -> void:
@@ -605,3 +614,31 @@ func cake_decrease() -> void:
 func seastone_add() -> void:
 	seastones += 1
 	get_child(15).add_seastone()
+
+func clownfish_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_clownfish()
+
+func cod_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_cod()
+	
+func goldfish_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_goldfish()
+	
+func skullfish_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_skullfish()
+
+func bluegill_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_bluegill()
+	
+func fantasia_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_fantasia()
+	
+func squid_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_squid()

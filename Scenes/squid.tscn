@@ -26,4 +26,4 @@ light_mask = 2
 position = Vector2(0, 1)
 texture = ExtResource("3_wihr0")
 region_enabled = true
-region_rect = Rect2(31.506443, 336.04187, 16.662579, 16.08424)
+region_rect = Rect2(-0.0523777, 335.96597, 16.08792, 16.084229)

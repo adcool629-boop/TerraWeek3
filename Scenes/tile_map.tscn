@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://0ub5mxudlbso" path="res://assets/SmallBurg_village_pack_v3.18_free/assets/character/adult/idle/hairstyles/short_hair/character_idle_hairstyles_short_hair_brown_dark.png" id="24_txqst"]
 [ext_resource type="Texture2D" uid="uid://b7eh6q5kuwoew" path="res://assets/SmallBurg_village_pack_v3.18_free/assets/character/adult/idle/clothes/full_body/overhalls/character_idle_clothes_fullbody_overhalls_blue.png" id="24_ybvl0"]
 [ext_resource type="Texture2D" uid="uid://nl7e0uce5tpq" path="res://assets/freefishinggame/2 Character animation/SteamMan_fish.png" id="26_diwpb"]
-[ext_resource type="Texture2D" uid="uid://cw166iopff2tk" path="res://assets/freefishinggame/3 Objects/Fishbarrel2.png" id="27_3py11"]
+[ext_resource type="Texture2D" uid="uid://cw166iopff2tk" path="res://assets/freefishinggame/3 Objects/Catch/Fishbarrel2.png" id="27_3py11"]
 [ext_resource type="PackedScene" uid="uid://cnbikptoa00wy" path="res://Scenes/pick_up_trash.tscn" id="30_vloe1"]
 [ext_resource type="Texture2D" uid="uid://2yqxrsgoch5a" path="res://assets/SmallBurg_village_pack_v3.18_free/premades/premade_06/character_premade_06_idle.png" id="31_vypcr"]
 

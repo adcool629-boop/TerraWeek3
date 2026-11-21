@@ -1,8 +1,18 @@
 extends CanvasLayer
-var clownfish_num: int = 0
 
 #-------------------Amounts-----------------------
 
+#----Fish-----
+var cf_num: int = 1
+var cod_num: int = 1
+var gf_num: int = 1
+var sf_num: int = 1
+var bg_num: int = 1
+var fanta_num: int = 1
+var squid_num: int = 1
+
+
+#----Lures-----
 var ClownfishLure_amount: int = 0
 var CodLure_amount: int = 0
 var GoldfishLure_amount: int = 0
@@ -11,12 +21,18 @@ var TrashBag_amount: int = 0
 var SLuck_amount: int = 0
 var MLuck_amount: int = 0
 var LLuck_amount: int = 0
-var apple_amount: int = 0
+
 var fantalure_amount: int = 0
 var squidlure_amount: int = 0
+
+#-----Food-----
+var apple_amount: int = 0
 var bread_amount: int = 0
 var cake_amount: int = 0
+
+#-----Special----
 var seastone_amount: int = 0
+
 #-------------------Positions-----------------------
 
 var CfL_positionX: int
@@ -60,14 +76,20 @@ var UseSmallLuck: bool = false
 var EatApple: bool = false
 var eatbread: bool = false
 var eatcake: bool = false
+var has_clownfish: bool = false
+var has_cod: bool = false
+var has_goldfish: bool = false
+var has_skullfish: bool = false
+var has_bluegill: bool = false
+var has_fantasia: bool = false
+var has_squid: bool = false
+
 #-----------------
 #Add Fish
 #-----------------
 
-var fish_num: int = 0
-var store_fish: Dictionary = {
-	"fish": {"clownfish" = 1, "cod" = 1, "goldfish" = 1}
-}
+
+var store_fish: Dictionary = {}
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$".".visible = false
@@ -128,15 +150,526 @@ func openinv() -> void:
 		$Node/Cake.visible = true
 	if get_parent().bread > 0:
 		$Node/Bread.visible = true
+	if get_parent().seastones > 0:
+		$Node/SeaStone.visible = true
+	if has_clownfish:
+		print("Checking for Clownfish")
+		show_clownfish()
+	if has_cod:
+		print("Checking for Cod")
+		show_cod()
+	if has_goldfish:
+		print("Checking for Goldfish")
+		show_goldfish()
+	if has_skullfish:
+		print("Checking for Skullfish")
+		show_skullfish()
+	if has_bluegill:
+		print("Checking for Bluegill")
+		show_bluegill()
+	if has_fantasia:
+		print("Checking for Fantasia")
+		show_fantasia()
+	if has_squid:
+		print("Checking a Squid")
+		show_squid()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-@warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	$Coins.text = str(MainCharacter.total_coins)
-#func add_clownfish() -> void:
-	#fish_num += 1
-	#store_fish['Clownfish' + str(fish_num)]
-	#print(store_fish['Clownfish' + str(fish_num)])
-			
+	
+func add_clownfish() -> void:
+	var add_fish = $Node/Clownfish.duplicate()
+	var label = Label.new()
+	var cfX = "Clownfish" +str(cf_num) + "X"
+	var cfY = "Clownfish" +str(cf_num) + "Y"
+	var cf_name = "Clownfish" +str(cf_num)
+	var current_cf = cf_name
+	var cfPX: int
+	var cfPY: int
+	
+	has_clownfish = true
+	print("clownfish created")
+	label.name = "value"
+	label.add_theme_font_size_override("font_size",6)
+	label.text = str(get_parent().fish_value)
+	add_fish.add_child(label)
+	$Node.add_child(add_fish)
+	store_fish[cf_name] = add_fish
+	cf_num += 1
+	
+	
+	if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+		store_fish[cf_name].position.x = (MainCharacter.store_num) * 125 + 75
+		cfPX = (MainCharacter.store_num) * 125 + 75
+		store_fish[cf_name].position.y = 100
+		cfPY = 100
+		print("adding clownfish to row 1")
+	elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+		store_fish[cf_name].position.x = (MainCharacter.store_num) * 125 - 800
+		cfPX = (MainCharacter.store_num) * 125 - 800
+		store_fish[cf_name].position.y = 250
+		cfPY = 250
+		print("adding clownfish to row 2")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[cf_name].position.x = (MainCharacter.store_num) * 125 - 1675
+		cfPX = (MainCharacter.store_num) * 125 - 1675
+		store_fish[cf_name].position.y = 385
+		cfPY = 385
+		print("adding clownfish to row 3")
+	store_fish[cfX] = cfPX
+	store_fish[cfY] = cfPY
+	print(store_fish[cf_name])
+	print(store_fish[cfX])
+	print(store_fish[cfY])
+	
+func show_clownfish() -> void:
+	var cf_show_num: int  = 1
+	var cf_show: String
+	print(store_fish)
+	for i in range(28):
+		cf_show = "Clownfish" +str(cf_show_num)
+		if store_fish.has(cf_show) and is_instance_valid(store_fish[cf_show]):
+			print("Clownfish Found")
+			store_fish[cf_show].visible = true
+		cf_show_num += 1
+	cf_show_num = 1
+
+func hide_clownfish() -> void:
+	var cf_show_num: int  = 1
+	var cf_show: String
+	print(store_fish)
+	for i in range(28):
+		cf_show = "Clownfish" +str(cf_show_num)
+		if store_fish.has(cf_show) and is_instance_valid(store_fish[cf_show]):
+			print("Clownfish Found")
+			store_fish[cf_show].visible = false
+		cf_show_num += 1
+	cf_show_num = 1
+	
+func add_cod() -> void:
+	var add_fish = $Node/Cod.duplicate()
+	var label = Label.new()
+	var codX = "Cod" +str(cod_num) + "X"
+	var codY = "Cod" +str(cod_num) + "Y"
+	var cod_name = "Cod" +str(cod_num)
+	var current_cod = cod_name
+	var codPX: int
+	var codPY: int
+	
+	has_cod = true
+	print("cod created")
+	label.name = "value"
+	label.add_theme_font_size_override("font_size",6)
+	label.text = str(get_parent().fish_value)
+	add_fish.add_child(label)
+	$Node.add_child(add_fish)
+	store_fish[cod_name] = add_fish
+	cod_num += 1
+	
+	#-------------Position--------------
+	if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+		store_fish[cod_name].position.x = (MainCharacter.store_num) * 125 + 75
+		codPX = (MainCharacter.store_num) * 125 + 75
+		store_fish[cod_name].position.y = 100
+		codPY = 100
+		print("adding cod to row 1")
+	elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+		store_fish[cod_name].position.x = (MainCharacter.store_num) * 125 - 800
+		codPX = (MainCharacter.store_num) * 125 - 800
+		store_fish[cod_name].position.y = 250
+		codPY = 250
+		print("adding cod to row 2")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[cod_name].position.x = (MainCharacter.store_num) * 125 - 1675
+		codPX = (MainCharacter.store_num) * 125 - 1675
+		store_fish[cod_name].position.y = 385
+		codPY = 385
+		print("adding cod to row 3")
+	store_fish[codX] = codPX
+	store_fish[codY] = codPY
+	print(store_fish[cod_name])
+	print(store_fish[codX])
+	print(store_fish[codY])
+	
+	
+func show_cod() -> void:
+	var cod_show_num: int  = 1
+	var cod_show: String
+	print(store_fish)
+	for i in range(28):
+		cod_show = "Cod" +str(cod_show_num)
+		if store_fish.has(cod_show) and is_instance_valid(store_fish[cod_show]):
+			print("Cod Found")
+			store_fish[cod_show].visible = true
+		cod_show_num += 1
+	cod_show_num = 1
+
+
+func hide_cod() -> void:
+	var cod_show_num: int  = 1
+	var cod_show: String
+	print(store_fish)
+	for i in range(28):
+		cod_show = "Cod" +str(cod_show_num)
+		if store_fish.has(cod_show) and is_instance_valid(store_fish[cod_show]):
+			print("Cod Found")
+			store_fish[cod_show].visible = false
+		cod_show_num += 1
+	cod_show_num = 1
+	
+func add_goldfish() -> void:
+	var add_fish = $Node/Goldfish.duplicate()
+	var label = Label.new()
+	var gfX = "Goldfish" +str(gf_num) + "X"
+	var gfY = "Goldfish" +str(gf_num) + "Y"
+	var gf_name = "Goldfish" +str(gf_num)
+	var current_gf = gf_name
+	var gfPX: int
+	var gfPY: int
+	
+	has_goldfish = true
+	print("Goldfish created")
+	label.name = "value"
+	label.add_theme_font_size_override("font_size",6)
+	label.text = str(get_parent().fish_value)
+	add_fish.add_child(label)
+	$Node.add_child(add_fish)
+	store_fish[gf_name] = add_fish
+	gf_num += 1
+	
+	#-------------Position--------------
+	if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+		store_fish[gf_name].position.x = (MainCharacter.store_num) * 125 + 75
+		gfPX = (MainCharacter.store_num) * 125 + 75
+		store_fish[gf_name].position.y = 100
+		gfPY = 100
+		print("adding Goldfish to row 1")
+	elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+		store_fish[gf_name].position.x = (MainCharacter.store_num) * 125 - 800
+		gfPX = (MainCharacter.store_num) * 125 - 800
+		store_fish[gf_name].position.y = 250
+		gfPY = 250
+		print("adding Goldfish to row 2")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[gf_name].position.x = (MainCharacter.store_num) * 125 - 1675
+		gfPX = (MainCharacter.store_num) * 125 - 1675
+		store_fish[gf_name].position.y = 385
+		gfPY = 385
+		print("adding Goldfish to row 3")
+	store_fish[gfX] = gfPX
+	store_fish[gfY] = gfPY
+	print(store_fish[gf_name])
+	print(store_fish[gfX])
+	print(store_fish[gfY])
+	
+	
+func show_goldfish() -> void:
+	var gf_show_num: int  = 1
+	var gf_show: String
+	print(store_fish)
+	for i in range(28):
+		gf_show = "Goldfish" +str(gf_show_num)
+		if store_fish.has(gf_show) and is_instance_valid(store_fish[gf_show]):
+			print("Goldfish Found")
+			store_fish[gf_show].visible = true
+		gf_show_num += 1
+	gf_show_num = 1
+
+
+func hide_goldfish() -> void:
+	var gf_show_num: int  = 1
+	var gf_show: String
+	print(store_fish)
+	for i in range(28):
+		gf_show = "Goldfish" +str(gf_show_num)
+		if store_fish.has(gf_show) and is_instance_valid(store_fish[gf_show]):
+			print("Goldfish Found")
+			store_fish[gf_show].visible = false
+		gf_show_num += 1
+	gf_show_num = 1
+	
+func add_skullfish() -> void:
+	var add_fish = $Node/Skullfish.duplicate()
+	var label = Label.new()
+	var sfX = "Skullfish" +str(sf_num) + "X"
+	var sfY = "Skullfish" +str(sf_num) + "Y"
+	var sf_name = "Skullfish" +str(sf_num)
+	var current_sf = sf_name
+	var sfPX: int
+	var sfPY: int
+	
+	has_skullfish = true
+	print("Skullfish created")
+	label.name = "value"
+	label.add_theme_font_size_override("font_size",6)
+	label.text = str(get_parent().fish_value)
+	add_fish.add_child(label)
+	$Node.add_child(add_fish)
+	store_fish[sf_name] = add_fish
+	sf_num += 1
+	
+	
+	if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+		store_fish[sf_name].position.x = (MainCharacter.store_num) * 125 + 75
+		sfPX = (MainCharacter.store_num) * 125 + 75
+		store_fish[sf_name].position.y = 100
+		sfPY = 100
+		print("adding Skullfish to row 1")
+	elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+		store_fish[sf_name].position.x = (MainCharacter.store_num) * 125 - 800
+		sfPX = (MainCharacter.store_num) * 125 - 800
+		store_fish[sf_name].position.y = 250
+		sfPY = 250
+		print("adding Skullfish to row 2")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[sf_name].position.x = (MainCharacter.store_num) * 125 - 1675
+		sfPX = (MainCharacter.store_num) * 125 - 1675
+		store_fish[sf_name].position.y = 385
+		sfPY = 385
+		print("adding Skullfish to row 3")
+	store_fish[sfX] = sfPX
+	store_fish[sfY] = sfPY
+	print(store_fish[sf_name])
+	print(store_fish[sfX])
+	print(store_fish[sfY])
+	
+	
+func show_skullfish() -> void:
+	var sf_show_num: int  = 1
+	var sf_show: String
+	print(store_fish)
+	for i in range(28):
+		sf_show = "Skullfish" +str(sf_show_num)
+		if store_fish.has(sf_show) and is_instance_valid(store_fish[sf_show]):
+			print("Skullfish Found")
+			store_fish[sf_show].visible = true
+		sf_show_num += 1
+	sf_show_num = 1
+	
+func hide_skullfish() -> void:
+	var sf_show_num: int  = 1
+	var sf_show: String
+	print(store_fish)
+	for i in range(28):
+		sf_show = "Skullfish" +str(sf_show_num)
+		if store_fish.has(sf_show) and is_instance_valid(store_fish[sf_show]):
+			print("Skullfish Found")
+			store_fish[sf_show].visible = false
+		sf_show_num += 1
+	sf_show_num = 1
+	
+func add_bluegill() -> void:
+	var add_fish = $Node/Bluegill.duplicate()
+	var label = Label.new()
+	var bgX = "Bluegill" +str(bg_num) + "X"
+	var bgY = "Bluegill" +str(bg_num) + "Y"
+	var bg_name = "Bluegill" +str(bg_num)
+	var current_bg = bg_name
+	var bgPX: int
+	var bgPY: int
+	
+	has_bluegill = true
+	print("Bluegill created")
+	label.name = "value"
+	label.add_theme_font_size_override("font_size",6)
+	label.text = str(get_parent().fish_value)
+	add_fish.add_child(label)
+	$Node.add_child(add_fish)
+	store_fish[bg_name] = add_fish
+	bg_num += 1
+	
+	#-------------Position--------------
+	if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+		store_fish[bg_name].position.x = (MainCharacter.store_num) * 125 + 75
+		bgPX = (MainCharacter.store_num) * 125 + 75
+		store_fish[bg_name].position.y = 100
+		bgPY = 100
+		print("adding Bluegill to row 1")
+	elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+		store_fish[bg_name].position.x = (MainCharacter.store_num) * 125 - 800
+		bgPX = (MainCharacter.store_num) * 125 - 800
+		store_fish[bg_name].position.y = 250
+		bgPY = 250
+		print("adding Bluegill to row 2")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[bg_name].position.x = (MainCharacter.store_num) * 125 - 1675
+		bgPX = (MainCharacter.store_num) * 125 - 1675
+		store_fish[bg_name].position.y = 385
+		bgPY = 385
+		print("adding Bluegill to row 3")
+	store_fish[bgX] = bgPX
+	store_fish[bgY] = bgPY
+	print(store_fish[bg_name])
+	print(store_fish[bgX])
+	print(store_fish[bgY])
+	
+	
+func show_bluegill() -> void:
+	var bg_show_num: int  = 1
+	var bg_show: String
+	print(store_fish)
+	for i in range(28):
+		bg_show = "Bluegill" +str(bg_show_num)
+		if store_fish.has(bg_show) and is_instance_valid(store_fish[bg_show]):
+			print("Bluegill Found")
+			store_fish[bg_show].visible = true
+		bg_show_num += 1
+	bg_show_num = 1
+
+
+func hide_bluegill() -> void:
+	var bg_show_num: int  = 1
+	var bg_show: String
+	print(store_fish)
+	for i in range(28):
+		bg_show = "Bluegill" +str(bg_show_num)
+		if store_fish.has(bg_show) and is_instance_valid(store_fish[bg_show]):
+			print("Bluegill Found")
+			store_fish[bg_show].visible = false
+		bg_show_num += 1
+	bg_show_num = 1
+	
+func add_fantasia() -> void:
+	var add_fish = $Node/Fantasia.duplicate()
+	var label = Label.new()
+	var fantaX = "Fantasia" +str(fanta_num) + "X"
+	var fantaY = "Fantasia" +str(fanta_num) + "Y"
+	var fanta_name = "Fantasia" +str(fanta_num)
+	var current_fanta = fanta_name
+	var fantaPX: int
+	var fantaPY: int
+	
+	has_fantasia = true
+	print("Fantasia created")
+	label.name = "value"
+	label.add_theme_font_size_override("font_size",6)
+	label.text = str(get_parent().fish_value)
+	add_fish.add_child(label)
+	$Node.add_child(add_fish)
+	store_fish[fanta_name] = add_fish
+	fanta_num += 1
+	
+	#-------------Position--------------
+	if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+		store_fish[fanta_name].position.x = (MainCharacter.store_num) * 125 + 75
+		fantaPX = (MainCharacter.store_num) * 125 + 75
+		store_fish[fanta_name].position.y = 100
+		fantaPY = 100
+		print("adding Fantasia to row 1")
+	elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+		store_fish[fanta_name].position.x = (MainCharacter.store_num) * 125 - 800
+		fantaPX = (MainCharacter.store_num) * 125 - 800
+		store_fish[fanta_name].position.y = 250
+		fantaPY = 250
+		print("adding Fantasia to row 2")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[fanta_name].position.x = (MainCharacter.store_num) * 125 - 1675
+		fantaPX = (MainCharacter.store_num) * 125 - 1675
+		store_fish[fanta_name].position.y = 385
+		fantaPY = 385
+		print("adding Fantasia to row 3")
+	store_fish[fantaX] = fantaPX
+	store_fish[fantaY] = fantaPY
+	print(store_fish[fanta_name])
+	print(store_fish[fantaX])
+	print(store_fish[fantaY])
+	
+	
+func show_fantasia() -> void:
+	var fanta_show_num: int  = 1
+	var fanta_show: String
+	print(store_fish)
+	for i in range(28):
+		fanta_show = "Fantasia" +str(fanta_show_num)
+		if store_fish.has(fanta_show) and is_instance_valid(store_fish[fanta_show]):
+			print("Fantasia Found")
+			store_fish[fanta_show].visible = true
+		fanta_show_num += 1
+	fanta_show_num = 1
+
+
+func hide_fantasia() -> void:
+	var fanta_show_num: int  = 1
+	var fanta_show: String
+	print(store_fish)
+	for i in range(28):
+		fanta_show = "Fantasia" +str(fanta_show_num)
+		if store_fish.has(fanta_show) and is_instance_valid(store_fish[fanta_show]):
+			print("Fantasia Found")
+			store_fish[fanta_show].visible = false
+		fanta_show_num += 1
+	fanta_show_num = 1
+	
+func add_squid() -> void:
+	var add_fish = $Node/Squid.duplicate()
+	var label = Label.new()
+	var squidX = "Squid" +str(squid_num) + "X"
+	var squidY = "Squid" +str(squid_num) + "Y"
+	var squid_name = "Squid" +str(squid_num)
+	var current_squid = squid_name
+	var squidPX: int
+	var squidPY: int
+	
+	has_squid = true
+	print("Squid created")
+	label.name = "value"
+	label.add_theme_font_size_override("font_size",6)
+	label.text = str(get_parent().fish_value)
+	add_fish.add_child(label)
+	$Node.add_child(add_fish)
+	store_fish[squid_name] = add_fish
+	squid_num += 1
+	
+	#-------------Position--------------
+	if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+		store_fish[squid_name].position.x = (MainCharacter.store_num) * 125 + 75
+		squidPX = (MainCharacter.store_num) * 125 + 75
+		store_fish[squid_name].position.y = 100
+		squidPY = 100
+		print("adding Squid to row 1")
+	elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+		store_fish[squid_name].position.x = (MainCharacter.store_num) * 125 - 800
+		squidPX = (MainCharacter.store_num) * 125 - 800
+		store_fish[squid_name].position.y = 250
+		squidPY = 250
+		print("adding Squid to row 2")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[squid_name].position.x = (MainCharacter.store_num) * 125 - 1675
+		squidPX = (MainCharacter.store_num) * 125 - 1675
+		store_fish[squid_name].position.y = 385
+		squidPY = 385
+		print("adding Squid to row 3")
+	store_fish[squidX] = squidPX
+	store_fish[squidY] = squidPY
+	print(store_fish[squid_name])
+	print(store_fish[squidX])
+	print(store_fish[squidY])
+	
+	
+func show_squid() -> void:
+	var squid_show_num: int  = 1
+	var squid_show: String
+	print(store_fish)
+	for i in range(28):
+		squid_show = "Squid" +str(squid_show_num)
+		if store_fish.has(squid_show) and is_instance_valid(store_fish[squid_show]):
+			print("Squid Found")
+			store_fish[squid_show].visible = true
+		squid_show_num += 1
+	squid_show_num = 1
+
+func hide_squid() -> void:
+	var squid_show_num: int  = 1
+	var squid_show: String
+	print(store_fish)
+	for i in range(28):
+		squid_show = "Squid" +str(squid_show_num)
+		if store_fish.has(squid_show) and is_instance_valid(store_fish[squid_show]):
+			print("Squid Found")
+			store_fish[squid_show].visible = false
+		squid_show_num += 1
+	squid_show_num = 1
+	
 func add_clownfish_lure() -> void:
 	ClownfishLure_amount += 1
 	print(ClownfishLure_amount)
@@ -148,6 +681,9 @@ func add_clownfish_lure() -> void:
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/ClownfishLure.position.x = (MainCharacter.store_num) * 125 - 800
 			$Node/ClownfishLure.position.y = 250
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/ClownfishLure.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/ClownfishLure.position.y = 385
 		CfL_positionX = $Node/ClownfishLure.position.x
 		CfL_positionY = $Node/ClownfishLure.position.y
 		print("X Position is " +str(CfL_positionX))
@@ -297,6 +833,9 @@ func add_cod_lure() -> void:
 			$Node/CodLure.position.x = (MainCharacter.store_num) * 125 - 800
 			CodLure_amount = $Node/CodLure.position.x
 			$Node/CodLure.position.y = 250
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/CodLure.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/CodLure.position.y = 385
 		CodL_positionX = $Node/CodLure.position.x
 		CodL_positionY = $Node/CodLure.position.y
 		print("X Position is " +str(CodL_positionX))
@@ -446,6 +985,9 @@ func add_goldfish_lure() -> void:
 			$Node/GoldfishLure.position.x = (MainCharacter.store_num) * 125 - 800
 			GoldfishLure_amount = $Node/GoldfishLure.position.x
 			$Node/GoldfishLure.position.y = 250
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/GoldfishLure.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/GoldfishLure.position.y = 385
 		GfL_positionX = $Node/GoldfishLure.position.x
 		GfL_positionY = $Node/GoldfishLure.position.y
 		print("X Position is " +str(GfL_positionX))
@@ -595,6 +1137,9 @@ func add_fc_lure() -> void:
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/FatChance.position.x = (MainCharacter.store_num) * 125 - 800
 			$Node/FatChance.position.y = 250
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/FatChance.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/FatChance.position.y = 385
 		FC_positionX = $Node/FatChance.position.x
 		FC_positionY = $Node/FatChance.position.y
 		print("X Position is " +str(FC_positionX))
@@ -738,6 +1283,9 @@ func add_trash() -> void:
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/Trash.position.x = (MainCharacter.store_num) * 125 - 800
 			$Node/Trash.position.y = 250
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/Trash.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/Trash.position.y = 385
 		Trash_positionX = $Node/Trash.position.x
 		Trash_positionY = $Node/Trash.position.y
 		print("X Position is " +str(Trash_positionX))
@@ -890,9 +1438,12 @@ func add_S_Luck_Potion() -> void:
 			SLuck_positionY = $Node/SLuck.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/SLuck.position.x = (MainCharacter.store_num) * 125 - 800
-			SLuck_positionX = $Node/SLuck.position.x
 			$Node/SLuck.position.y = 250
-			SLuck_positionY = $Node/SLuck.position.y
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/SLuck.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/SLuck.position.y = 385
+		SLuck_positionX = $Node/SLuck.position.x
+		SLuck_positionY = $Node/SLuck.position.y
 		print("X Position is " +str(SLuck_positionX))
 		print("Y Position is " +str(SLuck_positionY))
 		
@@ -1033,14 +1584,15 @@ func add_M_Luck_Potion() -> void:
 	if get_parent().MLuck > 0 and get_parent().MLuck < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/MLuck.position.x = (MainCharacter.store_num) * 125 + 75
-			MLuck_positionX = $Node/MLuck.position.x
 			$Node/MLuck.position.y = 100
-			MLuck_positionY = $Node/MLuck.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/MLuck.position.x = (MainCharacter.store_num) * 125 - 800
-			MLuck_positionX = $Node/MLuck.position.x
 			$Node/MLuck.position.y = 250
-			MLuck_positionY = $Node/MLuck.position.y
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/MLuck.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/MLuck.position.y = 385
+		MLuck_positionX = $Node/MLuck.position.x
+		MLuck_positionY = $Node/MLuck.position.y
 		print("X position is " +str(MLuck_positionX))
 		print("Y position is " +str(MLuck_positionY))
 		
@@ -1179,14 +1731,15 @@ func add_L_Luck_Potion() -> void:
 	if get_parent().LLuck > 0 and get_parent().LLuck < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/LLuck.position.x = (MainCharacter.store_num) * 125 + 75
-			LLuck_positionX = $Node/LLuck.position.x
 			$Node/LLuck.position.y = 100
-			LLuck_positionY = $Node/LLuck.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/LLuck.position.x = (MainCharacter.store_num) * 125 - 800
-			LLuck_positionX = $Node/LLuck.position.x
 			$Node/LLuck.position.y = 250
-			LLuck_positionY = $Node/LLuck.position.y
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/LLuck.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/LLuck.position.y = 385
+		LLuck_positionX = $Node/LLuck.position.x
+		LLuck_positionY = $Node/LLuck.position.y
 		print("X Position is " +str(LLuck_positionX))
 		print("Y Position is " +str(LLuck_positionY))
 		
@@ -1327,14 +1880,15 @@ func add_apple() -> void:
 	if get_parent().apples > 0 and get_parent().apples < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/Apple.position.x = (MainCharacter.store_num) * 125 + 75
-			Apple_positionX = $Node/Apple.position.x
 			$Node/Apple.position.y = 100
-			Apple_positionY = $Node/Apple.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/Apple.position.x = (MainCharacter.store_num) * 125 - 800
-			Apple_positionX = $Node/Apple.position.x
 			$Node/Apple.position.y = 250
-			Apple_positionY = $Node/Apple.position.y
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/Apple.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/Apple.position.y = 385
+		Apple_positionX = $Node/Apple.position.x
+		Apple_positionY = $Node/Apple.position.y
 		print("X Position is " +str(Apple_positionX))
 		print("Y Position is " +str(Apple_positionY))
 		
@@ -1477,14 +2031,15 @@ func add_fanta_lure() -> void:
 	if get_parent().fanta_amount > 0 and get_parent().fanta_amount < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/FantasiaLure.position.x = (MainCharacter.store_num) * 125 + 75
-			FantaL_positionX = $Node/FantasiaLure.position.x
 			$Node/FantasiaLure.position.y = 100
-			FantaL_positionY = $Node/FantasiaLure.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/FantasiaLure.position.x = (MainCharacter.store_num) * 125 - 800
-			FantaL_positionX = $Node/FantasiaLure.position.x
 			$Node/FantasiaLure.position.y = 250
-			FantaL_positionY = $Node/FantasiaLure.position.y
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/FantasiaLure.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/FantasiaLure.position.y = 385
+		FantaL_positionX = $Node/FantasiaLure.position.x
+		FantaL_positionY = $Node/FantasiaLure.position.y
 		print("X Position is " +str(FantaL_positionX))
 		print("Y Position is " +str(FantaL_positionY))
 
@@ -1627,14 +2182,15 @@ func add_squid_lure() -> void:
 	if get_parent().squid_amount > 0 and get_parent().squid_amount < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/SquidLure.position.x = (MainCharacter.store_num) * 125 + 75
-			SquidL_positionX = $Node/SquidLure.position.x
 			$Node/SquidLure.position.y = 100
-			SquidL_positionY = $Node/SquidLure.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/SquidLure.position.x = (MainCharacter.store_num) * 125 - 800
-			SquidL_positionX = $Node/SquidLure.position.x
 			$Node/SquidLure.position.y = 250
-			SquidL_positionY = $Node/SquidLure.position.y
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/SquidLure.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/SquidLure.position.y = 385
+		SquidL_positionX = $Node/SquidLure.position.x
+		SquidL_positionY = $Node/SquidLure.position.y
 		print("X Position is " +str(SquidL_positionX))
 		print("Y Position is " +str(SquidL_positionY))
 		
@@ -1777,14 +2333,15 @@ func add_bread() -> void:
 	if get_parent().bread > 0 and get_parent().bread < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/Bread.position.x = (MainCharacter.store_num) * 125 + 75
-			bread_positionX = $Node/Bread.position.x
 			$Node/Bread.position.y = 100
-			bread_positionY = $Node/Bread.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/Bread.position.x = (MainCharacter.store_num) * 125 - 800
-			bread_positionX = $Node/Bread.position.x
 			$Node/Bread.position.y = 250
-			bread_positionY = $Node/Bread.position.y
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/Bread.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/Bread.position.y = 385
+		bread_positionX = $Node/Bread.position.x
+		bread_positionY = $Node/Bread.position.y
 		print("X Position is " +str(bread_positionX))
 		print("Y Position is " +str(bread_positionY))
 
@@ -1927,14 +2484,15 @@ func add_cake() -> void:
 	if get_parent().cake > 0 and get_parent().cake < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/Cake.position.x = (MainCharacter.store_num) * 125 + 75
-			cake_positionX = $Node/Cake.position.x
 			$Node/Cake.position.y = 100
-			cake_positionY = $Node/Cake.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/Cake.position.x = (MainCharacter.store_num) * 125 - 800
-			cake_positionX = $Node/Cake.position.x
 			$Node/Cake.position.y = 250
-			cake_positionY = $Node/Cake.position.y
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/Cake.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/Cake.position.y = 385
+		cake_positionX = $Node/Cake.position.x
+		cake_positionY = $Node/Cake.position.y
 		print("X Position is " +str(cake_positionX))
 		print("Y Position is " +str(cake_positionY))
 
@@ -2078,14 +2636,15 @@ func add_seastone() -> void:
 	if get_parent().seastones > 0 and get_parent().seastones < 2:
 		if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
 			$Node/SeaStone.position.x = (MainCharacter.store_num) * 125 + 75
-			seastone_positionX = $Node/SeaStone.position.x
 			$Node/SeaStone.position.y = 100
-			seastone_positionY = $Node/SeaStone.position.y
 		elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 			$Node/SeaStone.position.x = (MainCharacter.store_num) * 125 - 800
-			seastone_positionX = $Node/SeaStone.position.x
 			$Node/SeaStone.position.y = 250
-			seastone_positionY = $Node/SeaStone.position.y
+		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+			$Node/SeaStone.position.x = (MainCharacter.store_num) * 125 - 1675
+			$Node/SeaStone.position.y = 385
+		seastone_positionX = $Node/SeaStone.position.x
+		seastone_positionY = $Node/SeaStone.position.y
 		print("X Position is " +str(seastone_positionX))
 		print("Y Position is " +str(seastone_positionY))
 	
@@ -2241,7 +2800,27 @@ func _on_close_pressed() -> void:
 	$Node/SquidLure.visible = false
 	$Node/Bread.visible = false
 	$Node/Cake.visible = false
-	
+	if has_clownfish:
+		hide_clownfish()
+		print("Checking for Clownfish")
+	if has_cod:
+		print("Checking for Cod")
+		hide_cod()
+	if has_goldfish:
+		print("Checking for Goldfish")
+		hide_goldfish()
+	if has_skullfish:
+		print("Checking for Skullfish")
+		hide_skullfish()
+	if has_bluegill:
+		print("Checking for Bluegill")
+		hide_bluegill()
+	if has_fantasia:
+		print("Checking for Fantasia")
+		hide_fantasia()
+	if has_squid:
+		print("Checking a Squid")
+		hide_squid()
 func _on_cf_l_button_pressed() -> void:
 	get_parent().select_clownfish_lure()
 	get_parent().unselect_cod_lure()

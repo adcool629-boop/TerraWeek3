@@ -773,8 +773,11 @@ func clownfish_picked() -> void:
 			total = clownfish_base * weight * 0.5
 	print("Clownfish Caught")
 	print(total)
-	#MainCharacter.store_num += 1
-	inventory_value()
+	total = roundi(total)
+	MainCharacter.store_num += 1
+	get_parent().clownfish_caught()
+	total = 0
+	
 	
 func cod_picked() -> void:
 	var weight = randf() * 5.00
@@ -812,8 +815,9 @@ func cod_picked() -> void:
 			total = cod_base * weight * 0.5
 	print('Cod Caught')
 	print(total)
-	#MainCharacter.store_num += 1
-	inventory_value()
+	MainCharacter.store_num += 1
+	get_parent().cod_caught()
+	total = 0
 	
 func goldfish_picked() -> void:
 	var weight = randf() * 3.00
@@ -852,11 +856,12 @@ func goldfish_picked() -> void:
 			total = goldfish_base * weight * 0.5
 	print('Goldfish Caught')
 	print(total)
-	#MainCharacter.store_num += 1
-	inventory_value()
+	MainCharacter.store_num += 1
+	get_parent().goldfish_caught()
+	total = 0
 	
 func trash_picked() -> void:
-	get_parent().trash_amount += 1
+	get_parent().trash_add()
 	
 func skullfish_picked() -> void:
 	var weight = randf() * 20
@@ -893,7 +898,9 @@ func skullfish_picked() -> void:
 			total = skullfish_base * weight * 0.5
 	print("Skullfish Caught")
 	print(total)
-	inventory_value()
+	MainCharacter.store_num += 1
+	get_parent().skullfish_caught()
+	total = 0
 
 func bluegill_picked() -> void:
 	var weight = randf() * 20
@@ -930,7 +937,9 @@ func bluegill_picked() -> void:
 			total = bluegill_base * weight * 0.5
 	print("Bluegill Caught")
 	print(total)
-	inventory_value()
+	MainCharacter.store_num += 1
+	get_parent().bluegill_caught()
+	total = 0
 
 func fantasia_picked() -> void:
 	var weight = randf() * 20
@@ -967,7 +976,9 @@ func fantasia_picked() -> void:
 			total = fantasia_base * weight * 0.5
 	print("Fantasia Caught")
 	print(total)
-	inventory_value()
+	MainCharacter.store_num += 1
+	get_parent().fantasia_caught()
+	total = 0
 
 func squid_picked() -> void:
 	var weight = randf() * 20
@@ -1004,8 +1015,10 @@ func squid_picked() -> void:
 			total = squid_base * weight * 0.5
 	print("Squid Caught")
 	print(total)
-	inventory_value()
-
+	MainCharacter.store_num += 1
+	get_parent().squid_caught()
+	total = 0
+	
 func seastone_picked() -> void:
 	if get_parent().seastone > 0 and get_parent().seastone < 2:
 		MainCharacter.store_num += 1

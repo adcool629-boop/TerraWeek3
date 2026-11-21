@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bel4upbdc0lrh" path="res://Scripts/fishing_shop_2.gd" id="1_varmu"]
 [ext_resource type="Texture2D" uid="uid://h2f24yyyj123" path="res://assets/Tiny Coast Pack/Other/baits_16x16.png" id="2_58ir5"]
-[ext_resource type="Texture2D" uid="uid://bjjy6hcl85r1i" path="res://assets/freefishinggame/3 Objects/Fish-rod.png" id="3_qqk4k"]
+[ext_resource type="Texture2D" uid="uid://bjjy6hcl85r1i" path="res://assets/freefishinggame/3 Objects/Catch/Fish-rod.png" id="3_qqk4k"]
 [ext_resource type="AudioStream" uid="uid://baifxgydk5heb" path="res://assets/Audios/dragon-studio-cash-register-kaching-376867.mp3" id="4_0we0f"]
 [ext_resource type="AudioStream" uid="uid://btfej6j1iiyrt" path="res://assets/Audios/soundshelfstudio-ui-error-pop-515668.mp3" id="5_h5e7x"]
 
