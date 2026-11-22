@@ -1,6 +1,7 @@
 extends Node
 
 var chosen_character: int = 0
+var character_selected: bool = false
 var fishables: bool = false
 var moveables: bool = true
 var total_coins: int = 1000000

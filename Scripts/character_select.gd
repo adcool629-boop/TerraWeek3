@@ -138,4 +138,5 @@ func _on_close_button_pressed() -> void:
 		if main_scene.has_node('SpawnPoint'):
 			chosen_character.global_position = main_scene.get_node('SpawnPoint').global_position
 	chosen_character.scale = Vector2(4.0,4.0)
+	MainCharacter.character_selected = true
 	queue_free()

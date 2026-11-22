@@ -70,9 +70,7 @@ func _on_ll_potion_pressed() -> void:
 		$Purchase.playing = true
 		if get_parent().LLuck == 0:
 			MainCharacter.store_num += 1
-		get_parent().LLuck += 1
-		if get_parent().LLuck > 0:
-			get_parent().L_Luck_Potion_add()
+		
 			
 		print("Large Luck Potion Bought")
 		$BuyMessage.text = "Large Luck Potion Bought"
