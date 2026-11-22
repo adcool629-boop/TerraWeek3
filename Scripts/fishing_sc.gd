@@ -31,18 +31,22 @@ func _input(event: InputEvent) -> void:
 		if pin_position <= 21:
 			print('Perfect')
 			rating.text = ('Perfect!')
+			get_parent().perfects += 1
 			get_parent().perfect = true
 		elif pin_position <= 51:
 			print('Good')
 			rating.text = ('Good!')
+			get_parent().goods += 1
 			get_parent().good = true
 		elif pin_position <= 115:
 			print('Meh')
 			rating.text = ('Meh')
+			get_parent().mehs += 1
 			get_parent().meh = true
 		else:
 			print('Bad')
 			rating.text = ('Bad :(')
+			get_parent().bads += 1
 			get_parent().bad = true
 		set_process(false)
 		set_process_input(false)

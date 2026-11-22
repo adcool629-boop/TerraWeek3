@@ -60,7 +60,35 @@ var IRod: bool = false
 var ARod: bool = false
 var GRod: bool = false
 
+#-----------------------------------------------
+#Stats
+#-----------------------------------------------
 
+var tf_caught: int = 0
+var cf_caught: int = 0
+var cods_caught: int = 0
+var gf_caught: int = 0
+var sf_caught: int = 0
+var bg_caught: int = 0
+var fanta_caught: int = 0
+var squids_caught: int = 0
+var trash: int = 0
+var seastone: int = 0
+var cast: int = 0
+var time: int = 0 
+var perfects: int = 0
+var goods: int = 0
+var mehs: int = 0
+var bads: int = 0
+var mg_played: int = 0
+var mg_won: int = 0
+var mg_lost: int = 0
+var qte_played: int = 0
+var qte_won: int = 0
+var qte_lost:int = 0
+var sc_played: int = 0
+var sc_won: int = 0
+var sc_lost: int = 0
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fishing_detector: RayCast2D = $FishingDetector
 
@@ -88,7 +116,7 @@ func _process(delta: float) -> void:
 		value = 0
 		luck = 0
 		first_time = true
-		first_time_selling
+		first_time_selling = false
 		#-----------------------------------------------
 		#Baits
 		#-----------------------------------------------
@@ -290,6 +318,7 @@ func start_fishing() -> void:
 	fishing = true
 	casting = true
 	process_cast()
+	cast += 1
 	
 func cast_end() -> void:
 	$FishingSC.visible = false
@@ -350,7 +379,7 @@ func wait_time() -> void:
 	else:
 		$WaitTimer.wait_time = waiting
 		$WaitTimer.start()
-
+	time = waiting + time 
 func _on_wait_timer_timeout() -> void:
 	print("Mini-Game Start")
 	reeling = true 
@@ -375,6 +404,8 @@ func quick_time_start() -> void:
 		get_child(7).IRod_progress_timer()
 		get_child(7).ARod_progress_timer()
 		get_child(7).minigame_start()
+		qte_played += 1
+		mg_played += 1
 		print("quick time start")
 func quick_time_end() -> void:
 		reeling = false
@@ -389,6 +420,8 @@ func skill_check_start() -> void:
 		$MiniGame2.set_process(true)
 		$MiniGame2.set_process_input(true)
 		get_child(13).minigame_start()
+		mg_played += 1
+		sc_played += 1
 	
 func skill_check_end() -> void:
 	reeling = false
@@ -413,6 +446,7 @@ func play_reel(prefix:String, dir: Vector2) -> void:
 		animated_sprite_2d.play(prefix + 'Up')
 		
 func fish_caught() -> void:
+	tf_caught += 1
 	get_child(9).pick_fish()
 	
 
@@ -645,6 +679,8 @@ func cake_decrease() -> void:
 	
 func seastone_add() -> void:
 	seastones += 1
+	if seastones > 0 and seastones < 2:
+		MainCharacter.store_num += 1
 	get_child(15).add_seastone()
 
 func seastone_decrease() -> void:
@@ -684,3 +720,10 @@ func squid_caught() -> void:
 func _on_inventory_timer_timeout() -> void:
 	inv_closed = false
 	print("Inv Timer Done")
+
+func show_stats() -> void:
+	$Stats.visible = true
+	get_child(15)._on_close_pressed()
+func hide_stats() -> void:
+	$Stats.visible = false
+	get_child(15).openinv()

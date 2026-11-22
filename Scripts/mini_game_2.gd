@@ -95,11 +95,15 @@ func lose() -> void:
 		set_process_input(false)
 		active = false
 		tries = 3
+		get_parent().sc_lost += 1
+		get_parent().mg_lost += 1
 
 func _on_win_timer_timeout() -> void:
 	
 	get_parent().fish_caught()
 	get_parent().skill_check_end()
+	get_parent().sc_won += 1
+	get_parent().mg_won += 1
 	pin.position.x = -3
 	tries = 3
 	

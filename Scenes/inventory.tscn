@@ -819,6 +819,13 @@ theme_override_font_sizes/font_size = 16
 text = "Current Rod:"
 metadata/_edit_lock_ = true
 
+[node name="StatsButton" type="Button" parent="." unique_id=1027858023]
+offset_left = 964.0
+offset_top = 591.0
+offset_right = 1011.0
+offset_bottom = 622.0
+text = "Stats"
+
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Node/ClownfishLure/CfLButton" to="." method="_on_cf_l_button_pressed"]
 [connection signal="pressed" from="Node/ClownfishLure/SellCfL" to="." method="_on_sell_cf_l_pressed"]
@@ -850,3 +857,4 @@ metadata/_edit_lock_ = true
 [connection signal="pressed" from="UseBackground/Back" to="." method="_on_back_pressed"]
 [connection signal="timeout" from="BaitSelected/BaitSelectedTimer" to="." method="_on_bait_selected_timer_timeout"]
 [connection signal="pressed" from="UnselectAll" to="." method="_on_unselect_all_pressed"]
+[connection signal="pressed" from="StatsButton" to="." method="_on_stats_button_pressed"]

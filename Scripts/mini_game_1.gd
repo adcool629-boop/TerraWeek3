@@ -73,11 +73,15 @@ func _on_cooldown_timeout() -> void:
 func _on_timer_timeout() -> void:
 	print("You ran out of time")
 	$Label.text = ("You Lose")
+	get_parent().qte_lost += 1
+	get_parent().mg_lost += 1
 	$EndTimer.start()
 func win() -> void:
 	print("You Win!")
 	$Label.text = ("You Win!")
 	$WinTimer.start()
+	get_parent().qte_won += 1
+	get_parent().mg_won += 1
 func _on_end_timer_timeout() -> void:
 	get_parent().quick_time_end()
 	$TextureProgressBar.value = 100

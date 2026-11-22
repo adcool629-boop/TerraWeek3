@@ -1,0 +1,232 @@
+[gd_scene format=3 uid="uid://1id6clvb1vt0"]
+
+[ext_resource type="Script" uid="uid://da7vst1dty6gd" path="res://Scripts/stats.gd" id="1_elwjw"]
+
+[node name="Stats" type="CanvasLayer" unique_id=882359280]
+script = ExtResource("1_elwjw")
+
+[node name="FishCategory" type="Label" parent="." unique_id=748537637]
+offset_left = 50.0
+offset_top = 25.0
+offset_right = 125.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 32
+text = "Catches"
+
+[node name="TotalFishCaught" type="Label" parent="FishCategory" unique_id=590999658]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 50.0
+offset_right = 143.0
+offset_bottom = 75.0
+text = "Fish Caught: 0"
+
+[node name="CfCaught" type="Label" parent="FishCategory" unique_id=1403325666]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 75.0
+offset_right = 143.0
+offset_bottom = 100.0
+text = "Clownfish Caught: 0"
+
+[node name="CodCaught" type="Label" parent="FishCategory" unique_id=1298297742]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 100.0
+offset_right = 143.0
+offset_bottom = 125.0
+text = "Cod Caught: 0"
+
+[node name="GfCaught" type="Label" parent="FishCategory" unique_id=76151333]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 125.0
+offset_right = 143.0
+offset_bottom = 150.0
+text = "Goldfish Caught: 0"
+
+[node name="SfCaught" type="Label" parent="FishCategory" unique_id=905503486]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 150.0
+offset_right = 143.0
+offset_bottom = 175.0
+text = "Skullfish Caught: 0"
+
+[node name="BgCaught" type="Label" parent="FishCategory" unique_id=1269453932]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 175.0
+offset_right = 143.0
+offset_bottom = 200.0
+text = "Bluegills Caught: 0"
+
+[node name="FantaCaught" type="Label" parent="FishCategory" unique_id=994598973]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 200.0
+offset_right = 43.0
+offset_bottom = 225.0
+text = "Fantasia's Caught: 0"
+
+[node name="SquidCaught" type="Label" parent="FishCategory" unique_id=1432647308]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 225.0
+offset_right = 122.0
+offset_bottom = 248.0
+text = "Squids Caught: 0"
+
+[node name="Trash" type="Label" parent="FishCategory" unique_id=270778266]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 250.0
+offset_right = 114.0
+offset_bottom = 275.0
+text = "Trash Caught: "
+
+[node name="Seastones" type="Label" parent="FishCategory" unique_id=1527550004]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 275.0
+offset_right = 150.0
+offset_bottom = 298.0
+text = "Seastones Caught: "
+
+[node name="Casting" type="Label" parent="." unique_id=1875956540]
+offset_left = 50.0
+offset_top = 325.0
+offset_right = 165.0
+offset_bottom = 370.0
+theme_override_font_sizes/font_size = 32
+text = "Casting"
+
+[node name="CastsMade" type="Label" parent="Casting" unique_id=714728774]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 50.0
+offset_right = 143.0
+offset_bottom = 75.0
+text = "Casts Made: 0"
+
+[node name="TimeWaitd" type="Label" parent="Casting" unique_id=840031737]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 75.0
+offset_right = 104.0
+offset_bottom = 100.0
+text = "Time Waited: 0"
+
+[node name="Perfects" type="Label" parent="Casting" unique_id=589817662]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 100.0
+offset_right = 75.0
+offset_bottom = 125.0
+text = "Perfects: "
+
+[node name="Goods" type="Label" parent="Casting" unique_id=174563668]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 125.0
+offset_right = 61.0
+offset_bottom = 150.0
+text = "Goods: "
+
+[node name="Mehs" type="Label" parent="Casting" unique_id=452350303]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 150.0
+offset_right = 54.0
+offset_bottom = 175.0
+text = "Mehs: "
+
+[node name="Bads" type="Label" parent="Casting" unique_id=1311602562]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 175.0
+offset_right = 50.0
+offset_bottom = 200.0
+text = "Bads:"
+
+[node name="Reeling" type="Label" parent="." unique_id=1160953920]
+offset_left = 350.0
+offset_top = 25.0
+offset_right = 464.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 32
+text = "Reeling"
+
+[node name="MGPlayed" type="Label" parent="Reeling" unique_id=1626530123]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 50.0
+offset_right = 43.0
+offset_bottom = 75.0
+text = "Mini-Games Played: "
+
+[node name="MGWon" type="Label" parent="Reeling" unique_id=2003232007]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 75.0
+offset_right = 143.0
+offset_bottom = 100.0
+text = "Mini-Games Won: "
+
+[node name="MGLost" type="Label" parent="Reeling" unique_id=2112961306]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 100.0
+offset_right = 141.0
+offset_bottom = 125.0
+text = "Mini-Games Lost: "
+
+[node name="QTPlayed" type="Label" parent="Reeling" unique_id=456161362]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 125.0
+offset_right = 205.0
+offset_bottom = 150.0
+text = "Quick Time Events Played:"
+
+[node name="QTWon" type="Label" parent="Reeling" unique_id=1217210824]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 150.0
+offset_right = 193.0
+offset_bottom = 175.0
+text = "Quick Time Events Won: "
+
+[node name="QTLost" type="Label" parent="Reeling" unique_id=2135568637]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 175.0
+offset_right = 182.0
+offset_bottom = 198.0
+text = "Quick Time Events Lost: "
+
+[node name="SCPlayed" type="Label" parent="Reeling" unique_id=1656367601]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Skill Checks Played: "
+
+[node name="SCWon" type="Label" parent="Reeling" unique_id=1588603001]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="SCLost" type="Label" parent="Reeling" unique_id=194589253]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="CloseButton" type="Button" parent="." unique_id=27081166]
+offset_left = 447.0
+offset_top = 558.0
+offset_right = 539.0
+offset_bottom = 601.0
+theme_override_font_sizes/font_size = 24
+text = "Close"
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

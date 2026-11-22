@@ -9392,6 +9392,10 @@ func _on_squid_l_button_pressed() -> void:
 	$BaitSelected.text = "Squid Lure Selected"
 	$BaitSelected/BaitSelectedTimer.start()
 
+func _on_stats_button_pressed() -> void:
+	get_parent().show_stats()
+	
+
 
 #-------------------SELLING-------------------
 

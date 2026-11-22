@@ -13,6 +13,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if MainCharacter.game_over:
 		get_tree().reload_current_scene()
+	if MainCharacter.seastone_given:
+		$RemoveableFence1.queue_free()
 
 
 

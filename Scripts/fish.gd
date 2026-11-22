@@ -776,6 +776,7 @@ func clownfish_picked() -> void:
 	total = roundi(total)
 	MainCharacter.store_num += 1
 	get_parent().clownfish_caught()
+	get_parent().cf_caught += 1
 	total = 0
 	
 	
@@ -817,6 +818,7 @@ func cod_picked() -> void:
 	print(total)
 	MainCharacter.store_num += 1
 	get_parent().cod_caught()
+	get_parent().cods_caught += 1
 	total = 0
 	
 func goldfish_picked() -> void:
@@ -858,10 +860,12 @@ func goldfish_picked() -> void:
 	print(total)
 	MainCharacter.store_num += 1
 	get_parent().goldfish_caught()
+	get_parent().gf_caught += 1
 	total = 0
 	
 func trash_picked() -> void:
 	get_parent().trash_add()
+	get_parent().trash += 1
 	
 func skullfish_picked() -> void:
 	var weight = randf() * 20
@@ -900,6 +904,7 @@ func skullfish_picked() -> void:
 	print(total)
 	MainCharacter.store_num += 1
 	get_parent().skullfish_caught()
+	get_parent().sf_caught += 1
 	total = 0
 
 func bluegill_picked() -> void:
@@ -939,6 +944,7 @@ func bluegill_picked() -> void:
 	print(total)
 	MainCharacter.store_num += 1
 	get_parent().bluegill_caught()
+	get_parent().bg_caught += 1
 	total = 0
 
 func fantasia_picked() -> void:
@@ -978,6 +984,7 @@ func fantasia_picked() -> void:
 	print(total)
 	MainCharacter.store_num += 1
 	get_parent().fantasia_caught()
+	get_parent().fanta_caught += 1
 	total = 0
 
 func squid_picked() -> void:
@@ -1017,12 +1024,13 @@ func squid_picked() -> void:
 	print(total)
 	MainCharacter.store_num += 1
 	get_parent().squid_caught()
+	get_parent().squids_caught += 1
 	total = 0
 	
 func seastone_picked() -> void:
-	if get_parent().seastone > 0 and get_parent().seastone < 2:
-		MainCharacter.store_num += 1
 	get_parent().seastone_add()
+	get_parent().seastone += 1
+	
 func inventory_value() -> void:
 	#until you can store the value for each caught fish 
 	MainCharacter.total_coins = int(total) + MainCharacter.total_coins

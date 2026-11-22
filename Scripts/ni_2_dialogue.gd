@@ -98,6 +98,7 @@ func _on_sea_stone_button_pressed() -> void:
 		$RejectButton.set_process(false)
 		$RejectButton.set_process_input(false)
 		bought = true
+		MainCharacter.seastone_given = true
 	else:
 		come_back()
 		$SeaStoneButton.visible = false

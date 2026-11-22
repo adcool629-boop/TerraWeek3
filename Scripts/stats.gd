@@ -1,0 +1,43 @@
+extends CanvasLayer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	$".".visible = false
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	#---------------------FISH---------------------
+	$FishCategory/CfCaught.text = "Clownfish Caught: " +str(get_parent().cf_caught)
+	$FishCategory/CodCaught.text = "Cod Caught: " +str(get_parent().cods_caught)
+	$FishCategory/GfCaught.text = "Goldfish Caught: " +str(get_parent().gf_caught)
+	$FishCategory/SfCaught.text = "Skullfish Caught: " +str(get_parent().sf_caught)
+	$FishCategory/BgCaught.text = "Bluegills Caught: " +str(get_parent().bg_caught)
+	$FishCategory/FantaCaught.text = "Fantasia's Caught: " +str(get_parent().fanta_caught)
+	$FishCategory/SquidCaught.text = "Squids Caught: " +str(get_parent().squids_caught)
+	$FishCategory/Trash.text = "Trash Caught: " +str(get_parent().trash)
+	$FishCategory/Seastones.text = "Seastones Caught: " +str(get_parent().seastone)
+	$FishCategory/TotalFishCaught.text = "Total Fish Caught: " +str(get_parent().tf_caught)
+	#-----------------------CASTS---------------------
+	$Casting/CastsMade.text = "Casts Made: " +str(get_parent().cast)
+	$Casting/TimeWaitd.text = "Time Waited: " +str(get_parent().time)
+	$Casting/Perfects.text = "Perfects: " +str(get_parent().perfects)
+	$Casting/Goods.text = "Goods: " +str(get_parent().goods)
+	$Casting/Mehs.text = "Mehs" +str(get_parent().mehs)
+	$Casting/Bads.text = "Bads" +str(get_parent().bads)
+	
+	#-----------------REELS---------------------
+	$Reeling/MGPlayed.text = "Mini-Games Played: " +str(get_parent().mg_played)
+	$Reeling/MGWon.text = "Mini-Games Won: " +str(get_parent().mg_won)
+	$Reeling/MGLost.text = "Mini-Games Lost: " +str(get_parent().mg_lost)
+	$Reeling/QTPlayed.text = "Quick Time Events Played:" +str(get_parent().qte_played)
+	$Reeling/QTWon.text = "Quick Time Events Won: " +str(get_parent().qte_won)
+	$Reeling/QTLost.text = "Quick Time Events Lost: " +str(get_parent().qte_lost)
+	$Reeling/SCPlayed.text = "Skill Checks Played: " +str(get_parent().sc_played)
+	$Reeling/SCWon.text = "Skill Checks Won: " +str(get_parent().sc_won)
+	$Reeling/SCLost.text =  "Skill Checks Lost: " +str(get_parent().sc_lost)
+
+
+func _on_close_button_pressed() -> void:
+	get_parent().hide_stats()

@@ -8,7 +8,7 @@
 script = ExtResource("1_344ge")
 
 [node name="Character Select" parent="." unique_id=1312844584 instance=ExtResource("1_bo1nx")]
-position = Vector2(-8212, -878.00006)
+position = Vector2(512, -3102.0002)
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=2022104962]
 position = Vector2(1, 0)

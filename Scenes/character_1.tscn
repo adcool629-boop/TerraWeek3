@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://diyd7yql28048" path="res://Scenes/food_market.tscn" id="20_q54fu"]
 [ext_resource type="PackedScene" uid="uid://dn3kxk2yhfsxr" path="res://Scenes/first_sell_dialogue.tscn" id="21_nwk00"]
 [ext_resource type="PackedScene" uid="uid://itqupbxfatdb" path="res://Scenes/ni_2_dialogue.tscn" id="22_hj0y6"]
+[ext_resource type="PackedScene" uid="uid://1id6clvb1vt0" path="res://Scenes/stats.tscn" id="23_abnjg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t758c"]
 atlas = ExtResource("1_ul2td")
@@ -731,6 +732,8 @@ wait_time = 0.1
 one_shot = true
 
 [node name="NI2Dialogue" parent="." unique_id=986857014 instance=ExtResource("22_hj0y6")]
+
+[node name="Stats" parent="." unique_id=882359280 instance=ExtResource("23_abnjg")]
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

@@ -14,7 +14,7 @@ var InReach: bool = false
 var PickedUp: bool = false
 var AddHunger: bool = false
 var game_over: bool = false
-
+var seastone_given: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
