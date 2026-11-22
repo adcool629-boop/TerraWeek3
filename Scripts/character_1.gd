@@ -16,6 +16,8 @@ var inv_closed: bool = true
 var value: int = 0
 var luck: int = 0
 var first_time = true
+var first_time_selling = true
+var selling = false
 
 #-----------------------------------------------
 #Baits
@@ -86,7 +88,7 @@ func _process(delta: float) -> void:
 		value = 0
 		luck = 0
 		first_time = true
-
+		first_time_selling
 		#-----------------------------------------------
 		#Baits
 		#-----------------------------------------------
@@ -115,7 +117,7 @@ func _process(delta: float) -> void:
 		store_clownfish = false
 		store_cod = false
 		store_goldfish = false
-
+		
 		#-----------------------------------------------
 		#Rods
 		#-----------------------------------------------
@@ -151,6 +153,8 @@ func process_movement() -> void:
 		$FShopDetector.target_position = direction * 32.0
 		$FShopDetector2.target_position = direction * 32.0
 		$MShopDetector.target_position = direction * 32.0
+		$SellNpcDetector.target_position = direction * 32.0
+		$NI2Detector.target_position = direction * 32.0
 	else:
 		velocity = Vector2.ZERO
 		
@@ -244,11 +248,31 @@ func _unhandled_input(event: InputEvent) -> void:
 			$FoodMarket.set_process_input(true)
 			$FoodMarket.visible = true
 			shopping = true
+	if $SellNpcDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $SellNpcDetector.is_colliding() and event.is_action_pressed("Interact"):
+			if first_time_selling:
+				first_time_selling = false
+				$FirstSellDialogue.set_process(true)
+				$FirstSellDialogue.set_process_input(true)
+				$FirstSellDialogue.visible = true
+				get_child(32).text_one()
+				shopping = true
+			elif not first_time_selling:
+				print("In Sell Menu")
+				shopping = true
+				selling = true
+				get_child(15).openinv()
+				
 	if inv_closed:
-		if event.is_action_pressed('OpenInventory'):
+		if event.is_action_pressed('OpenInventory') and inv_closed:
+			$InventoryTimer.start()
 			get_child(15).openinv()
 			#get_child(15).add_clownfish()
-			
+	if not inv_closed:
+		if event.is_action_pressed('OpenInventory') and not inv_closed:
+			inv_closed = true
+			get_child(15)._on_close_pressed()
 	
 #Making the fishing more organized
 func start_fishing() -> void:
@@ -642,3 +666,8 @@ func fantasia_caught() -> void:
 func squid_caught() -> void:
 	fish_value = get_child(9).total
 	get_child(15).add_squid()
+
+
+func _on_inventory_timer_timeout() -> void:
+	inv_closed = false
+	print("Inv Timer Done")

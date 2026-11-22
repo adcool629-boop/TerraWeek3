@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 #-------------------Amounts-----------------------
-
 #----Fish-----
 var cf_num: int = 1
 var cod_num: int = 1
@@ -177,10 +176,16 @@ func openinv() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$Coins.text = str(MainCharacter.total_coins)
+	if get_parent().selling:
+		$Title.text = "Sell Menu"
+	elif not get_parent().selling:
+		$Title.text = "Inventory"
 	
 func add_clownfish() -> void:
 	var add_fish = $Node/Clownfish.duplicate()
 	var label = Label.new()
+	var sell_button = Button.new()
+	var cf_value = get_parent().fish_value
 	var cfX = "Clownfish" +str(cf_num) + "X"
 	var cfY = "Clownfish" +str(cf_num) + "Y"
 	var cf_name = "Clownfish" +str(cf_num)
@@ -193,10 +198,15 @@ func add_clownfish() -> void:
 	label.name = "value"
 	label.add_theme_font_size_override("font_size",6)
 	label.text = str(get_parent().fish_value)
+	sell_button.size = Vector2(19,19)
+	sell_button.position = Vector2(-10,-8)
+	sell_button.z_index = -1
 	add_fish.add_child(label)
+	add_fish.add_child(sell_button)
 	$Node.add_child(add_fish)
 	store_fish[cf_name] = add_fish
 	cf_num += 1
+	
 	
 	
 	if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
@@ -229,6 +239,7 @@ func add_clownfish() -> void:
 	print(store_fish[cfX])
 	print(store_fish[cfY])
 	
+	sell_button.pressed.connect(on_sell_clownfish_pressed.bind(cf_name,cf_value,store_fish[cfX], store_fish[cfY]))
 func show_clownfish() -> void:
 	var cf_show_num: int  = 1
 	var cf_show: String
@@ -253,7 +264,552 @@ func hide_clownfish() -> void:
 		cf_show_num += 1
 	cf_show_num = 1
 	
+func clownfish_move_back(clownfish: String, ClownfishXP: int, ClownfishYP) -> void:
+	var clownfishX = ClownfishXP
+	var clownfishY = ClownfishYP
+	if CfL_positionX > clownfishX or (CfL_positionY > clownfishY and  CfL_positionX != 200 ):
+		$Node/ClownfishLure.position.x = CodL_positionX - 125
+		CfL_positionX = CfL_positionX - 125
+		print("decreasing cod lure position")
+	elif CfL_positionY > clownfishY and CfL_positionX == 200 and CfL_positionY == 250:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 100
+		CfL_positionY = 100
+	elif CfL_positionY > clownfishY and CfL_positionX == 200 and CfL_positionY == 385:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 250
+		CfL_positionY = 250
+	elif CfL_positionY > clownfishY and CfL_positionX == 200 and CfL_positionY == 530:
+		$Node/ClownfishLure.position.x = 950
+		CfL_positionX = 950
+		$Node/ClownfishLure.position.y = 385
+		CfL_positionY = 385
+		
+		
+		
+	if CodL_positionX > clownfishX or (CodL_positionY > clownfishY and  CodL_positionX != 200 ):
+		$Node/CodLure.position.x = CodL_positionX - 125
+		CodL_positionX = CodL_positionX - 125
+		print("decreasing cod lure position")
+	elif CodL_positionY > clownfishY and CodL_positionX == 200 and CodL_positionY == 250:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 100
+		CodL_positionY = 100
+	elif CodL_positionY > clownfishY and CodL_positionX == 200 and CodL_positionY == 385:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 250
+		CodL_positionY = 250
+	elif CodL_positionY > clownfishY and CodL_positionX == 200 and CodL_positionY == 530:
+		$Node/CodLure.position.x = 950
+		CodL_positionX = 950
+		$Node/CodLure.position.y = 385
+		CodL_positionY = 385
+		
+		
+	if GfL_positionX > clownfishX or (GfL_positionY > clownfishY and GfL_positionX != 200):
+		$Node/GoldfishLure.position.x = GfL_positionX - 125
+		GfL_positionX = GfL_positionX - 125
+		print("decreasing goldfish lure position")
+	elif GfL_positionY > clownfishY and GfL_positionX == 200 and GfL_positionY == 250:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 100
+		GfL_positionY = 100
+	elif GfL_positionY > clownfishY and GfL_positionX == 200 and GfL_positionY == 385:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 250
+		GfL_positionY = 250
+	elif GfL_positionY > clownfishY and GfL_positionX == 200 and GfL_positionY == 530:
+		$Node/GoldfishLure.position.x = 950
+		GfL_positionX = 950
+		$Node/GoldfishLure.position.y = 385
+		GfL_positionY = 385
+		
+		
+	if FC_positionX > clownfishX or (FC_positionY > clownfishY and FC_positionX != 200):
+		$Node/FatChance.position.x = FC_positionX - 125
+		FC_positionX = FC_positionX - 125
+		print("decreasing FC position")
+	elif FC_positionY > clownfishY and FC_positionX == 200 and FC_positionY == 250:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 100
+		FC_positionY = 100
+	elif FC_positionY > clownfishY and FC_positionX == 200 and FC_positionY == 385:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 250
+		FC_positionY = 250
+	elif FC_positionY > clownfishY and FC_positionX == 200 and FC_positionY == 530:
+		$Node/FatChance.position.x = 950
+		FC_positionX = 950
+		$Node/FatChance.position.y = 385
+		FC_positionY = 385
+		
+		
+	if Trash_positionX > clownfishX or (Trash_positionY > clownfishY and Trash_positionX != 200):
+		$Node/Trash.position.x = Trash_positionX - 125
+		Trash_positionX = Trash_positionX - 125
+		print("decreasing trash position")
+	elif Trash_positionY > clownfishY and Trash_positionX == 200 and Trash_positionY == 250:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 100
+		Trash_positionY = 100
+	elif Trash_positionY > clownfishY and Trash_positionX == 200 and Trash_positionY == 385:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 250
+		Trash_positionY = 250
+	elif Trash_positionY > clownfishY and Trash_positionX == 200 and Trash_positionY == 530:
+		$Node/Trash.position.x = 950
+		Trash_positionX = 950
+		$Node/Trash.position.y = 385
+		Trash_positionY = 385
+		
+		
+	if SLuck_positionX > clownfishX or (SLuck_positionY > clownfishY and SLuck_positionX != 200):
+		$Node/SLuck.position.x = SLuck_positionX - 125
+		SLuck_positionX = SLuck_positionX - 125
+		print("decreasing S Luck position")
+	elif SLuck_positionY > clownfishY and SLuck_positionX == 200 and SLuck_positionY == 250:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 100
+		SLuck_positionY = 100
+	elif SLuck_positionY > clownfishY and SLuck_positionX == 200 and SLuck_positionY == 385:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 250
+		SLuck_positionY = 250
+	elif SLuck_positionY > clownfishY and SLuck_positionX == 200 and SLuck_positionY == 530:
+		$Node/SLuck.position.x = 950
+		SLuck_positionX = 950
+		$Node/SLuck.position.y = 385
+		SLuck_positionY = 385
+		
+		
+	if MLuck_positionX > clownfishX or (MLuck_positionY > clownfishY and MLuck_positionX != 200):
+		$Node/MLuck.position.x = MLuck_positionX - 125
+		MLuck_positionX = MLuck_positionX - 125
+		print("decreasing M Luck position")
+	elif MLuck_positionY > clownfishY and MLuck_positionX == 200 and MLuck_positionY == 250:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 100
+		MLuck_positionY = 100
+	elif MLuck_positionY > clownfishY and MLuck_positionX == 200 and MLuck_positionY == 385:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 250
+		MLuck_positionY = 250
+	elif MLuck_positionY > clownfishY and MLuck_positionX == 200 and MLuck_positionY == 530:
+		$Node/MLuck.position.x = 950
+		MLuck_positionX = 950
+		$Node/MLuck.position.y = 385
+		MLuck_positionY = 385
+		
+	
+	if LLuck_positionX > clownfishX or (LLuck_positionY > clownfishY and LLuck_positionX != 200):
+		$Node/LLuck.position.x = LLuck_positionX - 125
+		LLuck_positionX = LLuck_positionX - 125
+		print("decreasing L Luck position")
+	elif LLuck_positionY > clownfishY and LLuck_positionX == 200 and LLuck_positionY == 250:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 100
+		LLuck_positionY = 100
+	elif LLuck_positionY > clownfishY and LLuck_positionX == 200 and LLuck_positionY == 385:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 250
+		LLuck_positionY = 250
+	elif LLuck_positionY > clownfishY and LLuck_positionX == 200 and LLuck_positionY == 530:
+		$Node/LLuck.position.x = 950
+		LLuck_positionX = 950
+		$Node/LLuck.position.y = 385
+		LLuck_positionY = 385
+		
+		
+	if Apple_positionX > clownfishX or (Apple_positionY > clownfishY and Apple_positionX != 200):
+		$Node/Apple.position.x = Apple_positionX - 125
+		Apple_positionX = Apple_positionX - 125
+		print("decreasing apple position")
+	elif Apple_positionY > clownfishY and Apple_positionX == 200 and Apple_positionY == 250:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 100
+		Apple_positionY = 100
+	elif Apple_positionY > clownfishY and Apple_positionX == 200 and Apple_positionY == 385:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 250
+		Apple_positionY = 250
+	elif Apple_positionY > clownfishY and Apple_positionX == 200 and Apple_positionY == 530:
+		$Node/Apple.position.x = 950
+		Apple_positionX = 950
+		$Node/Apple.position.y = 385
+		Apple_positionY = 385
+		
+		
+	if FantaL_positionX > clownfishX or (FantaL_positionY > clownfishY and FantaL_positionX != 200):
+		$Node/FantasiaLure.position.x = FantaL_positionX - 125
+		FantaL_positionX = FantaL_positionX - 125
+		print("decreasing fantasia lure position")
+	elif FantaL_positionY > clownfishY and FantaL_positionX == 200 and FantaL_positionY == 250:
+		$Node/FantasiaLure.position.x = 950
+		FantaL_positionX = 950
+		$Node/FantasiaLure.position.y = 100
+		FantaL_positionY = 100
+	elif FantaL_positionY > clownfishY and FantaL_positionX == 200 and FantaL_positionY == 385:
+		$Node/FantasiaLure.position.x = 950
+		FantaL_positionX = 950
+		$Node/FantasiaLure.position.y = 250
+		FantaL_positionY = 250
+	elif FantaL_positionY > clownfishY and FantaL_positionX == 200 and FantaL_positionY == 530:
+		$Node/FantasiaLure.position.x = 950
+		FantaL_positionX = 950
+		$Node/FantasiaLure.position.y = 385
+		FantaL_positionY = 385
+		
+		
+	if SquidL_positionX > clownfishX or (SquidL_positionY > clownfishY and SquidL_positionX != 200):
+		$Node/SquidLure.position.x = SquidL_positionX - 125
+		SquidL_positionX = SquidL_positionX - 125
+		print("decreasing squid lure position")
+	elif SquidL_positionY > clownfishY and SquidL_positionX == 200 and SquidL_positionY == 250:
+		$Node/SquidLure.position.x = 950
+		SquidL_positionX = 950
+		$Node/SquidLure.position.y = 100
+		SquidL_positionY = 100
+	elif SquidL_positionY > clownfishY and SquidL_positionX == 200 and SquidL_positionY == 385:
+		$Node/SquidLure.position.x = 950
+		SquidL_positionX = 950
+		$Node/SquidLure.position.y = 250
+		SquidL_positionY = 250
+	elif SquidL_positionY > clownfishY and SquidL_positionX == 200 and SquidL_positionY == 530:
+		$Node/SquidLure.position.x = 950
+		SquidL_positionX = 950
+		$Node/SquidLure.position.y = 385
+		SquidL_positionY = 385
+		
+		
+	if bread_positionX > clownfishX or (bread_positionY > clownfishY and bread_positionX != 200):
+		$Node/Bread.position.x = bread_positionX - 125
+		bread_positionX = bread_positionX - 125
+		print("decreasing bread position")
+	elif bread_positionY > clownfishY and bread_positionX == 200 and bread_positionY == 250:
+		$Node/Bread.position.x = 950
+		bread_positionX = 950
+		$Node/Bread.position.y = 100
+		bread_positionY = 100
+	elif bread_positionY > clownfishY and bread_positionX == 200 and bread_positionY == 385:
+		$Node/Bread.position.x = 950
+		bread_positionX = 950
+		$Node/Bread.position.y = 250
+		bread_positionY = 250
+	elif bread_positionY > clownfishY and bread_positionX == 200 and bread_positionY == 530:
+		$Node/Bread.position.x = 950
+		bread_positionX = 950
+		$Node/Bread.position.y = 385
+		bread_positionY = 385
+		
+		
+	if cake_positionX > clownfishX or (cake_positionY > clownfishY and cake_positionX != 200):
+		$Node/Cake.position.x = cake_positionX - 125
+		cake_positionX = cake_positionX - 125
+		print("decreasing cake position")
+	elif cake_positionY > clownfishY and cake_positionX == 200 and cake_positionY == 250:
+		$Node/Cake.position.x = 950
+		cake_positionX = 950
+		$Node/Cake.position.y = 100
+		cake_positionY = 100
+	elif cake_positionY > clownfishY and cake_positionX == 200 and cake_positionY == 385:
+		$Node/Cake.position.x = 950
+		cake_positionX = 950
+		$Node/Cake.position.y = 250
+		cake_positionY = 250
+	elif cake_positionY > clownfishY and cake_positionX == 200 and cake_positionY == 530:
+		$Node/Cake.position.x = 950
+		cake_positionX = 950
+		$Node/Cake.position.y = 385
+		cake_positionY = 385
+		
+		
+	if seastone_positionX > clownfishX or (seastone_positionY > clownfishY and seastone_positionX != 200):
+		$Node/SeaStone.position.x = seastone_positionX - 125
+		seastone_positionX = seastone_positionX - 125
+		print("decreasing SeaStone position")
+	elif seastone_positionY > clownfishY and seastone_positionX == 200 and seastone_positionY == 250:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 100
+		seastone_positionY = 100
+	elif seastone_positionY > clownfishY and seastone_positionX == 200 and seastone_positionY == 385:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 385
+		seastone_positionY = 385
+	elif seastone_positionY > clownfishY and seastone_positionX == 200 and seastone_positionY == 530:
+		$Node/SeaStone.position.x = 950
+		seastone_positionX = 950
+		$Node/SeaStone.position.y = 385
+		seastone_positionY = 385
+		
+		
+	var cf_move_num: int  = 1
+	var cf_move: String
+	var cf_moveX: String
+	var cf_moveY: String
+	for i in range(28):
+		cf_move = "Clownfish" +str(cf_move_num)
+		cf_moveX = "Clownfish" +str(cf_move_num) + "X"
+		cf_moveY = "Clownfish" +str(cf_move_num) + "Y"
+		if store_fish.has(cf_move) and is_instance_valid(store_fish[cf_move]):
+			if store_fish[cf_moveX] > clownfishX or (store_fish[cf_moveY] > clownfishY and store_fish[cf_moveX] != 200):
+				store_fish[cf_move].position.x = store_fish[cf_moveX] - 125
+				store_fish[cf_moveX] = store_fish[cf_moveX] -125
+				print("decreasing clownfish position")
+			elif store_fish[cf_moveY] > clownfishY and store_fish[cf_moveX] == 200 and store_fish[cf_moveY] == 250:
+				store_fish[cf_move].position.x = 950
+				print(store_fish[cf_move].position.x)
+				store_fish[cf_moveX] = 950
+				print(store_fish[cf_moveX])
+				store_fish[cf_move].position.y = 100
+				print(store_fish[cf_move].position.y)
+				store_fish[cf_moveY] = 100
+				print(store_fish[cf_moveY])
+			elif store_fish[cf_moveY] > clownfishY and store_fish[cf_moveX] == 200 and store_fish[cf_moveY] == 385:
+				store_fish[cf_move].position.x = 950
+				store_fish[cf_moveX] = 950
+				store_fish[cf_move].position.y = 250
+				store_fish[cf_moveY] = 250
+			elif store_fish[cf_moveY] > clownfishY and store_fish[cf_moveX] == 200 and store_fish[cf_moveY] == 530:
+				store_fish[cf_move].position.x = 950
+				store_fish[cf_moveX] = 950
+				store_fish[cf_move].position.y = 385
+				store_fish[cf_moveY] = 385
+		cf_move_num += 1
+	cf_move_num = 1
+	
+	
+	var cod_move_num: int  = 1
+	var cod_move: String
+	var cod_moveX: String
+	var cod_moveY: String
+	for i in range(28):
+		cod_move = "Cod" +str(cod_move_num)
+		cod_moveX = "Cod" +str(cod_move_num) + "X"
+		cod_moveY = "Cod" +str(cod_move_num) + "Y"
+		if store_fish.has(cod_move) and is_instance_valid(store_fish[cod_move]):
+			if store_fish[cod_moveX] > clownfishX or (store_fish[cod_moveY] > clownfishY and store_fish[cod_moveX] != 200):
+				store_fish[cod_move].position.x = store_fish[cod_moveX] - 125
+				store_fish[cod_moveX] = store_fish[cod_moveX] -125
+				print("decreasing Cod position")
+			elif store_fish[cod_moveY] > clownfishY and store_fish[cod_moveX] == 200 and store_fish[cod_moveY] == 250:
+				store_fish[cod_move].position.x = 950
+				print(store_fish[cod_move].position.x)
+				store_fish[cod_moveX] = 950
+				print(store_fish[cod_moveX])
+				store_fish[cod_move].position.y = 100
+				print(store_fish[cod_move].position.y)
+				store_fish[cod_moveY] = 100
+				print(store_fish[cod_moveY])
+			elif store_fish[cod_moveY] > clownfishY and store_fish[cod_moveX] == 200 and store_fish[cod_moveY] == 385:
+				store_fish[cod_move].position.x = 950
+				store_fish[cod_moveX] = 950
+				store_fish[cod_move].position.y = 250
+				store_fish[cod_moveY] = 250
+			elif store_fish[cod_moveY] > clownfishY and store_fish[cod_moveX] == 200 and store_fish[cod_moveY] == 530:
+				store_fish[cod_move].position.x = 950
+				store_fish[cod_moveX] = 950
+				store_fish[cod_move].position.y = 385
+				store_fish[cod_moveY] = 385
+		cod_move_num += 1
+	cod_move_num = 1
+	
+	
+	var gf_move_num: int  = 1
+	var gf_move: String
+	var gf_moveX: String
+	var gf_moveY: String
+	for i in range(28):
+		gf_move = "Goldfish" +str(gf_move_num)
+		gf_moveX = "Goldfish" +str(gf_move_num) + "X"
+		gf_moveY = "Goldfish" +str(gf_move_num) + "Y"
+		if store_fish.has(gf_move) and is_instance_valid(store_fish[gf_move]):
+			if store_fish[gf_moveX] > clownfishX or (store_fish[gf_moveY] > clownfishY and store_fish[gf_moveX] != 200):
+				store_fish[gf_move].position.x = store_fish[gf_moveX] - 125
+				store_fish[gf_moveX] = store_fish[gf_moveX] -125
+				print("decreasing goldfish position")
+			elif store_fish[gf_moveY] > clownfishY and store_fish[gf_moveX] == 200 and store_fish[gf_moveY] == 250:
+				store_fish[gf_move].position.x = 950
+				print(store_fish[gf_move].position.x)
+				store_fish[gf_moveX] = 950
+				print(store_fish[gf_moveX])
+				store_fish[gf_move].position.y = 100
+				print(store_fish[gf_move].position.y)
+				store_fish[gf_moveY] = 100
+				print(store_fish[gf_moveY])
+			elif store_fish[gf_moveY] > clownfishY and store_fish[gf_moveX] == 200 and store_fish[gf_moveY] == 385:
+				store_fish[gf_move].position.x = 950
+				store_fish[gf_moveX] = 950
+				store_fish[gf_move].position.y = 250
+				store_fish[gf_moveY] = 250
+			elif store_fish[gf_moveY] > clownfishY and store_fish[gf_moveX] == 200 and store_fish[gf_moveY] == 530:
+				store_fish[gf_move].position.x = 950
+				store_fish[gf_moveX] = 950
+				store_fish[gf_move].position.y = 385
+				store_fish[gf_moveY] = 385
+		gf_move_num += 1
+	gf_move_num = 1
+	
+	
+	var sf_move_num: int  = 1
+	var sf_move: String
+	var sf_moveX: String
+	var sf_moveY: String
+	for i in range(28):
+		sf_move = "Skullfish" +str(sf_move_num)
+		sf_moveX = "Skullfish" +str(sf_move_num) + "X"
+		sf_moveY = "Skullfish" +str(sf_move_num) + "Y"
+		if store_fish.has(sf_move) and is_instance_valid(store_fish[sf_move]):
+			if store_fish[sf_moveX] > clownfishX or (store_fish[sf_moveY] > clownfishY and store_fish[sf_moveX] != 200):
+				store_fish[sf_move].position.x = store_fish[sf_moveX] - 125
+				store_fish[sf_moveX] = store_fish[sf_moveX] -125
+				print("decreasing skullfish position")
+			elif store_fish[sf_moveY] > clownfishY and store_fish[sf_moveX] == 200 and store_fish[sf_moveY] == 250:
+				store_fish[sf_move].position.x = 950
+				print(store_fish[sf_move].position.x)
+				store_fish[sf_moveX] = 950
+				print(store_fish[sf_moveX])
+				store_fish[sf_move].position.y = 100
+				print(store_fish[sf_move].position.y)
+				store_fish[sf_moveY] = 100
+				print(store_fish[sf_moveY])
+			elif store_fish[sf_moveY] > clownfishY and store_fish[sf_moveX] == 200 and store_fish[sf_moveY] == 385:
+				store_fish[sf_move].position.x = 950
+				store_fish[sf_moveX] = 950
+				store_fish[sf_move].position.y = 250
+				store_fish[sf_moveY] = 250
+			elif store_fish[sf_moveY] > clownfishY and store_fish[sf_moveX] == 200 and store_fish[sf_moveY] == 530:
+				store_fish[sf_move].position.x = 950
+				store_fish[sf_moveX] = 950
+				store_fish[sf_move].position.y = 385
+				store_fish[sf_moveY] = 385
+		sf_move_num += 1
+	sf_move_num = 1
+	
+	
+	var bg_move_num: int  = 1
+	var bg_move: String
+	var bg_moveX: String
+	var bg_moveY: String
+	for i in range(28):
+		bg_move = "Bluegill" +str(bg_move_num)
+		bg_moveX = "Bluegill" +str(bg_move_num) + "X"
+		bg_moveY = "Bluegill" +str(bg_move_num) + "Y"
+		if store_fish.has(bg_move) and is_instance_valid(store_fish[bg_move]):
+			if store_fish[bg_moveX] > clownfishX or (store_fish[bg_moveY] > clownfishY and store_fish[bg_moveX] != 200):
+				store_fish[bg_move].position.x = store_fish[bg_moveX] - 125
+				store_fish[bg_moveX] = store_fish[bg_moveX] -125
+				print("decreasing bluegill position")
+			elif store_fish[bg_moveY] > clownfishY and store_fish[bg_moveX] == 200 and store_fish[bg_moveY] == 250:
+				store_fish[bg_move].position.x = 950
+				print(store_fish[bg_move].position.x)
+				store_fish[bg_moveX] = 950
+				print(store_fish[bg_moveX])
+				store_fish[bg_move].position.y = 100
+				print(store_fish[bg_move].position.y)
+				store_fish[bg_moveY] = 100
+				print(store_fish[bg_moveY])
+			elif store_fish[bg_moveY] > clownfishY and store_fish[bg_moveX] == 200 and store_fish[bg_moveY] == 385:
+				store_fish[bg_move].position.x = 950
+				store_fish[bg_moveX] = 950
+				store_fish[bg_move].position.y = 250
+				store_fish[bg_moveY] = 250
+			elif store_fish[bg_moveY] > clownfishY and store_fish[bg_moveX] == 200 and store_fish[bg_moveY] == 530:
+				store_fish[bg_move].position.x = 950
+				store_fish[bg_moveX] = 950
+				store_fish[bg_move].position.y = 385
+				store_fish[bg_moveY] = 385
+		bg_move_num += 1
+	bg_move_num = 1
 
+	var fanta_move_num: int  = 1
+	var fanta_move: String
+	var fanta_moveX: String
+	var fanta_moveY: String
+	for i in range(28):
+		fanta_move = "Fantasia" +str(fanta_move_num)
+		fanta_moveX = "Fantasia" +str(fanta_move_num) + "X"
+		fanta_moveY = "Fantasia" +str(fanta_move_num) + "Y"
+		if store_fish.has(fanta_move) and is_instance_valid(store_fish[fanta_move]):
+			if store_fish[fanta_moveX] > clownfishX or (store_fish[fanta_moveY] > clownfishY and store_fish[fanta_moveX] != 200):
+				store_fish[fanta_move].position.x = store_fish[fanta_moveX] - 125
+				store_fish[fanta_moveX] = store_fish[fanta_moveX] -125
+				print("decreasing fantasia position")
+			elif store_fish[fanta_moveY] > clownfishY and store_fish[fanta_moveX] == 200 and store_fish[fanta_moveY] == 250:
+				store_fish[fanta_move].position.x = 950
+				print(store_fish[fanta_move].position.x)
+				store_fish[fanta_moveX] = 950
+				print(store_fish[fanta_moveX])
+				store_fish[fanta_move].position.y = 100
+				print(store_fish[fanta_move].position.y)
+				store_fish[fanta_moveY] = 100
+				print(store_fish[fanta_moveY])
+			elif store_fish[fanta_moveY] > clownfishY and store_fish[fanta_moveX] == 200 and store_fish[fanta_moveY] == 385:
+				store_fish[fanta_move].position.x = 950
+				store_fish[fanta_moveX] = 950
+				store_fish[fanta_move].position.y = 250
+				store_fish[fanta_moveY] = 250
+			elif store_fish[fanta_moveY] > clownfishY and store_fish[fanta_moveX] == 200 and store_fish[fanta_moveY] == 530:
+				store_fish[fanta_move].position.x = 950
+				store_fish[fanta_moveX] = 950
+				store_fish[fanta_move].position.y = 385
+				store_fish[fanta_moveY] = 385
+		fanta_move_num += 1
+	fanta_move_num = 1
+
+	var squid_move_num: int  = 1
+	var squid_move: String
+	var squid_moveX: String
+	var squid_moveY: String
+	for i in range(28):
+		squid_move = "Squid" +str(squid_move_num)
+		squid_moveX = "Squid" +str(squid_move_num) + "X"
+		squid_moveY = "Squid" +str(squid_move_num) + "Y"
+		if store_fish.has(squid_move) and is_instance_valid(store_fish[squid_move]):
+			if store_fish[squid_moveX] > clownfishX or (store_fish[squid_moveY] > clownfishY and store_fish[squid_moveX] != 200):
+				store_fish[squid_move].position.x = store_fish[squid_moveX] - 125
+				store_fish[squid_moveX] = store_fish[squid_moveX] -125
+				print("decreasing squid position")
+			elif store_fish[squid_moveY] > clownfishY and store_fish[squid_moveX] == 200 and store_fish[squid_moveY] == 250:
+				store_fish[squid_move].position.x = 950
+				print(store_fish[squid_move].position.x)
+				store_fish[squid_moveX] = 950
+				print(store_fish[squid_moveX])
+				store_fish[squid_move].position.y = 100
+				print(store_fish[squid_move].position.y)
+				store_fish[squid_moveY] = 100
+				print(store_fish[squid_moveY])
+			elif store_fish[squid_moveY] > clownfishY and store_fish[squid_moveX] == 200 and store_fish[squid_moveY] == 385:
+				store_fish[squid_move].position.x = 950
+				store_fish[squid_moveX] = 950
+				store_fish[squid_move].position.y = 250
+				store_fish[squid_moveY] = 250
+			elif store_fish[squid_moveY] > clownfishY and store_fish[squid_moveX] == 200 and store_fish[squid_moveY] == 530:
+				store_fish[squid_move].position.x = 950
+				store_fish[squid_moveX] = 950
+				store_fish[squid_move].position.y = 385
+				store_fish[squid_moveY] = 385
+		squid_move_num += 1
+	squid_move_num = 1
 func add_cod() -> void:
 	var add_fish = $Node/Cod.duplicate()
 	var label = Label.new()
@@ -753,7 +1309,7 @@ func clownfish_lure_move_back() -> void:
 		$Node/CodLure.position.x = CodL_positionX - 125
 		CodL_positionX = CodL_positionX - 125
 		print("decreasing cod lure position")
-	elif CodL_positionY > CfL_positionY and CodL_positionX == 200 and CfL_positionY == 250:
+	elif CodL_positionY > CfL_positionY and CodL_positionX == 200 and CodL_positionY == 250:
 		$Node/CodLure.position.x = 950
 		CodL_positionX = 950
 		$Node/CodLure.position.y = 100
@@ -1845,6 +2401,9 @@ func add_goldfish_lure() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/GoldfishLure.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/GoldfishLure.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/GoldfishLure.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/GoldfishLure.position.y = 530
 		GfL_positionX = $Node/GoldfishLure.position.x
 		GfL_positionY = $Node/GoldfishLure.position.y
 		print("X Position is " +str(GfL_positionX))
@@ -2401,6 +2960,9 @@ func add_fc_lure() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/FatChance.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/FatChance.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 28:
+			$Node/FatChance.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/FatChance.position.y = 530
 		FC_positionX = $Node/FatChance.position.x
 		FC_positionY = $Node/FatChance.position.y
 		print("X Position is " +str(FC_positionX))
@@ -2940,6 +3502,9 @@ func add_trash() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/Trash.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/Trash.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/Trash.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/Trash.position.y = 530
 		Trash_positionX = $Node/Trash.position.x
 		Trash_positionY = $Node/Trash.position.y
 		print("X Position is " +str(Trash_positionX))
@@ -3500,6 +4065,9 @@ func add_S_Luck_Potion() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/SLuck.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/SLuck.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/SLuck.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/SLuck.position.y = 530
 		SLuck_positionX = $Node/SLuck.position.x
 		SLuck_positionY = $Node/SLuck.position.y
 		print("X Position is " +str(SLuck_positionX))
@@ -4052,6 +4620,9 @@ func add_M_Luck_Potion() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/MLuck.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/MLuck.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/MLuck.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/MLuck.position.y = 530
 		MLuck_positionX = $Node/MLuck.position.x
 		MLuck_positionY = $Node/MLuck.position.y
 		print("X position is " +str(MLuck_positionX))
@@ -4603,6 +5174,9 @@ func add_L_Luck_Potion() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/LLuck.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/LLuck.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/LLuck.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/LLuck.position.y = 530
 		LLuck_positionX = $Node/LLuck.position.x
 		LLuck_positionY = $Node/LLuck.position.y
 		print("X Position is " +str(LLuck_positionX))
@@ -5156,6 +5730,9 @@ func add_apple() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/Apple.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/Apple.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/Apple.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/Apple.position.y = 530
 		Apple_positionX = $Node/Apple.position.x
 		Apple_positionY = $Node/Apple.position.y
 		print("X Position is " +str(Apple_positionX))
@@ -5712,6 +6289,9 @@ func add_fanta_lure() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/FantasiaLure.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/FantasiaLure.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/FantasiaLure.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/FantasiaLure.position.y = 530
 		FantaL_positionX = $Node/FantasiaLure.position.x
 		FantaL_positionY = $Node/FantasiaLure.position.y
 		print("X Position is " +str(FantaL_positionX))
@@ -6268,6 +6848,9 @@ func add_squid_lure() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/SquidLure.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/SquidLure.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/SquidLure.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/SquidLure.position.y = 530
 		SquidL_positionX = $Node/SquidLure.position.x
 		SquidL_positionY = $Node/SquidLure.position.y
 		print("X Position is " +str(SquidL_positionX))
@@ -6825,6 +7408,9 @@ func add_bread() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/Bread.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/Bread.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/Bread.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/Bread.position.y = 530
 		bread_positionX = $Node/Bread.position.x
 		bread_positionY = $Node/Bread.position.y
 		print("X Position is " +str(bread_positionX))
@@ -7380,6 +7966,9 @@ func add_cake() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/Cake.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/Cake.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/Cake.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/Cake.position.y = 530
 		cake_positionX = $Node/Cake.position.x
 		cake_positionY = $Node/Cake.position.y
 		print("X Position is " +str(cake_positionX))
@@ -7936,6 +8525,9 @@ func add_seastone() -> void:
 		elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 			$Node/SeaStone.position.x = (MainCharacter.store_num) * 125 - 1675
 			$Node/SeaStone.position.y = 385
+		elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+			$Node/SeaStone.position.x = (MainCharacter.store_num) * 125 - 2550
+			$Node/SeaStone.position.y = 530
 		seastone_positionX = $Node/SeaStone.position.x
 		seastone_positionY = $Node/SeaStone.position.y
 		print("X Position is " +str(seastone_positionX))
@@ -8518,6 +9110,10 @@ func _on_close_pressed() -> void:
 	if has_squid:
 		print("Checking a Squid")
 		hide_squid()
+	if get_parent().selling:
+		get_parent().selling = false
+		get_parent().shopping = false
+		print("Closing Sell Menu")
 func _on_cf_l_button_pressed() -> void:
 	get_parent().select_clownfish_lure()
 	get_parent().unselect_cod_lure()
@@ -8734,3 +9330,17 @@ func _on_squid_l_button_pressed() -> void:
 	get_parent().select_squid_lure()
 	$BaitSelected.text = "Squid Lure Selected"
 	$BaitSelected/BaitSelectedTimer.start()
+
+
+#-------------------SELLING-------------------
+
+func on_sell_clownfish_pressed(specific_cf: String, value: int, CfX: int, CfY: int) -> void:
+	if get_parent().selling and store_fish.has(specific_cf) and is_instance_valid(store_fish[specific_cf]):
+		MainCharacter.total_coins += value
+		clownfish_move_back(specific_cf, CfX, CfY)
+		store_fish[specific_cf].queue_free()
+		store_fish.erase(specific_cf)
+		store_fish.erase(specific_cf + "X")
+		store_fish.erase(specific_cf + "Y")
+		store_fish.erase(specific_cf + "X")
+		MainCharacter.store_num += -1

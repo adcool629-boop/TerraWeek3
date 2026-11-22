@@ -398,6 +398,13 @@ offset_right = 43.8
 offset_bottom = 28.2
 theme_override_font_sizes/font_size = 6
 
+[node name="SellCfL" type="Button" parent="Node/ClownfishLure" unique_id=1218462977]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
 [node name="CodLure" type="Sprite2D" parent="Node" unique_id=1296338786]
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
@@ -416,6 +423,13 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
+[node name="SellCodL" type="Button" parent="Node/CodLure" unique_id=733102217]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
 [node name="GoldfishLure" type="Sprite2D" parent="Node" unique_id=603927012]
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
@@ -428,6 +442,13 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
 [node name="GfLButton" type="Button" parent="Node/GoldfishLure" unique_id=2144213549]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="SellGfL" type="Button" parent="Node/GoldfishLure" unique_id=929613767]
 z_index = -1
 offset_left = -10.0
 offset_top = -8.0
@@ -452,6 +473,13 @@ offset_top = -8.0
 offset_right = 9.0
 offset_bottom = 11.0
 
+[node name="SellFC" type="Button" parent="Node/FatChance" unique_id=525904222]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
 [node name="FantasiaLure" type="Sprite2D" parent="Node" unique_id=1656769418]
 scale = Vector2(5, 5)
 texture = ExtResource("3_0n8tc")
@@ -469,6 +497,13 @@ offset_bottom = 11.0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
+
+[node name="SellFantaL" type="Button" parent="Node/FantasiaLure" unique_id=390219439]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
 
 [node name="SquidLure" type="Sprite2D" parent="Node" unique_id=664717223]
 scale = Vector2(5, 5)
@@ -488,6 +523,13 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
+[node name="SellSquidL" type="Button" parent="Node/SquidLure" unique_id=1924421857]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
 [node name="Trash" type="Sprite2D" parent="Node" unique_id=1066831592]
 scale = Vector2(5, 5)
 texture = ExtResource("2_yxepq")
@@ -498,6 +540,13 @@ region_rect = Rect2(47.84953, 33.26281, 15.986195, 15.671593)
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
+
+[node name="SellTrash" type="Button" parent="Node/Trash" unique_id=43760479]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
 
 [node name="SLuck" type="Sprite2D" parent="Node" unique_id=381105744]
 scale = Vector2(5, 5)
@@ -521,6 +570,13 @@ scale = Vector2(0.30994084, 0.3763519)
 texture = ExtResource("4_c5ffv")
 region_enabled = true
 region_rect = Rect2(0, 0, 15.538483, 15.702101)
+
+[node name="SellSLuck" type="Button" parent="Node/SLuck" unique_id=586126970]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
 
 [node name="MLuck" type="Sprite2D" parent="Node" unique_id=1916966299]
 scale = Vector2(5, 5)
@@ -547,6 +603,13 @@ texture = ExtResource("4_c5ffv")
 region_enabled = true
 region_rect = Rect2(0, 0, 16.205353, 15.558525)
 
+[node name="SellMLuck" type="Button" parent="Node/MLuck" unique_id=1103954897]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
 [node name="LLuck" type="Sprite2D" parent="Node" unique_id=1050052094]
 scale = Vector2(5, 5)
 texture = ExtResource("4_c5ffv")
@@ -561,6 +624,13 @@ offset_bottom = 29.2
 theme_override_font_sizes/font_size = 6
 
 [node name="LLuckButton" type="Button" parent="Node/LLuck" unique_id=582287951]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="SellLLuck" type="Button" parent="Node/LLuck" unique_id=2043717834]
 z_index = -1
 offset_left = -10.0
 offset_top = -8.0
@@ -583,6 +653,13 @@ offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
+[node name="SellApple" type="Button" parent="Node/Apple" unique_id=93515686]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
+
 [node name="Bread" type="Sprite2D" parent="Node" unique_id=1513168077]
 scale = Vector2(5, 5)
 texture = ExtResource("7_o4ksx")
@@ -598,6 +675,13 @@ offset_bottom = 11.0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
+
+[node name="SellBread" type="Button" parent="Node/Bread" unique_id=324802991]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
 
 [node name="Cake" type="Sprite2D" parent="Node" unique_id=612883611]
 scale = Vector2(5, 5)
@@ -615,6 +699,13 @@ offset_bottom = 11.0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
+
+[node name="SellCake" type="Button" parent="Node/Cake" unique_id=697873106]
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
 
 [node name="SeaStone" type="Sprite2D" parent="Node" unique_id=1706276607]
 scale = Vector2(5, 5)
