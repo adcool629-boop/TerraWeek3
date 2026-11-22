@@ -7,12 +7,20 @@ var bought = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
+	$".".visible = false
+	$".".set_process(false)
+	$".".set_process_input(false)
+	$SeaStoneButton.visible = false
+	$SeaStoneButton.set_process(false)
+	$SeaStoneButton.set_process_input(false)
+	$RejectButton.visible = false
+	$RejectButton.set_process(false)
+	$RejectButton.set_process_input(false)
+	get_parent().shopping = false
 
 func _process(delta: float) -> void:
 	pass
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if first_text and event.is_action_pressed("Next"):
 		if bought:
@@ -21,10 +29,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			text_two()
 		
 	if second_text and event.is_action_pressed("Next"):
-		first_text = false
+		second_text = false
 		text_three()
 	if close_ready and event.is_action_pressed("Next"):
 		close_dialogue()
+
 func text_one() -> void:
 	if bought:
 		$ColorRect/Text.text = "Stay safe. The Forest is a dangerous place."
@@ -39,31 +48,84 @@ func text_two() -> void:
 	print("Second Message")
 	$Read2.start()
 func text_three() -> void:
-	$ColorRect/Text.text = "Present me with a SeaStone and your capabilities will show themselves"
+	$ColorRect/Text.text = "Present me with a SeaStone and your path will be open"
 	print("Third Message")
 	second_text = false
 	$ColorRect/Next.text = ""
-	$YesButton.visible = true
-	$NoButton.visible = true
+	$SeaStoneButton.visible = true
+	$SeaStoneButton.set_process(true)
+	$SeaStoneButton.set_process_input(true)
+	$RejectButton.visible = true
+	$RejectButton.set_process(true)
+	$RejectButton.set_process_input(true)
 
 func directions() -> void:
-	$ColorRect/Text.text = "Thank you Fisherman! If you head straight down you shall find a path to the next island."
+	$ColorRect/Text.text = "Thank you for proving your worth, many have died in this forest I hope you will not end up the same.."
 	close_ready = true
 	$ColorRect/Next.text = "Press Enter to Close"
 
 func come_back() -> void:
 	$ColorRect/Text.text = "Such a shame. Come back when you are ready to advance to the next island."
 	close_ready = true
-	
+	$ColorRect/Next.text = "Press Enter to Close"
+func no_seastone() -> void:
+	$ColorRect/Text.text =  "You do not have a seastone, come back when you have one."
+	close_ready = true
+	$ColorRect/Next.text = "Press Enter to Close"
 func close_dialogue() -> void:
 	$".".visible = false
 	$".".set_process(false)
 	$".".set_process_input(false)
-	$YesButton.visible = false
-	$YesButton.set_process(false)
-	$YesButton.set_process_input(false)
-	$NoButton.visible = false
-	$NoButton.set_process(false)
-	$NoButton.set_process_input(false)
-	
+	$SeaStoneButton.visible = false
+	$SeaStoneButton.set_process(false)
+	$SeaStoneButton.set_process_input(false)
+	$RejectButton.visible = false
+	$RejectButton.set_process(false)
+	$RejectButton.set_process_input(false)
 	get_parent().shopping = false
+	first_text = false
+	second_text = false
+	close_ready = false
+
+func _on_sea_stone_button_pressed() -> void:
+	if get_parent(). seastones > 0:
+		get_parent().seastones += -1
+		directions()
+		$SeaStoneButton.visible = false
+		$SeaStoneButton.set_process(false)
+		$SeaStoneButton.set_process_input(false)
+		$RejectButton.visible = false
+		$RejectButton.set_process(false)
+		$RejectButton.set_process_input(false)
+		bought = true
+	else:
+		come_back()
+		$SeaStoneButton.visible = false
+		$SeaStoneButton.set_process(false)
+		$SeaStoneButton.set_process_input(false)
+		$RejectButton.visible = false
+		$RejectButton.set_process(false)
+		$RejectButton.set_process_input(false)
+		
+func _on_read_1_timeout() -> void:
+	first_text = true
+
+
+func _on_read_2_timeout() -> void:
+	first_text = false
+	second_text = true
+
+
+func _on_read_3_timeout() -> void:
+	pass
+	
+
+
+func _on_reject_button_pressed() -> void:
+	come_back()
+	$SeaStoneButton.visible = false
+	$SeaStoneButton.set_process(false)
+	$SeaStoneButton.set_process_input(false)
+	$RejectButton.visible = false
+	$RejectButton.set_process(false)
+	$RejectButton.set_process_input(false)

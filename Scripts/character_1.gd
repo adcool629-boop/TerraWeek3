@@ -263,7 +263,15 @@ func _unhandled_input(event: InputEvent) -> void:
 				shopping = true
 				selling = true
 				get_child(15).openinv()
-				
+	if $NI2Detector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $NI2Detector.is_colliding() and  event.is_action_pressed("Interact"):
+			$NI2Dialogue.visible = true
+			$NI2Dialogue.set_process(true)
+			$NI2Dialogue.set_process_input(true)
+			get_child(34).text_one()
+			shopping = true
+		
 	if inv_closed:
 		if event.is_action_pressed('OpenInventory') and inv_closed:
 			$InventoryTimer.start()
@@ -639,6 +647,11 @@ func seastone_add() -> void:
 	seastones += 1
 	get_child(15).add_seastone()
 
+func seastone_decrease() -> void:
+	seastones += -1
+	get_child(15).decrease_seastone()
+	if seastones <= 0:
+		get_child(15).remove_seastone()
 func clownfish_caught() -> void:
 	fish_value = get_child(9).total
 	get_child(15).add_clownfish()

@@ -50,11 +50,11 @@ offset_bottom = 605.0
 text = "Reject"
 
 [node name="Read1" type="Timer" parent="." unique_id=1073710374]
-wait_time = 0.5
+wait_time = 0.1
 one_shot = true
 
 [node name="Read2" type="Timer" parent="." unique_id=562979389]
-wait_time = 0.5
+wait_time = 0.1
 one_shot = true
 
 [node name="Panel" type="Panel" parent="." unique_id=738035454]
@@ -71,3 +71,11 @@ offset_top = 7.0
 offset_right = 45.0
 offset_bottom = 30.0
 text = "Forest Gatekeeper"
+
+[node name="Read3" type="Timer" parent="." unique_id=339563962]
+
+[connection signal="pressed" from="SeaStoneButton" to="." method="_on_sea_stone_button_pressed"]
+[connection signal="pressed" from="RejectButton" to="." method="_on_reject_button_pressed"]
+[connection signal="timeout" from="Read1" to="." method="_on_read_1_timeout"]
+[connection signal="timeout" from="Read2" to="." method="_on_read_2_timeout"]
+[connection signal="timeout" from="Read3" to="." method="_on_read_3_timeout"]

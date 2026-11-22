@@ -8588,6 +8588,10 @@ func add_seastone() -> void:
 		print("X Position is " +str(seastone_positionX))
 		print("Y Position is " +str(seastone_positionY))
 	
+func decrease_seastone() -> void:
+	seastone_amount += -1
+	print(seastone_amount)
+	$Node/SeaStone/Label.text = str(seastone_amount)
 func remove_seastone() -> void:
 	print(seastone_amount)
 	$Node/SeaStone/Label.text = ''
@@ -9179,7 +9183,7 @@ func _on_cf_l_button_pressed() -> void:
 	get_parent().unselect_squid_lure()
 	$BaitSelected.text = "Clownfish Lure Selected"
 	$BaitSelected/BaitSelectedTimer.start()
-	
+	 
 
 func _on_cod_l_button_pressed() -> void:
 	get_parent().select_cod_lure()
@@ -9464,3 +9468,63 @@ func _on_sell_trash_pressed() -> void:
 		MainCharacter.trash += -1
 		$Node/Trash/Label.text = str(TrashBag_amount)
 		get_parent().trash_remove()
+
+
+func _on_sell_s_luck_pressed() -> void:
+	if get_parent().selling and SLuck_amount > 0:
+		MainCharacter.total_coins += 5
+		SLuck_amount += -1
+		get_parent().SLuck += -1
+		if get_parent().SLuck <= 0:
+			get_parent().S_Luck_Potion_remove()
+
+
+func _on_sell_m_luck_pressed() -> void:
+	if get_parent().selling and MLuck_amount > 0:
+		MainCharacter.total_coins += 10
+		MLuck_amount += -1
+		get_parent().MLuck += -1
+		if get_parent().MLuck <= 0:
+			get_parent().M_Luck_Potion_remove()
+
+
+func _on_sell_l_luck_pressed() -> void:
+	if get_parent().selling and LLuck_amount > 0:
+		MainCharacter.total_coins += 20
+		LLuck_amount += -1
+		get_parent().LLuck += -1
+		if get_parent().LLuck <= 0:
+			get_parent().L_Luck_Potion_remove()
+
+
+func _on_sell_apple_pressed() -> void:
+	if get_parent().selling and apple_amount > 0:
+		MainCharacter.total_coins += 1000
+		get_parent().apples_decrease()
+		if get_parent().apples <= 0:
+			get_parent().apples_remove()
+
+
+func _on_sell_bread_pressed() -> void:
+	if get_parent().selling and bread_amount > 0:
+		MainCharacter.total_coins += 2000
+		get_parent().bread_decrease()
+		if get_parent().bread <= 0:
+			get_parent().bread_remove()
+
+
+func _on_sell_cake_pressed() -> void:
+	if get_parent().selling and cake_amount > 0:
+		MainCharacter.total_coins += 5000
+		get_parent().cake_decrease()
+		if get_parent().cake <= 0:
+			get_parent().cake_remove()
+		
+
+
+func _on_seastone_button_pressed() -> void:
+	if get_parent().selling and seastone_amount > 0:
+		MainCharacter.total_coins += 100000
+		get_parent().seastone_decrease()
+		
+		
