@@ -56,7 +56,7 @@ func close_dialogue() -> void:
 func _on_claim_button_pressed() -> void:
 	if get_parent().apples == 0:
 		MainCharacter.store_num += 1
-	for i in range(10):
+	for i in range(3): 
 		get_parent().apples += 1
 		get_parent().apples_add()
 

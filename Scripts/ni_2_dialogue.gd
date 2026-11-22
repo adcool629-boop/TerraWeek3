@@ -89,7 +89,7 @@ func close_dialogue() -> void:
 
 func _on_sea_stone_button_pressed() -> void:
 	if get_parent(). seastones > 0:
-		get_parent().seastones += -1
+		get_parent().seastone_decrease()
 		directions()
 		$SeaStoneButton.visible = false
 		$SeaStoneButton.set_process(false)
@@ -99,6 +99,7 @@ func _on_sea_stone_button_pressed() -> void:
 		$RejectButton.set_process_input(false)
 		bought = true
 		MainCharacter.seastone_given = true
+		MainCharacter.RemoveableFence1.enabled = false
 	else:
 		come_back()
 		$SeaStoneButton.visible = false

@@ -10,6 +10,7 @@ var store_num: int = 0
 var store: int = 0
 var bridge1
 var RemoveableWater1
+var RemoveableFence1
 var InReach: bool = false
 var PickedUp: bool = false
 var AddHunger: bool = false
@@ -29,6 +30,7 @@ func _process(delta: float) -> void:
 func reset_game() -> void:
 	print("restarting")
 	chosen_character = 0
+	character_selected = false
 	fishables = false
 	moveables = true
 	total_coins = 1000000
@@ -37,8 +39,10 @@ func reset_game() -> void:
 	store = 0
 	bridge1
 	RemoveableWater1
+	RemoveableFence1
 	InReach = false
 	PickedUp = false
 	AddHunger = false
 	game_over = false
+	seastone_given = false
 	get_tree().reload_current_scene()

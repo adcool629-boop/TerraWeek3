@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dn3kxk2yhfsxr" path="res://Scenes/first_sell_dialogue.tscn" id="21_nwk00"]
 [ext_resource type="PackedScene" uid="uid://itqupbxfatdb" path="res://Scenes/ni_2_dialogue.tscn" id="22_hj0y6"]
 [ext_resource type="PackedScene" uid="uid://1id6clvb1vt0" path="res://Scenes/stats.tscn" id="23_abnjg"]
+[ext_resource type="PackedScene" uid="uid://7ekpxwtpv0rf" path="res://Scenes/ssnpc.tscn" id="24_ggo03"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t758c"]
 atlas = ExtResource("1_ul2td")
@@ -599,8 +600,8 @@ animations = [{
 size = Vector2(12, 6)
 
 [node name="Character1" type="CharacterBody2D" unique_id=1799181464]
-collision_layer = 33
-collision_mask = 33
+collision_layer = 4129
+collision_mask = 4129
 script = ExtResource("1_j0ejx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=541881872]
@@ -723,6 +724,7 @@ collide_with_areas = true
 [node name="NI2Detector" type="RayCast2D" parent="." unique_id=297462443]
 target_position = Vector2(0, 25)
 collision_mask = 256
+hit_from_inside = true
 collide_with_areas = true
 
 [node name="FirstSellDialogue" parent="." unique_id=1134928323 instance=ExtResource("21_nwk00")]
@@ -734,6 +736,26 @@ one_shot = true
 [node name="NI2Dialogue" parent="." unique_id=986857014 instance=ExtResource("22_hj0y6")]
 
 [node name="Stats" parent="." unique_id=882359280 instance=ExtResource("23_abnjg")]
+
+[node name="SsNpcDetector" type="RayCast2D" parent="." unique_id=281407553]
+target_position = Vector2(0, 25)
+collision_mask = 17408
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="SSNPCDialogue" parent="." unique_id=1457655332 instance=ExtResource("24_ggo03")]
+
+[node name="AxeNPCDetector" type="RayCast2D" parent="." unique_id=266943720]
+target_position = Vector2(0, 25)
+collision_mask = 17408
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="TreeDetector" type="RayCast2D" parent="." unique_id=546865460]
+target_position = Vector2(0, 25)
+collision_mask = 17408
+hit_from_inside = true
+collide_with_areas = true
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

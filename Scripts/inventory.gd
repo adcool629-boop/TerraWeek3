@@ -181,7 +181,8 @@ func _process(delta: float) -> void:
 			$Title.text = "Sell Menu"
 		elif not get_parent().selling:
 			$Title.text = "Inventory"
-	
+	elif not MainCharacter.character_selected:
+		return
 func add_clownfish() -> void:
 	var add_fish = $Node/Clownfish.duplicate()
 	var label = Label.new()

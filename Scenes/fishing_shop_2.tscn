@@ -193,7 +193,41 @@ pitch_scale = 0.94
 stream = ExtResource("5_h5e7x")
 pitch_scale = 0.9
 
+[node name="UseBackground" type="ColorRect" parent="." unique_id=1048886061]
+visible = false
+offset_left = 164.34782
+offset_top = 83.478264
+offset_right = 290.0
+offset_bottom = 202.17395
+color = Color(0.26135683, 0.12473794, 0.0120602185, 1)
+
+[node name="Label" type="Label" parent="UseBackground" unique_id=371244536]
+layout_mode = 0
+offset_right = 123.913055
+offset_bottom = 47.666668
+text = "Would you like to equip Gamblers Rod"
+autowrap_mode = 3
+
+[node name="Yes" type="Button" parent="UseBackground" unique_id=454355884]
+layout_mode = 0
+offset_left = 4.3478394
+offset_top = 82.1739
+offset_right = 47.391327
+offset_bottom = 113.1739
+text = "Yes"
+
+[node name="No" type="Button" parent="UseBackground" unique_id=1511516718]
+layout_mode = 0
+offset_left = 66.52174
+offset_top = 81.30434
+offset_right = 108.260864
+offset_bottom = 112.30434
+text = "No"
+
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="fantasialure/FantasiaLureButton" to="." method="_on_fantasia_lure_button_pressed"]
 [connection signal="pressed" from="squidlure/SquidLureButton" to="." method="_on_squid_lure_button_pressed"]
+[connection signal="pressed" from="GamblersRod/GRodButton" to="." method="_on_g_rod_button_pressed"]
 [connection signal="timeout" from="BuyTimer" to="." method="_on_buy_timer_timeout"]
+[connection signal="pressed" from="UseBackground/Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="UseBackground/No" to="." method="_on_no_pressed"]

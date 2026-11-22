@@ -717,8 +717,11 @@ offset_bottom = 23.0
 theme_override_font_sizes/font_size = 6
 
 [node name="SeastoneButton" type="Button" parent="Node/SeaStone" unique_id=550230821]
-offset_right = 8.0
-offset_bottom = 8.0
+z_index = -1
+offset_left = -10.0
+offset_top = -8.0
+offset_right = 9.0
+offset_bottom = 11.0
 
 [node name="UseBackground" type="ColorRect" parent="." unique_id=1293145264]
 visible = false
@@ -790,34 +793,33 @@ offset_bottom = 629.0
 text = "Unselect All Lure"
 
 [node name="BRod" type="Sprite2D" parent="." unique_id=1182126065]
-position = Vector2(950, 35)
+position = Vector2(437, 606)
 scale = Vector2(3, 3)
 texture = ExtResource("5_k1vlg")
 region_enabled = true
 region_rect = Rect2(0, 0, 15.780075, 16)
 
 [node name="IRod" type="Sprite2D" parent="." unique_id=813819599]
-position = Vector2(950, 35)
+position = Vector2(437, 606)
 scale = Vector2(3, 3)
 texture = ExtResource("5_k1vlg")
 region_enabled = true
 region_rect = Rect2(16.191679, 0, 15.675978, 16)
 
 [node name="ARod" type="Sprite2D" parent="." unique_id=1930074360]
-position = Vector2(950, 35)
+position = Vector2(437, 606)
 scale = Vector2(3, 3)
 texture = ExtResource("5_k1vlg")
 region_enabled = true
 region_rect = Rect2(32.073215, 0, 15.9267845, 16)
 
 [node name="Current Rod" type="Label" parent="." unique_id=2057584141]
-offset_left = 820.0
-offset_top = 24.0
-offset_right = 888.0
-offset_bottom = 47.0
+offset_left = 307.0
+offset_top = 595.0
+offset_right = 406.0
+offset_bottom = 618.0
 theme_override_font_sizes/font_size = 16
 text = "Current Rod:"
-metadata/_edit_lock_ = true
 
 [node name="StatsButton" type="Button" parent="." unique_id=1027858023]
 offset_left = 964.0

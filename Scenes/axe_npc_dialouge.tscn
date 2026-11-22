@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://qetve4b86sg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo6i7"]
+bg_color = Color(0.86166275, 0.4824971, 0.35031402, 1)
+
+[node name="AxeNPCDialouge" type="CanvasLayer" unique_id=470062176]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=883997612]
+offset_left = 142.0
+offset_top = 436.0
+offset_right = 1036.0
+offset_bottom = 613.0
+color = Color(0.6052743, 0.6052743, 0.6052743, 1)
+
+[node name="Text" type="Label" parent="ColorRect" unique_id=1471386962]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = 844.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+autowrap_mode = 3
+
+[node name="Next" type="Label" parent="ColorRect" unique_id=90537733]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 145.0
+offset_right = 879.0
+offset_bottom = 167.33333
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=728283381]
+offset_left = 142.0
+offset_top = 396.0
+offset_right = 338.0
+offset_bottom = 436.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_bo6i7")
+
+[node name="Label" type="Label" parent="Panel" unique_id=1207901123]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 30.0
+text = "Lumberjack"

@@ -30,7 +30,7 @@ position = Vector2(42, 38)
 texture = ExtResource("4_7is8e")
 
 [node name="Timer" type="Timer" parent="." unique_id=1127740718]
-wait_time = 60.0
+wait_time = 30.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1697923169]
 stream = ExtResource("5_x16x5")

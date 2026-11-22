@@ -6,16 +6,13 @@ func _ready() -> void:
 	$Bridge1.visible = false
 	MainCharacter.bridge1 = $Bridge1
 	MainCharacter.RemoveableWater1 = $RemovableWater1
-	
+	MainCharacter.RemoveableFence1 = $RemoveableFence1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if MainCharacter.game_over:
 		get_tree().reload_current_scene()
-	if MainCharacter.seastone_given:
-		$RemoveableFence1.queue_free()
-
 
 
 

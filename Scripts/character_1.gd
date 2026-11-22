@@ -117,6 +117,7 @@ func _process(delta: float) -> void:
 		luck = 0
 		first_time = true
 		first_time_selling = false
+		selling = false
 		#-----------------------------------------------
 		#Baits
 		#-----------------------------------------------
@@ -183,6 +184,7 @@ func process_movement() -> void:
 		$MShopDetector.target_position = direction * 32.0
 		$SellNpcDetector.target_position = direction * 32.0
 		$NI2Detector.target_position = direction * 32.0
+		$SsNpcDetector.target_position = direction * 32.0
 	else:
 		velocity = Vector2.ZERO
 		
@@ -297,9 +299,16 @@ func _unhandled_input(event: InputEvent) -> void:
 			$NI2Dialogue.visible = true
 			$NI2Dialogue.set_process(true)
 			$NI2Dialogue.set_process_input(true)
-			get_child(34).text_one()
+			$NI2Dialogue.text_one()
 			shopping = true
-		
+	if $SsNpcDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $SsNpcDetector.is_colliding() and event.is_action_pressed("Interact"):
+			$SSNPCDialogue.visible = true
+			$SSNPCDialogue.set_process(true)
+			$SSNPCDialogue.set_process_input(true)
+			shopping = true
+			get_child(37).text_one()
 	if inv_closed:
 		if event.is_action_pressed('OpenInventory') and inv_closed:
 			$InventoryTimer.start()

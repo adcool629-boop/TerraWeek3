@@ -207,19 +207,27 @@ text = "Quick Time Events Lost: "
 
 [node name="SCPlayed" type="Label" parent="Reeling" unique_id=1656367601]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 3.0
+offset_top = 200.0
+offset_right = 157.0
+offset_bottom = 223.0
 text = "Skill Checks Played: "
 
 [node name="SCWon" type="Label" parent="Reeling" unique_id=1588603001]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 3.0
+offset_top = 225.0
+offset_right = 43.0
+offset_bottom = 248.0
+text = "Skill Checks Won:"
 
 [node name="SCLost" type="Label" parent="Reeling" unique_id=194589253]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 3.0
+offset_top = 250.0
+offset_right = 130.0
+offset_bottom = 273.0
+text = "Skill Checks Lost: "
 
 [node name="CloseButton" type="Button" parent="." unique_id=27081166]
 offset_left = 447.0
