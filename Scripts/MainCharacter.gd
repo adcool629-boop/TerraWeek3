@@ -6,11 +6,13 @@ var fishables: bool = false
 var moveables: bool = true
 var total_coins: int = 1000000
 var trash: int = 0
+var wood: int = 0
 var store_num: int = 0
 var store: int = 0
 var bridge1
 var RemoveableWater1
 var RemoveableFence1
+var Fence1Access: bool = false
 var InReach: bool = false
 var PickedUp: bool = false
 var AddHunger: bool = false

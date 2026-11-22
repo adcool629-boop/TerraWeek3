@@ -173,6 +173,8 @@ func openinv() -> void:
 		print("Checking a Squid")
 		show_squid()
 	print(store_fish)
+	if get_parent().axe:
+		$Axe.visible = true
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$Coins.text = str(MainCharacter.total_coins)
@@ -9174,7 +9176,7 @@ func _on_close_pressed() -> void:
 		get_parent().selling = false
 		get_parent().shopping = false
 		print("Closing Sell Menu")
-		
+	$Axe.visible = false
 		
 func _on_cf_l_button_pressed() -> void:
 	get_parent().select_clownfish_lure()

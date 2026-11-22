@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cvpm1pqlpanvi" path="res://assets/Foods N Stuff/free_bread_bites/individual_icons/apple.png" id="6_trvqw"]
 [ext_resource type="Texture2D" uid="uid://bl0yo3mm0hx2i" path="res://assets/Foods N Stuff/Free_pixel_food_16x16/Icons/cake_chocolate.png" id="7_aqnmd"]
 [ext_resource type="Texture2D" uid="uid://b5djesbc4iyhm" path="res://assets/Foods N Stuff/free_bread_bites/individual_icons/free_bread_bites_01.png" id="7_o4ksx"]
+[ext_resource type="Texture2D" uid="uid://cf2s6plr0mypj" path="res://assets/padding/64px/black/2-items/axe.png" id="12_bvt08"]
 
 [node name="Inventory" type="CanvasLayer" unique_id=340463798]
 script = ExtResource("1_wdn4f")
@@ -827,6 +828,11 @@ offset_top = 591.0
 offset_right = 1011.0
 offset_bottom = 622.0
 text = "Stats"
+
+[node name="Axe" type="Sprite2D" parent="." unique_id=1055420975]
+visible = false
+position = Vector2(523, 605)
+texture = ExtResource("12_bvt08")
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Node/ClownfishLure/CfLButton" to="." method="_on_cf_l_button_pressed"]

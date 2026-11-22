@@ -27,3 +27,19 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_timer_timeout() -> void:
 	$Area2D.queue_free()
 	print("Message Cleared")
+
+
+func _on_gate_add_body_entered(body: Node2D) -> void:
+	$RemoveableFence1.enabled = true
+	
+	
+
+
+
+		
+
+
+func _on_gate_remove_body_entered(body: Node2D) -> void:
+	if MainCharacter.Fence1Access:
+		$RemoveableFence1.enabled = false
+		MainCharacter.Fence1Access = false

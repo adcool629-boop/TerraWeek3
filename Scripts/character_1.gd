@@ -59,6 +59,7 @@ var fish_value: int
 var IRod: bool = false
 var ARod: bool = false
 var GRod: bool = false
+var axe: bool = false
 
 #-----------------------------------------------
 #Stats
@@ -301,6 +302,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			$NI2Dialogue.set_process_input(true)
 			$NI2Dialogue.text_one()
 			shopping = true
+			
 	if $SsNpcDetector.is_colliding():
 		$ShopHelp.text = ('Press F to Interact')
 		if $SsNpcDetector.is_colliding() and event.is_action_pressed("Interact"):
@@ -309,6 +311,29 @@ func _unhandled_input(event: InputEvent) -> void:
 			$SSNPCDialogue.set_process_input(true)
 			shopping = true
 			get_child(37).text_one()
+			
+	if $AxeNPCDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $AxeNPCDetector.is_colliding() and event.is_action_pressed("Interact"):
+			$AxeNPCDialouge.visible = true 
+			$AxeNPCDialouge.set_process(true)
+			$AxeNPCDialouge.set_process_input(true)
+			$AxeNPCDialouge.text_one()
+			shopping = true
+			$AxeNPCDetector.queue_free()
+			
+	if $GateDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $GateDetector.is_colliding() and MainCharacter.wood >= 50 and event.is_action_pressed("Interact"):
+			MainCharacter.Fence1Access = true
+			MainCharacter.wood += -50
+				
+	if $InfTreeDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $InfTreeDetector.is_colliding() and event.is_action_pressed("Interact"):
+			MainCharacter.wood += 2
+			
+			
 	if inv_closed:
 		if event.is_action_pressed('OpenInventory') and inv_closed:
 			$InventoryTimer.start()
@@ -736,3 +761,7 @@ func show_stats() -> void:
 func hide_stats() -> void:
 	$Stats.visible = false
 	get_child(15).openinv()
+
+func add_axe () -> void:
+	axe = true
+	$TreeDetector.enabled = true

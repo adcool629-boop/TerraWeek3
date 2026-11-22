@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://qetve4b86sg"]
 
+[ext_resource type="Script" uid="uid://guiit7py4eg8" path="res://Scenes/axe_npc_dialouge.gd" id="1_it8x3"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo6i7"]
 bg_color = Color(0.86166275, 0.4824971, 0.35031402, 1)
 
 [node name="AxeNPCDialouge" type="CanvasLayer" unique_id=470062176]
+script = ExtResource("1_it8x3")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=883997612]
 offset_left = 142.0
@@ -45,3 +48,12 @@ offset_top = 7.0
 offset_right = 45.0
 offset_bottom = 30.0
 text = "Lumberjack"
+
+[node name="TakeAxe" type="Button" parent="." unique_id=1207519502]
+offset_left = 1035.0
+offset_top = 435.0
+offset_right = 1134.0
+offset_bottom = 477.0
+text = "Take Axe"
+
+[connection signal="pressed" from="TakeAxe" to="." method="_on_take_axe_pressed"]

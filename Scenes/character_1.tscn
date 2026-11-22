@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://itqupbxfatdb" path="res://Scenes/ni_2_dialogue.tscn" id="22_hj0y6"]
 [ext_resource type="PackedScene" uid="uid://1id6clvb1vt0" path="res://Scenes/stats.tscn" id="23_abnjg"]
 [ext_resource type="PackedScene" uid="uid://7ekpxwtpv0rf" path="res://Scenes/ssnpc.tscn" id="24_ggo03"]
+[ext_resource type="PackedScene" uid="uid://qetve4b86sg" path="res://Scenes/axe_npc_dialouge.tscn" id="25_m2mjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t758c"]
 atlas = ExtResource("1_ul2td")
@@ -739,7 +740,7 @@ one_shot = true
 
 [node name="SsNpcDetector" type="RayCast2D" parent="." unique_id=281407553]
 target_position = Vector2(0, 25)
-collision_mask = 17408
+collision_mask = 1024
 hit_from_inside = true
 collide_with_areas = true
 
@@ -747,13 +748,22 @@ collide_with_areas = true
 
 [node name="AxeNPCDetector" type="RayCast2D" parent="." unique_id=266943720]
 target_position = Vector2(0, 25)
-collision_mask = 17408
+collision_mask = 512
 hit_from_inside = true
 collide_with_areas = true
 
-[node name="TreeDetector" type="RayCast2D" parent="." unique_id=546865460]
+[node name="InfTreeDetector" type="RayCast2D" parent="." unique_id=546865460]
+enabled = false
 target_position = Vector2(0, 25)
-collision_mask = 17408
+collision_mask = 8192
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="AxeNPCDialouge" parent="." unique_id=470062176 instance=ExtResource("25_m2mjm")]
+
+[node name="GateDetector" type="RayCast2D" parent="." unique_id=107285781]
+target_position = Vector2(0, 25)
+collision_mask = 2048
 hit_from_inside = true
 collide_with_areas = true
 
