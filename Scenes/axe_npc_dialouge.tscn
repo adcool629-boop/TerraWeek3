@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://qetve4b86sg"]
 
-[ext_resource type="Script" uid="uid://guiit7py4eg8" path="res://Scenes/axe_npc_dialouge.gd" id="1_it8x3"]
+[ext_resource type="Script" uid="uid://guiit7py4eg8" path="res://Scripts/axe_npc_dialouge.gd" id="1_it8x3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bo6i7"]
 bg_color = Color(0.86166275, 0.4824971, 0.35031402, 1)

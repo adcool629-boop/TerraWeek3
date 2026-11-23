@@ -512,8 +512,9 @@ func _on_fish_hooked_timer_timeout() -> void:
 #-----------------------------------------------
 func clownfish_lure_add() -> void:
 	print(CfL_amount)
-	if CfL_amount > 0:
-		get_child(15).add_clownfish_lure()
+	if CfL_amount == 1:
+		MainCharacter.store_num += 1
+	get_child(15).add_clownfish_lure()
 func clownfish_lure_decrease() -> void:
 	get_child(15).decrease_clownfish_lure()
 func clownfish_lure_remove() -> void:
@@ -526,8 +527,9 @@ func unselect_clownfish_lure() -> void:
 	get_child(9).clownfish_lure = false
 	
 func cod_lure_add() -> void:
-	if CodL_amount > 0:
-		get_child(15).add_cod_lure()
+	if CodL_amount == 1:
+		MainCharacter.store_num += 1
+	get_child(15).add_cod_lure()
 func cod_lure_decrease() -> void:
 	get_child(15).decrease_cod_lure()
 func cod_lure_remove() -> void:
@@ -540,8 +542,9 @@ func unselect_cod_lure() -> void:
 	get_child(9).cod_lure = false
 	
 func goldfish_lure_add() -> void:
-	if GfL_amount > 0:
-		get_child(15).add_goldfish_lure()
+	if GfL_amount == 1:
+		MainCharacter.store_num += 1
+	get_child(15).add_goldfish_lure()
 func goldfish_lure_decrease() -> void:
 	get_child(15).decrease_goldfish_lure()
 func goldfish_lure_remove() -> void:
@@ -554,10 +557,12 @@ func unselect_goldfish_lure() -> void:
 	get_child(9).goldfish_lure = false
 	
 func fc_lure_add() -> void:
-	if FC_amount > 0:
-		get_child(15).add_fc_lure() 
+	if FC_amount == 1:
+		MainCharacter.store_num += 1
+	get_child(15).add_fc_lure() 
 func fc_decrease() -> void:
 	get_child(15).decrease_fc()
+	
 func fc_lure_remove() -> void:
 	if FC_amount == 0:
 		MainCharacter.store_num += -1
@@ -646,6 +651,8 @@ func apples_remove() -> void:
 		MainCharacter.store_num += -1
 		
 func fanta_lure_add() -> void:
+	if fanta_amount == 1:
+		MainCharacter.store_num += 1
 	get_child(15).add_fanta_lure()
 	
 func fanta_lure_remove() -> void:
@@ -664,6 +671,8 @@ func unselect_fanta_lure() -> void:
 	get_child(9).fanta_lure = false
 	
 func squid_lure_add() -> void:
+	if squid_amount == 1:
+		MainCharacter.store_num += 1
 	get_child(15).add_squid_lure()
 
 func squid_lure_remove() -> void:
@@ -765,3 +774,7 @@ func hide_stats() -> void:
 func add_axe () -> void:
 	axe = true
 	$TreeDetector.enabled = true
+
+func ship_add() -> void:
+	MainCharacter.store_num += 1
+	get_child(15).add_ship()

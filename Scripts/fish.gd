@@ -26,15 +26,61 @@ func _ready() -> void:
 	$Fantasia.visible = false
 	$Squid.visible = false
 	$SeaStone.visible = false
+	$AlienShip.visible = false
+	$Ghost.visible = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 func pick_fish() -> void:
-	var pick = randf()
+	var pick = snappedf(randf(),0.01)
+	print(pick)
+	#-----------------------------------------------------------------------------------------------------------------------------
+	#------------------------------------GAMBLERS ROD-------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------------------------------------------
+	if get_parent().GRod:
+		if  pick < 0.1:
+			print("100,000 Coins")
+			$Label.text = "You got 100,000 Coins!"
+			MainCharacter.total_coins += 100000
+		if pick > 0.1 and pick < 0.2:
+			print("Alien Ship")
+			$Label.text = "You got an Alien Ship"
+			ship_picked()
+			$AlienShip.visible = true
+			$ShowFish.start()
+		if pick > 0.2 and pick < 0.4:
+			$SeaStone.visible = true
+			$ShowFish.start()
+			seastone_picked()
+			print("Seastone picked")
+			$Label.text = "Seastone picked"
+		if pick > 0.4 and pick < 0.5:
+			$ShowFish.start()
+			print("A ghost took half of your coins")
+			$Label.text = 'You caught a GHOST!!!'
+			$RareCatch.text = 'Unlucky Catch'
+			MainCharacter.total_coins = MainCharacter.total_coins / 2
+			$Ghost.visible = true
+		if pick > 0.5 and pick < 0.6:
+			$Label.text = "You got ONE of each kind of bait"
+			get_parent().CfL_amount += 1
+			get_parent().clownfish_lure_add()
+			get_parent().CodL_amount += 1
+			get_parent().cod_lure_add()
+			get_parent().GfL_amount += 1
+			get_parent().goldfish_lure_add()
+			get_parent().FC_anount += 1
+			get_parent().FC_lure_add
+			get_parent().fanta_amount += 1
+			get_parent().fanta_lure_add()
+			get_parent().squid_amount += 1
+			get_parent().squid_lure_add()
+			
+		
 	#-----------------------------------------------------------------------------------------------------------------------------
 	#------------------------------------Intermediate Rod-------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------------------------------------
-	if get_parent().IRod:
+	elif get_parent().IRod:
 		if get_parent().CfL_amount > 0 and clownfish_lure:
 			get_parent().CfL_amount += -1
 			get_parent().clownfish_lure_decrease()
@@ -737,6 +783,8 @@ func _on_show_fish_timeout() -> void:
 	$Fantasia.visible = false
 	$Squid.visible = false
 	$SeaStone.visible = false
+	$AlienShip.visible = false
+	$Ghost.visible = false
 	$Label.text = ('')
 	$RareCatch.text = ""
 func clownfish_picked() -> void:
@@ -1026,7 +1074,9 @@ func squid_picked() -> void:
 	get_parent().squid_caught()
 	get_parent().squids_caught += 1
 	total = 0
-	
+
+func ship_picked() -> void:
+	get_parent().ship_add()
 func seastone_picked() -> void:
 	get_parent().seastone_add()
 	get_parent().seastone += 1

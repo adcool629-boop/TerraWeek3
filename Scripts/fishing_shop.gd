@@ -26,11 +26,9 @@ func _on_clownfish_button_pressed() -> void:
 	if MainCharacter.total_coins >= 200:
 		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 200
-		if get_parent().CfL_amount == 0:
-			MainCharacter.store_num += 1
+
 		get_parent().CfL_amount += 1
-		if get_parent().CfL_amount > 0:
-			get_parent().clownfish_lure_add()
+		get_parent().clownfish_lure_add()
 		
 		print("Clownfish Lure Bought")
 		$BuyMessage.text = ("Clownfish Lure Bought")
@@ -46,11 +44,8 @@ func _on_cod_button_pressed() -> void:
 	if MainCharacter.total_coins >= 300:
 		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 300
-		if get_parent().CodL_amount == 0:
-			MainCharacter.store_num += 1
 		get_parent().CodL_amount += 1
-		if get_parent().CodL_amount > 0:
-			get_parent().cod_lure_add()
+		get_parent().cod_lure_add()
 		
 		print("Cod Lure Bought")
 		$BuyMessage.text = ("Cod Lure Bought")
@@ -66,11 +61,8 @@ func _on_goldfish_button_pressed() -> void:
 	if MainCharacter.total_coins >= 150:
 		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 150
-		if get_parent().GfL_amount == 0:
-			MainCharacter.store_num += 1
 		get_parent().GfL_amount += 1
-		if get_parent().GfL_amount > 0:
-			get_parent().goldfish_lure_add()
+		get_parent().goldfish_lure_add()
 		
 		print("Goldfish Lure Bought")
 		$BuyMessage.text = ("Goldfish Lure Bought")
@@ -86,11 +78,8 @@ func _on_fat_chance_button_pressed() -> void:
 	if MainCharacter.total_coins >= 500:
 		$Purchase.playing = true
 		MainCharacter.total_coins = MainCharacter.total_coins - 500
-		if get_parent().FC_amount == 0:
-			MainCharacter.store_num += 1
 		get_parent().FC_amount += 1
-		if get_parent().FC_amount > 0:
-			get_parent().fc_lure_add()
+		get_parent().fc_lure_add()
 		
 		print("FatChance Bait Bought")
 		$BuyMessage.text = ("FatChance Bait Bought")

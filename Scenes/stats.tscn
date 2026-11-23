@@ -237,4 +237,36 @@ offset_bottom = 601.0
 theme_override_font_sizes/font_size = 24
 text = "Close"
 
+[node name="Wealth" type="Label" parent="." unique_id=58293615]
+offset_left = 350.0
+offset_top = 325.0
+offset_right = 460.0
+offset_bottom = 370.0
+theme_override_font_sizes/font_size = 32
+text = "Wealth"
+
+[node name="Coins" type="Label" parent="Wealth" unique_id=1213373242]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 50.0
+offset_right = 133.0
+offset_bottom = 75.0
+text = "Coins Amassed:  "
+
+[node name="Trash" type="Label" parent="Wealth" unique_id=1237209584]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 75.0
+offset_right = 131.0
+offset_bottom = 100.0
+text = "Trash Collected: "
+
+[node name="Wood" type="Label" parent="Wealth" unique_id=997544085]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 100.0
+offset_right = 140.0
+offset_bottom = 125.0
+text = "Wood Harvested: "
+
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

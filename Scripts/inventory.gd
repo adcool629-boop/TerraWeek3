@@ -9,7 +9,7 @@ var sf_num: int = 1
 var bg_num: int = 1
 var fanta_num: int = 1
 var squid_num: int = 1
-
+var ship_num: int = 1
 
 #----Lures-----
 var ClownfishLure_amount: int = 0
@@ -82,6 +82,7 @@ var has_skullfish: bool = false
 var has_bluegill: bool = false
 var has_fantasia: bool = false
 var has_squid: bool = false
+var has_ship: bool = false
 
 #-----------------
 #Add Fish
@@ -185,6 +186,51 @@ func _process(delta: float) -> void:
 			$Title.text = "Inventory"
 	elif not MainCharacter.character_selected:
 		return
+		
+func add_ship() -> void:
+	var add_ship = $Node/Ship.duplicate()
+	var ship_name = "Ship" +str(ship_num)
+	var ShipY = "Ship" +str(ship_num) + "Y"
+	var ShipX = "Ship" +str(ship_num) + "X"
+	var ShipPX: int
+	var ShipPY: int
+	
+	has_ship = true
+	print("Ship added")
+	$Node.add_child(add_ship)
+	store_fish[ship_name] = add_ship
+	ship_num += 1
+	
+	if MainCharacter.store_num > 0 and MainCharacter.store_num < 8 :
+		store_fish[ship_name].position.x = (MainCharacter.store_num) * 125 + 75
+		ShipPX = (MainCharacter.store_num) * 125 + 75
+		store_fish[ship_name].position.y = 100
+		ShipPY = 100
+		print("adding clownfish to row 1")
+	elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
+		store_fish[ship_name].position.x = (MainCharacter.store_num) * 125 - 800
+		ShipPX = (MainCharacter.store_num) * 125 - 800
+		store_fish[ship_name].position.y = 250
+		ShipPY = 250
+		print("adding clownfish to row 2")
+	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
+		store_fish[ship_name].position.x = (MainCharacter.store_num) * 125 - 1675
+		ShipPX = (MainCharacter.store_num) * 125 - 1675
+		store_fish[ship_name].position.y = 385
+		ShipPY = 385
+		print("adding clownfish to row 3")
+	elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
+		store_fish[ship_name].position.x = (MainCharacter.store_num) * 125 - 2500
+		ShipPX = (MainCharacter.store_num) * 125 - 2550
+		store_fish[ship_name].position.y = 530
+		ShipPY = 530
+		print("adding clownfish to row 4")
+	store_fish[ShipX] = ShipPX
+	store_fish[ShipY] = ShipPY
+	print(store_fish[ship_name])
+	print(store_fish[ShipX])
+	print(store_fish[ShipY])
+	
 func add_clownfish() -> void:
 	var add_fish = $Node/Clownfish.duplicate()
 	var label = Label.new()
@@ -815,6 +861,40 @@ func fish_move_back(clownfish: String, ClownfishXP: int, ClownfishYP) -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > clownfishX and store_fish[ship_moveY] >= clownfishY or (store_fish[ship_moveY] > clownfishY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > clownfishY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > clownfishY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > clownfishY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
 func add_cod() -> void:
 	var add_fish = $Node/Cod.duplicate()
 	var label = Label.new()
@@ -1865,6 +1945,41 @@ func clownfish_lure_move_back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > CfL_positionX and store_fish[ship_moveY] >= CfL_positionY or (store_fish[ship_moveY] > CfL_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > CfL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > CfL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > CfL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
+	
 func add_cod_lure() -> void:
 	CodLure_amount += 1
 	print(CodLure_amount)
@@ -2423,6 +2538,41 @@ func cod_lure_move_back() -> void:
 				store_fish[squid_moveY] = 385
 		squid_move_num += 1
 	squid_move_num = 1
+	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > CodL_positionX and store_fish[ship_moveY] >= CodL_positionY or (store_fish[ship_moveY] > CodL_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > CodL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > CodL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > CodL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
 	
 func add_goldfish_lure() -> void:
 	GoldfishLure_amount += 1
@@ -2984,6 +3134,41 @@ func goldfish_lure_move_back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > GfL_positionX and store_fish[ship_moveY] >= GfL_positionY or (store_fish[ship_moveY] > GfL_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > GfL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > GfL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > GfL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
+	
 func add_fc_lure() -> void:
 	FatChanceLure_amount += 1
 	print(FatChanceLure_amount)
@@ -3544,6 +3729,40 @@ func fc_move_back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > FC_positionX and store_fish[ship_moveY] >= FC_positionY or (store_fish[ship_moveY] > FC_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > FC_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > FC_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > FC_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
 	
 func add_trash() -> void:
 	TrashBag_amount += 100
@@ -4101,6 +4320,41 @@ func trash_move_back() -> void:
 				store_fish[squid_moveY] = 385
 		squid_move_num += 1
 	squid_move_num = 1
+	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > Trash_positionX and store_fish[ship_moveY] >= Trash_positionY or (store_fish[ship_moveY] > Trash_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > Trash_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > Trash_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > Trash_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
 	
 func update_trash() -> void:
 	TrashBag_amount += -1
@@ -4664,6 +4918,41 @@ func S_Luck_Potion_Move_Back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > SLuck_positionX and store_fish[ship_moveY] >= SLuck_positionY or (store_fish[ship_moveY] > SLuck_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > SLuck_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > SLuck_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > SLuck_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
+	
 func add_M_Luck_Potion() -> void:
 	MLuck_amount += 1
 	print(MLuck_amount)
@@ -5217,6 +5506,41 @@ func M_Luck_Potion_Move_Back() -> void:
 				store_fish[squid_moveY] = 385
 		squid_move_num += 1
 	squid_move_num = 1
+	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > MLuck_positionX and store_fish[ship_moveY] >= MLuck_positionY or (store_fish[ship_moveY] > MLuck_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > MLuck_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > MLuck_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > MLuck_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
 	
 func add_L_Luck_Potion() -> void:
 	LLuck_amount += 1
@@ -5773,7 +6097,41 @@ func L_Luck_Potion_Move_Back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
-
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > LLuck_positionX and store_fish[ship_moveY] >= LLuck_positionY or (store_fish[ship_moveY] > LLuck_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > LLuck_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > LLuck_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > LLuck_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
+	
 func add_apple() -> void:
 	apple_amount += 1
 	print(apple_amount)
@@ -6332,7 +6690,41 @@ func apple_move_back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
-
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > Apple_positionX and store_fish[ship_moveY] >= Apple_positionY or (store_fish[ship_moveY] > Apple_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > Apple_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > Apple_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > Apple_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
+	
 func add_fanta_lure() -> void:
 	fantalure_amount += 1
 	print(fantalure_amount)
@@ -6891,7 +7283,41 @@ func fantasia_move_back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
-
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > FantaL_positionX and store_fish[ship_moveY] >= FantaL_positionY or (store_fish[ship_moveY] > FantaL_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > FantaL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > FantaL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > FantaL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
+	
 func add_squid_lure() -> void:
 	squidlure_amount += 1
 	print(squidlure_amount)
@@ -7451,7 +7877,41 @@ func squid_move_back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
-
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > SquidL_positionX and store_fish[ship_moveY] >= SquidL_positionY or (store_fish[ship_moveY] > SquidL_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > SquidL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > SquidL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > SquidL_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
+	
 func add_bread() -> void:
 	bread_amount += 1
 	print(bread_amount)
@@ -8009,6 +8469,41 @@ func bread_move_back() -> void:
 				store_fish[squid_moveY] = 385
 		squid_move_num += 1
 	squid_move_num = 1
+	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > bread_positionX and store_fish[ship_moveY] >= bread_positionY or (store_fish[ship_moveY] > bread_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > bread_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > bread_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > bread_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
 	
 func add_cake() -> void:
 	cake_amount += 1
@@ -8568,6 +9063,40 @@ func cake_move_back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > cake_positionX and store_fish[ship_moveY] >= cake_positionY or (store_fish[ship_moveY] > cake_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > cake_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > cake_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > cake_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
 	
 func add_seastone() -> void:
 	seastone_amount += 1
@@ -9126,6 +9655,40 @@ func seastone_move_back() -> void:
 		squid_move_num += 1
 	squid_move_num = 1
 	
+	var ship_move_num: int  = 1
+	var ship_move: String
+	var ship_moveX: String
+	var ship_moveY: String
+	for i in range(28):
+		ship_move = "ship" +str(ship_move_num)
+		ship_moveX = "ship" +str(ship_move_num) + "X"
+		ship_moveY = "ship" +str(ship_move_num) + "Y"
+		if store_fish.has(ship_move) and is_instance_valid(store_fish[ship_move]):
+			if store_fish[ship_moveX] > seastone_positionX and store_fish[ship_moveY] >= seastone_positionY or (store_fish[ship_moveY] > seastone_positionY and store_fish[ship_moveX] != 200):
+				store_fish[ship_move].position.x = store_fish[ship_moveX] - 125
+				store_fish[ship_moveX] = store_fish[ship_moveX] -125
+				print("decreasing ship position")
+			elif store_fish[ship_moveY] > seastone_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 250:
+				store_fish[ship_move].position.x = 950
+				print(store_fish[ship_move].position.x)
+				store_fish[ship_moveX] = 950
+				print(store_fish[ship_moveX])
+				store_fish[ship_move].position.y = 100
+				print(store_fish[ship_move].position.y)
+				store_fish[ship_moveY] = 100
+				print(store_fish[ship_moveY])
+			elif store_fish[ship_moveY] > seastone_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 385:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 250
+				store_fish[ship_moveY] = 250
+			elif store_fish[ship_moveY] > seastone_positionY and store_fish[ship_moveX] == 200 and store_fish[ship_moveY] == 530:
+				store_fish[ship_move].position.x = 950
+				store_fish[ship_moveX] = 950
+				store_fish[ship_move].position.y = 385
+				store_fish[ship_moveY] = 385
+		ship_move_num += 1
+	ship_move_num = 1
 	
 func _on_close_pressed() -> void:
 	$".".visible = false

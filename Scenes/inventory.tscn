@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cvpm1pqlpanvi" path="res://assets/Foods N Stuff/free_bread_bites/individual_icons/apple.png" id="6_trvqw"]
 [ext_resource type="Texture2D" uid="uid://bl0yo3mm0hx2i" path="res://assets/Foods N Stuff/Free_pixel_food_16x16/Icons/cake_chocolate.png" id="7_aqnmd"]
 [ext_resource type="Texture2D" uid="uid://b5djesbc4iyhm" path="res://assets/Foods N Stuff/free_bread_bites/individual_icons/free_bread_bites_01.png" id="7_o4ksx"]
+[ext_resource type="Texture2D" uid="uid://ci3yew0r0thib" path="res://assets/Nautolan Ship - Dreadnought - Base.png" id="10_mgnjo"]
 [ext_resource type="Texture2D" uid="uid://cf2s6plr0mypj" path="res://assets/padding/64px/black/2-items/axe.png" id="12_bvt08"]
 
 [node name="Inventory" type="CanvasLayer" unique_id=340463798]
@@ -724,6 +725,9 @@ offset_top = -8.0
 offset_right = 9.0
 offset_bottom = 11.0
 
+[node name="Ship" type="Sprite2D" parent="Node" unique_id=1643748202]
+texture = ExtResource("10_mgnjo")
+
 [node name="UseBackground" type="ColorRect" parent="." unique_id=1293145264]
 visible = false
 offset_left = 400.0
@@ -830,7 +834,6 @@ offset_bottom = 622.0
 text = "Stats"
 
 [node name="Axe" type="Sprite2D" parent="." unique_id=1055420975]
-visible = false
 position = Vector2(523, 605)
 texture = ExtResource("12_bvt08")
 
