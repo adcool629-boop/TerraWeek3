@@ -748,7 +748,7 @@ collide_with_areas = true
 
 [node name="AxeNPCDetector" type="RayCast2D" parent="." unique_id=266943720]
 target_position = Vector2(0, 25)
-collision_mask = 512
+collision_mask = 65536
 hit_from_inside = true
 collide_with_areas = true
 

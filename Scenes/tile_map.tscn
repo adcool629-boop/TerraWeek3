@@ -16976,6 +16976,8 @@ collision_mask = 5120
 
 [node name="AxeNPC" parent="Npcs" unique_id=89601605 instance=ExtResource("42_wap7n")]
 position = Vector2(-9202, 3718)
+collision_layer = 65536
+collision_mask = 1
 
 [node name="NI3_NPC" type="Area2D" parent="Npcs" unique_id=1186819035]
 position = Vector2(-9750, 4280)
