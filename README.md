@@ -27,9 +27,10 @@ Upgrade your rod
 More will be added later
 Enjoy the Game!
 Since this is to let people test the game everyone has plenty of coins and trash bag rates are multiplied by 100
-----------------------
-Inputs and controls
-----------------------
+--------------------------------------------
+Inputs and controls and How to play
+--------------------------------------------
+When you first load in you must pick a character (The first one is most recommended as it is the most updated one while the other 5 are slightly not as updated)
 W - moves the player up
 A - moves the player left
 S - moves the player down
