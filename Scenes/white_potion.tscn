@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dridmknrd5mdl"]
+
+[ext_resource type="Texture2D" uid="uid://dbnw4fb08l7d3" path="res://assets/fishing_free/780a08ef-2362-44d5-a58e-5755dcb82d78.png" id="1_a1exx"]
+[ext_resource type="Texture2D" uid="uid://wd7dkvp0bgr3" path="res://assets/fishing_free/76634276-f667-45b1-86e5-afcb06f4bc28.png" id="2_x85da"]
+[ext_resource type="Texture2D" uid="uid://do0xcdtlhv5se" path="res://assets/Tiny Coast Pack/Other/FishIcons_n_junk_16x16.png" id="3_7dm0l"]
+
+[node name="WhitePotion" type="Node2D" unique_id=1880866678]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2087419410]
+light_mask = 3
+offset_left = -61.0
+offset_top = -55.0
+offset_right = 61.0
+offset_bottom = 55.0
+texture = ExtResource("1_a1exx")
+expand_mode = 1
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1958916259]
+scale = Vector2(0.1, 0.1)
+energy = 7.0
+blend_mode = 2
+texture = ExtResource("2_x85da")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1549358218]
+light_mask = 2
+position = Vector2(0, 1)
+texture = ExtResource("3_7dm0l")
+region_enabled = true
+region_rect = Rect2(-0.19456863, 31.205643, 16.086456, 16.560638)

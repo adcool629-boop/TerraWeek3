@@ -773,6 +773,12 @@ collision_mask = 16384
 hit_from_inside = true
 collide_with_areas = true
 
+[node name="NI3_NPCDetector" type="RayCast2D" parent="." unique_id=1773633389]
+target_position = Vector2(0, 25)
+collision_mask = 32768
+hit_from_inside = true
+collide_with_areas = true
+
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="FishHooked/FishHookedTimer" to="." method="_on_fish_hooked_timer_timeout"]

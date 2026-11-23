@@ -434,6 +434,10 @@ func wait_time() -> void:
 	else:
 		$WaitTimer.wait_time = waiting
 		$WaitTimer.start()
+	if waiting > MainCharacter.longest_wait:
+		MainCharacter.longest_wait = waiting
+	if waiting < MainCharacter.shortest_wait:
+		MainCharacter.shortest_wait = waiting
 	time = waiting + time 
 func _on_wait_timer_timeout() -> void:
 	print("Mini-Game Start")

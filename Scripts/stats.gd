@@ -57,6 +57,14 @@ func _process(delta: float) -> void:
 	$Consumables/Bread.text = "Bread Eaten: " +str(get_parent().bread_eaten)
 	$Consumables/Cake.text = "Cake Eaten: " +str(get_parent().cake_eaten)
 	
+	#------------------RECORDS-------------------------
+	$Records/HeaviestFish.text = "Heaviest Fish: " +str(MainCharacter.heaviest)
+	$Records/LightestFish.text = "Lightest Fish: " +str(MainCharacter.lightest)
+	$Records/MostExpensive.text = "Most Valuable Fish: " +str(MainCharacter.most_value)
+	$Records/Cheapest.text = "Least Valuable Fish: " +str(MainCharacter.least_value)
+	$"Records/Longest Wait".text = "Longest Wait: " +str(MainCharacter.longest_wait)
+	$"Records/Shortest Wait".text = "Shortest Wait: " +str(MainCharacter.shortest_wait)
+	
 	
 func _on_close_button_pressed() -> void:
 	get_parent().hide_stats()

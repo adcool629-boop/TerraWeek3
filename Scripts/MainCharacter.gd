@@ -20,6 +20,12 @@ var AddHunger: bool = false
 var game_over: bool = false
 var seastone_given: bool = false
 var openchest: bool = false
+var heaviest: int = 0
+var lightest: int = 10000
+var most_value: int = 0
+var least_value: int = 1000
+var longest_wait: int = 0
+var shortest_wait: int = 20
 #--------------STATS----------
 var coins: int = 0
 var total_trash: int = 0

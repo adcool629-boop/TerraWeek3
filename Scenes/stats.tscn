@@ -365,6 +365,61 @@ offset_right = 98.0
 offset_bottom = 350.0
 text = "Cake Eaten: "
 
+[node name="Records" type="Label" parent="." unique_id=893743598]
+offset_left = 644.0
+offset_top = 376.0
+offset_right = 768.0
+offset_bottom = 420.6667
+theme_override_font_sizes/font_size = 32
+text = "Records"
+
+[node name="HeaviestFish" type="Label" parent="Records" unique_id=1135121468]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 50.0
+offset_bottom = 73.0
+text = "Heaviest Fish: "
+
+[node name="LightestFish" type="Label" parent="Records" unique_id=1454392334]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 50.0
+offset_right = 277.0
+offset_bottom = 73.0
+text = "Lightest Fish: "
+
+[node name="MostExpensive" type="Label" parent="Records" unique_id=164036864]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 75.0
+offset_right = 114.0
+offset_bottom = 98.0
+text = "Most Valuable Fish: "
+
+[node name="Cheapest" type="Label" parent="Records" unique_id=1673427930]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 75.0
+offset_right = 327.0
+offset_bottom = 98.0
+text = "Least Valuable Fish:"
+
+[node name="Longest Wait" type="Label" parent="Records" unique_id=1119900044]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 100.0
+offset_right = 65.0
+offset_bottom = 123.0
+text = "Longest Wait: "
+
+[node name="Shortest Wait" type="Label" parent="Records" unique_id=203725229]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 100.0
+offset_right = 289.0
+offset_bottom = 123.0
+text = "Shortest Wait: "
+
 [node name="CloseButton" type="Button" parent="." unique_id=27081166]
 offset_left = 447.0
 offset_top = 558.0

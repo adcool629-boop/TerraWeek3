@@ -710,6 +710,8 @@ parameters/looping = true
 target_position = Vector2(0, 25)
 collision_mask = 128
 
+[node name="FoodMarket" parent="." unique_id=847863486 instance=ExtResource("20_gfui2")]
+
 [node name="SellNpcDetector" type="RayCast2D" parent="." unique_id=289108242]
 target_position = Vector2(0, 25)
 collision_mask = 512
@@ -759,8 +761,6 @@ target_position = Vector2(0, 25)
 collision_mask = 2048
 hit_from_inside = true
 collide_with_areas = true
-
-[node name="FoodMarket" parent="." unique_id=847863486 instance=ExtResource("20_gfui2")]
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]

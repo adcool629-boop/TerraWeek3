@@ -11,6 +11,6 @@ script = ExtResource("1_344ge")
 position = Vector2(512, -3102.0002)
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=2022104962]
-position = Vector2(-2262, 2306)
+position = Vector2(-8, -9)
 
 [node name="TileMap" parent="." unique_id=796577746 instance=ExtResource("4_jjvhh")]

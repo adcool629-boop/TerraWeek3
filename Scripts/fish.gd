@@ -49,6 +49,7 @@ func pick_fish() -> void:
 			print("100,000 Coins")
 			$Label.text = "You got 100,000 Coins!"
 			MainCharacter.total_coins += 100000
+			MainCharacter.coins += 100000
 		if pick > 0.1 and pick < 0.2:
 			print("Alien Ship")
 			$Label.text = "You got an Alien Ship"
@@ -87,6 +88,13 @@ func pick_fish() -> void:
 			$Label.text = 'YOU LOSE!'
 			$RareCatch.text = "a little bit of LUCK would've prevented this"
 			$GameOverTimer.start()
+		if pick > 0.6 and pick < 0.8:
+			print("you got 5 ALIEN SHIPS!!!!")
+			for i in range(5):
+				$Label.text = "You got an Alien Ship"
+				ship_picked()
+				$AlienShip.visible = true
+				$ShowFish.start()
 	#-----------------------------------------------------------------------------------------------------------------------------
 	#------------------------------------Intermediate Rod-------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------------------------------------
@@ -844,6 +852,14 @@ func clownfish_picked() -> void:
 	print("Clownfish Caught")
 	print(total)
 	total = roundi(total)
+	if weight > MainCharacter.heaviest:
+		MainCharacter.heaviest = weight
+	if weight < MainCharacter.lightest:
+		MainCharacter.lightest = weight
+	if total > MainCharacter.most_value:
+		MainCharacter.most_value = total
+	if total < MainCharacter.least_value:
+		MainCharacter.least_value = total
 	MainCharacter.store_num += 1
 	get_parent().clownfish_caught()
 	get_parent().cf_caught += 1
@@ -887,6 +903,14 @@ func cod_picked() -> void:
 			total = cod_base * weight * 0.5
 	print('Cod Caught')
 	print(total)
+	if weight > MainCharacter.heaviest:
+		MainCharacter.heaviest = weight
+	if weight < MainCharacter.lightest:
+		MainCharacter.lightest = weight
+	if total > MainCharacter.most_value:
+		MainCharacter.most_value = total
+	if total < MainCharacter.least_value:
+		MainCharacter.least_value = total
 	MainCharacter.store_num += 1
 	get_parent().cod_caught()
 	get_parent().cods_caught += 1
@@ -930,6 +954,14 @@ func goldfish_picked() -> void:
 			total = goldfish_base * weight * 0.5
 	print('Goldfish Caught')
 	print(total)
+	if weight > MainCharacter.heaviest:
+		MainCharacter.heaviest = weight
+	if weight < MainCharacter.lightest:
+		MainCharacter.lightest = weight
+	if total > MainCharacter.most_value:
+		MainCharacter.most_value = total
+	if total < MainCharacter.least_value:
+		MainCharacter.least_value = total
 	MainCharacter.store_num += 1
 	get_parent().goldfish_caught()
 	get_parent().gf_caught += 1
@@ -938,6 +970,7 @@ func goldfish_picked() -> void:
 func trash_picked() -> void:
 	get_parent().trash_add()
 	get_parent().trash += 1
+	MainCharacter.total_trash += 1
 	
 func skullfish_picked() -> void:
 	var weight = randf() * 20
@@ -975,6 +1008,14 @@ func skullfish_picked() -> void:
 			total = skullfish_base * weight * 0.5
 	print("Skullfish Caught")
 	print(total)
+	if weight > MainCharacter.heaviest:
+		MainCharacter.heaviest = weight
+	if weight < MainCharacter.lightest:
+		MainCharacter.lightest = weight
+	if total > MainCharacter.most_value:
+		MainCharacter.most_value = total
+	if total < MainCharacter.least_value:
+		MainCharacter.least_value = total
 	MainCharacter.store_num += 1
 	get_parent().skullfish_caught()
 	get_parent().sf_caught += 1
@@ -1016,6 +1057,14 @@ func bluegill_picked() -> void:
 			total = bluegill_base * weight * 0.5
 	print("Bluegill Caught")
 	print(total)
+	if weight > MainCharacter.heaviest:
+		MainCharacter.heaviest = weight
+	if weight < MainCharacter.lightest:
+		MainCharacter.lightest = weight
+	if total > MainCharacter.most_value:
+		MainCharacter.most_value = total
+	if total < MainCharacter.least_value:
+		MainCharacter.least_value = total
 	MainCharacter.store_num += 1
 	get_parent().bluegill_caught()
 	get_parent().bg_caught += 1
@@ -1057,6 +1106,14 @@ func fantasia_picked() -> void:
 			total = fantasia_base * weight * 0.5
 	print("Fantasia Caught")
 	print(total)
+	if weight > MainCharacter.heaviest:
+		MainCharacter.heaviest = weight
+	if weight < MainCharacter.lightest:
+		MainCharacter.lightest = weight
+	if total > MainCharacter.most_value:
+		MainCharacter.most_value = total
+	if total < MainCharacter.least_value:
+		MainCharacter.least_value = total
 	MainCharacter.store_num += 1
 	get_parent().fantasia_caught()
 	get_parent().fanta_caught += 1
@@ -1098,6 +1155,14 @@ func squid_picked() -> void:
 			total = squid_base * weight * 0.5
 	print("Squid Caught")
 	print(total)
+	if weight > MainCharacter.heaviest:
+		MainCharacter.heaviest = weight
+	if weight < MainCharacter.lightest:
+		MainCharacter.lightest = weight
+	if total > MainCharacter.most_value:
+		MainCharacter.most_value = total
+	if total < MainCharacter.least_value:
+		MainCharacter.least_value = total
 	MainCharacter.store_num += 1
 	get_parent().squid_caught()
 	get_parent().squids_caught += 1
@@ -1109,11 +1174,7 @@ func seastone_picked() -> void:
 	get_parent().seastone_add()
 	get_parent().seastone += 1
 	
-func inventory_value() -> void:
-	#until you can store the value for each caught fish 
-	MainCharacter.total_coins = int(total) + MainCharacter.total_coins
-	print(MainCharacter.total_coins)
-	total = 0
+
 
 
 func _on_game_over_timer_timeout() -> void:

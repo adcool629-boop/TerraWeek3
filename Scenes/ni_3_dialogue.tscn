@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://ybf4cb041iqv"]
+
+[ext_resource type="Script" uid="uid://npmmcr3w8xxe" path="res://Scripts/ni_3_dialogue.gd" id="1_tnf4q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnf4q"]
+bg_color = Color(0.86166275, 0.4824971, 0.35031402, 1)
+
+[node name="NI3Dialogue" type="CanvasLayer" unique_id=1816231362]
+script = ExtResource("1_tnf4q")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1485430221]
+offset_left = 142.0
+offset_top = 436.0
+offset_right = 1036.0
+offset_bottom = 613.0
+color = Color(0.6052743, 0.6052743, 0.6052743, 1)
+
+[node name="Text" type="Label" parent="ColorRect" unique_id=1443210963]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = 844.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+autowrap_mode = 3
+
+[node name="Next" type="Label" parent="ColorRect" unique_id=293994346]
+layout_mode = 0
+offset_left = 681.0
+offset_top = 145.0
+offset_right = 879.0
+offset_bottom = 167.33333
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Press Enter To Continue..."
+
+[node name="Yes" type="Button" parent="." unique_id=1318790679]
+offset_left = 1034.0
+offset_top = 438.0
+offset_right = 1087.0
+offset_bottom = 469.0
+text = "Yes"
+
+[node name="No" type="Button" parent="." unique_id=1942355014]
+offset_left = 1036.0
+offset_top = 471.0
+offset_right = 1089.0
+offset_bottom = 502.0
+text = "No"
+
+[node name="Panel" type="Panel" parent="." unique_id=1062885029]
+offset_left = 142.0
+offset_top = 396.0
+offset_right = 338.0
+offset_bottom = 436.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tnf4q")
+
+[node name="Label" type="Label" parent="Panel" unique_id=1118749131]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 30.0
+text = "Gatekeeper "
+
+[node name="Give" type="Button" parent="." unique_id=789566230]
+offset_left = 1038.0
+offset_top = 436.0
+offset_right = 1080.0
+offset_bottom = 467.0
+text = "Give"
+
+[node name="Cant" type="Button" parent="." unique_id=329585133]
+offset_left = 1034.0
+offset_top = 471.0
+offset_right = 1136.0
+offset_bottom = 502.0
+text = "Do not have"
+
+[connection signal="pressed" from="Yes" to="." method="_on_yes_pressed"]
+[connection signal="pressed" from="No" to="." method="_on_no_pressed"]
+[connection signal="pressed" from="Give" to="." method="_on_give_pressed"]
+[connection signal="pressed" from="Cant" to="." method="_on_cant_pressed"]
