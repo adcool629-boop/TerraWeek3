@@ -16,10 +16,13 @@ var inv_closed: bool = true
 var value: int = 0
 var luck: int = 0
 var first_time = true
+var first_time_selling = true
+var selling = false
 
 #-----------------------------------------------
 #Baits
 #-----------------------------------------------
+
 var CfL_amount: int = 0
 var CodL_amount: int = 0
 var GfL_amount: int = 0
@@ -39,21 +42,71 @@ var LLuck: int = 0
 var apples: int = 0
 var cake: int = 0
 var bread: int = 0
+
 #-----------------------------------------------
 #store fish
 #-----------------------------------------------
+
 var store_clownfish: bool = false
 var store_cod: bool = false
 var store_goldfish: bool = false
+var fish_value: int
 
 #-----------------------------------------------
 #Rods
 #-----------------------------------------------
+
 var IRod: bool = false
 var ARod: bool = false
 var GRod: bool = false
+var GRod_uses: int = 0
+var axe: bool = false
+
+#-----------------------------------------------
+#Stats
+#-----------------------------------------------
+
+var tf_caught: int = 0
+var cf_caught: int = 0
+var cods_caught: int = 0
+var gf_caught: int = 0
+var sf_caught: int = 0
+var bg_caught: int = 0
+var fanta_caught: int = 0
+var squids_caught: int = 0
+var trash: int = 0
+var seastone: int = 0
+var cast: int = 0
+var time: int = 0 
+var perfects: int = 0
+var goods: int = 0
+var mehs: int = 0
+var bads: int = 0
+var mg_played: int = 0
+var mg_won: int = 0
+var mg_lost: int = 0
+var qte_played: int = 0
+var qte_won: int = 0
+var qte_lost:int = 0
+var sc_played: int = 0
+var sc_won: int = 0
+var sc_lost: int = 0
+var apples_eaten: int = 0
+var bread_eaten: int = 0
+var cake_eaten: int = 0
+var slp_used: int = 0
+var mlp_used: int = 0
+var llp_used: int = 0
+var cfl_used: int = 0
+var codl_used: int = 0
+var gfl_used: int = 0
+var fc_used: int = 0
+var fanta_used: int = 0
+var squid_used: int = 0
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fishing_detector: RayCast2D = $FishingDetector
+
 func _process(delta: float) -> void:
 	
 	if MainCharacter.PickedUp:
@@ -78,7 +131,8 @@ func _process(delta: float) -> void:
 		value = 0
 		luck = 0
 		first_time = true
-
+		first_time_selling = false
+		selling = false
 		#-----------------------------------------------
 		#Baits
 		#-----------------------------------------------
@@ -107,7 +161,7 @@ func _process(delta: float) -> void:
 		store_clownfish = false
 		store_cod = false
 		store_goldfish = false
-
+		
 		#-----------------------------------------------
 		#Rods
 		#-----------------------------------------------
@@ -115,6 +169,7 @@ func _process(delta: float) -> void:
 		ARod = false
 		GRod = false
 		get_tree().reload_current_scene()
+		
 		
 func _physics_process(delta: float) -> void:
 	if fishing or shopping:
@@ -142,6 +197,9 @@ func process_movement() -> void:
 		$FShopDetector.target_position = direction * 32.0
 		$FShopDetector2.target_position = direction * 32.0
 		$MShopDetector.target_position = direction * 32.0
+		$SellNpcDetector.target_position = direction * 32.0
+		$NI2Detector.target_position = direction * 32.0
+		$SsNpcDetector.target_position = direction * 32.0
 	else:
 		velocity = Vector2.ZERO
 		
@@ -235,11 +293,70 @@ func _unhandled_input(event: InputEvent) -> void:
 			$FoodMarket.set_process_input(true)
 			$FoodMarket.visible = true
 			shopping = true
+	if $SellNpcDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $SellNpcDetector.is_colliding() and event.is_action_pressed("Interact"):
+			if first_time_selling:
+				first_time_selling = false
+				$FirstSellDialogue.set_process(true)
+				$FirstSellDialogue.set_process_input(true)
+				$FirstSellDialogue.visible = true
+				get_child(32).text_one()
+				shopping = true
+			elif not first_time_selling:
+				print("In Sell Menu")
+				shopping = true
+				selling = true
+				get_child(15).openinv()
+	if $NI2Detector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $NI2Detector.is_colliding() and  event.is_action_pressed("Interact"):
+			$NI2Dialogue.visible = true
+			$NI2Dialogue.set_process(true)
+			$NI2Dialogue.set_process_input(true)
+			$NI2Dialogue.text_one()
+			shopping = true
+			
+	if $SsNpcDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $SsNpcDetector.is_colliding() and event.is_action_pressed("Interact"):
+			$SSNPCDialogue.visible = true
+			$SSNPCDialogue.set_process(true)
+			$SSNPCDialogue.set_process_input(true)
+			shopping = true
+			get_child(37).text_one()
+			
+	if $AxeNPCDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $AxeNPCDetector.is_colliding() and event.is_action_pressed("Interact"):
+			$AxeNPCDialouge.visible = true 
+			$AxeNPCDialouge.set_process(true)
+			$AxeNPCDialouge.set_process_input(true)
+			$AxeNPCDialouge.text_one()
+			shopping = true
+			$AxeNPCDetector.queue_free()
+			
+	if $GateDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $GateDetector.is_colliding() and MainCharacter.wood >= 50 and event.is_action_pressed("Interact"):
+			MainCharacter.Fence1Access = true
+			MainCharacter.wood += -50
+				
+	if $InfTreeDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $InfTreeDetector.is_colliding() and event.is_action_pressed("Interact"):
+			MainCharacter.wood += 2
+			
+			
 	if inv_closed:
-		if event.is_action_pressed('OpenInventory'):
+		if event.is_action_pressed('OpenInventory') and inv_closed:
+			$InventoryTimer.start()
 			get_child(15).openinv()
 			#get_child(15).add_clownfish()
-			
+	if not inv_closed:
+		if event.is_action_pressed('OpenInventory') and not inv_closed:
+			inv_closed = true
+			get_child(15)._on_close_pressed()
 	
 #Making the fishing more organized
 func start_fishing() -> void:
@@ -249,6 +366,7 @@ func start_fishing() -> void:
 	fishing = true
 	casting = true
 	process_cast()
+	cast += 1
 	
 func cast_end() -> void:
 	$FishingSC.visible = false
@@ -295,7 +413,7 @@ func _on_error_timer_timeout() -> void:
 #Fishing Mini Games
 #-----------------------------------------------
 func wait_time() -> void:
-	var waiting = randf() * 20
+	var waiting = randf() * 3
 	if ARod:
 		waiting = waiting * 1/4
 		$WaitTimer.wait_time = waiting
@@ -309,7 +427,7 @@ func wait_time() -> void:
 	else:
 		$WaitTimer.wait_time = waiting
 		$WaitTimer.start()
-
+	time = waiting + time 
 func _on_wait_timer_timeout() -> void:
 	print("Mini-Game Start")
 	reeling = true 
@@ -320,11 +438,11 @@ func _on_wait_timer_timeout() -> void:
 func minigame_select() -> void:
 	# When more minigames are made use this to randomly select one.
 	var minigame = randf()
-	if minigame > 0.5:
+	if minigame > 1:
 		quick_time_start()
-	elif minigame < 0.5:
+	elif minigame < 1:
 		skill_check_start()
-	elif minigame == 0.5:
+	elif minigame == 1:
 		minigame_select()
 func quick_time_start() -> void:
 	if reeling:
@@ -334,6 +452,8 @@ func quick_time_start() -> void:
 		get_child(7).IRod_progress_timer()
 		get_child(7).ARod_progress_timer()
 		get_child(7).minigame_start()
+		qte_played += 1
+		mg_played += 1
 		print("quick time start")
 func quick_time_end() -> void:
 		reeling = false
@@ -348,6 +468,8 @@ func skill_check_start() -> void:
 		$MiniGame2.set_process(true)
 		$MiniGame2.set_process_input(true)
 		get_child(13).minigame_start()
+		mg_played += 1
+		sc_played += 1
 	
 func skill_check_end() -> void:
 	reeling = false
@@ -372,6 +494,7 @@ func play_reel(prefix:String, dir: Vector2) -> void:
 		animated_sprite_2d.play(prefix + 'Up')
 		
 func fish_caught() -> void:
+	tf_caught += 1
 	get_child(9).pick_fish()
 	
 
@@ -403,8 +526,9 @@ func _on_fish_hooked_timer_timeout() -> void:
 #-----------------------------------------------
 func clownfish_lure_add() -> void:
 	print(CfL_amount)
-	if CfL_amount > 0:
-		get_child(15).add_clownfish_lure()
+	if CfL_amount == 1:
+		MainCharacter.store_num += 1
+	get_child(15).add_clownfish_lure()
 func clownfish_lure_decrease() -> void:
 	get_child(15).decrease_clownfish_lure()
 func clownfish_lure_remove() -> void:
@@ -417,8 +541,9 @@ func unselect_clownfish_lure() -> void:
 	get_child(9).clownfish_lure = false
 	
 func cod_lure_add() -> void:
-	if CodL_amount > 0:
-		get_child(15).add_cod_lure()
+	if CodL_amount == 1:
+		MainCharacter.store_num += 1
+	get_child(15).add_cod_lure()
 func cod_lure_decrease() -> void:
 	get_child(15).decrease_cod_lure()
 func cod_lure_remove() -> void:
@@ -431,8 +556,9 @@ func unselect_cod_lure() -> void:
 	get_child(9).cod_lure = false
 	
 func goldfish_lure_add() -> void:
-	if GfL_amount > 0:
-		get_child(15).add_goldfish_lure()
+	if GfL_amount == 1:
+		MainCharacter.store_num += 1
+	get_child(15).add_goldfish_lure()
 func goldfish_lure_decrease() -> void:
 	get_child(15).decrease_goldfish_lure()
 func goldfish_lure_remove() -> void:
@@ -445,10 +571,12 @@ func unselect_goldfish_lure() -> void:
 	get_child(9).goldfish_lure = false
 	
 func fc_lure_add() -> void:
-	if FC_amount > 0:
-		get_child(15).add_fc_lure() 
+	if FC_amount == 1:
+		MainCharacter.store_num += 1
+	get_child(15).add_fc_lure() 
 func fc_decrease() -> void:
 	get_child(15).decrease_fc()
+	
 func fc_lure_remove() -> void:
 	if FC_amount == 0:
 		MainCharacter.store_num += -1
@@ -461,7 +589,8 @@ func unselect_fatchance() -> void:
 func trash_add() -> void:
 	trash_amount += 1
 	MainCharacter.trash += 1
-	MainCharacter.store_num += 1
+	if MainCharacter.trash > 0 and MainCharacter.trash < 2:
+		MainCharacter.store_num += 1
 	get_child(15).add_trash()
 	
 func trash_remove() -> void:
@@ -536,6 +665,8 @@ func apples_remove() -> void:
 		MainCharacter.store_num += -1
 		
 func fanta_lure_add() -> void:
+	if fanta_amount == 1:
+		MainCharacter.store_num += 1
 	get_child(15).add_fanta_lure()
 	
 func fanta_lure_remove() -> void:
@@ -554,6 +685,8 @@ func unselect_fanta_lure() -> void:
 	get_child(9).fanta_lure = false
 	
 func squid_lure_add() -> void:
+	if squid_amount == 1:
+		MainCharacter.store_num += 1
 	get_child(15).add_squid_lure()
 
 func squid_lure_remove() -> void:
@@ -603,4 +736,66 @@ func cake_decrease() -> void:
 	
 func seastone_add() -> void:
 	seastones += 1
+	if seastones > 0 and seastones < 2:
+		MainCharacter.store_num += 1
 	get_child(15).add_seastone()
+
+func seastone_decrease() -> void:
+	seastones += -1
+	get_child(15).decrease_seastone()
+	if seastones <= 0:
+		get_child(15).remove_seastone()
+func clownfish_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_clownfish()
+
+func cod_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_cod()
+	
+func goldfish_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_goldfish()
+	
+func skullfish_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_skullfish()
+
+func bluegill_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_bluegill()
+	
+func fantasia_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_fantasia()
+	
+func squid_caught() -> void:
+	fish_value = get_child(9).total
+	get_child(15).add_squid()
+
+
+
+
+func show_stats() -> void:
+	$Stats.visible = true
+	get_child(15)._on_close_pressed()
+func hide_stats() -> void:
+	$Stats.visible = false
+	get_child(15).openinv()
+
+func add_axe () -> void:
+	axe = true
+	$TreeDetector.enabled = true
+
+func ship_add() -> void:
+	MainCharacter.store_num += 1
+	get_child(15).add_ship()
+
+
+func _on_inventory_timer_timeout() -> void:
+	inv_closed = false
+	print("Inv Timer Done")
+	
+
+func remove_GRod() -> void:
+	$FishingShop2.grod_not_purchased = true

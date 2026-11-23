@@ -59,6 +59,7 @@ var fish_value: int
 var IRod: bool = false
 var ARod: bool = false
 var GRod: bool = false
+var GRod_uses: int = 0
 var axe: bool = false
 
 #-----------------------------------------------
@@ -90,6 +91,19 @@ var qte_lost:int = 0
 var sc_played: int = 0
 var sc_won: int = 0
 var sc_lost: int = 0
+var apples_eaten: int = 0
+var bread_eaten: int = 0
+var cake_eaten: int = 0
+var slp_used: int = 0
+var mlp_used: int = 0
+var llp_used: int = 0
+var cfl_used: int = 0
+var codl_used: int = 0
+var gfl_used: int = 0
+var fc_used: int = 0
+var fanta_used: int = 0
+var squid_used: int = 0
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var fishing_detector: RayCast2D = $FishingDetector
 
@@ -186,6 +200,10 @@ func process_movement() -> void:
 		$SellNpcDetector.target_position = direction * 32.0
 		$NI2Detector.target_position = direction * 32.0
 		$SsNpcDetector.target_position = direction * 32.0
+		$AxeNPCDetector.target_position = direction * 32.0
+		$InfTreeDetector.target_position = direction * 32.0
+		$GateDetector.target_position = direction * 32.0
+		$ChestDetector.target_position = direction * 32.0
 	else:
 		velocity = Vector2.ZERO
 		
@@ -320,7 +338,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			$AxeNPCDialouge.set_process_input(true)
 			$AxeNPCDialouge.text_one()
 			shopping = true
-			$AxeNPCDetector.queue_free()
 			
 	if $GateDetector.is_colliding():
 		$ShopHelp.text = ('Press F to Interact')
@@ -332,8 +349,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		$ShopHelp.text = ('Press F to Interact')
 		if $InfTreeDetector.is_colliding() and event.is_action_pressed("Interact"):
 			MainCharacter.wood += 2
-			
-			
+	if $ChestDetector.is_colliding():
+		$ShopHelp.text = ('Press F to Interact')
+		if $ChestDetector.is_colliding() and event.is_action_pressed("Interact"):
+			MainCharacter.openchest = true
+		else:
+			MainCharacter.openchest = false
 	if inv_closed:
 		if event.is_action_pressed('OpenInventory') and inv_closed:
 			$InventoryTimer.start()
@@ -773,8 +794,11 @@ func hide_stats() -> void:
 
 func add_axe () -> void:
 	axe = true
-	$TreeDetector.enabled = true
+	$InfTreeDetector.enabled = true
 
 func ship_add() -> void:
 	MainCharacter.store_num += 1
 	get_child(15).add_ship()
+
+func remove_GRod() -> void:
+	$FishingShop2.grod_not_purchased = true

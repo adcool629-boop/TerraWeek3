@@ -146,7 +146,7 @@ offset_top = 44.34783
 offset_right = 89.5652
 offset_bottom = 98.014496
 theme_override_font_sizes/font_size = 8
-text = "No one knows what this rod may surface or what secrets lie within it
+text = "No one knows what this rod may surface or what secrets lie within it (limited to 3 uses)
 Maybe you'll win big or maybe you'll lose it all
 *Purchase at your own risk"
 autowrap_mode = 3

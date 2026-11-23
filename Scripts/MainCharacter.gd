@@ -5,6 +5,7 @@ var character_selected: bool = false
 var fishables: bool = false
 var moveables: bool = true
 var total_coins: int = 1000000
+
 var trash: int = 0
 var wood: int = 0
 var store_num: int = 0
@@ -18,6 +19,14 @@ var PickedUp: bool = false
 var AddHunger: bool = false
 var game_over: bool = false
 var seastone_given: bool = false
+var openchest: bool = false
+#--------------STATS----------
+var coins: int = 0
+var total_trash: int = 0
+var total_wood: int = 0
+
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

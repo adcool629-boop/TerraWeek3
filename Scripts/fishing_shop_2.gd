@@ -47,7 +47,9 @@ func _on_squid_lure_button_pressed() -> void:
 	
 	if MainCharacter.total_coins >= 10000:
 		MainCharacter.total_coins = MainCharacter.total_coins - 20000
-		if get_parent().squid_amount == 0:
+		if get_parent().squid_amount == 0 and MainCharacter.store_num == 28:
+			return
+		elif get_parent().squid_amount == 0:
 			MainCharacter.store_num += 1
 		$Purchase.playing = true
 		get_parent().squid_amount += 1
@@ -67,6 +69,7 @@ func _on_g_rod_button_pressed() -> void:
 		if MainCharacter.total_coins >= 40000:
 			MainCharacter.total_coins += -40000
 			get_parent().GRod = true
+			get_parent().GRod_uses += 3
 			get_parent().ARod = false
 			get_parent().IRod = false
 			grod_not_purchased = false

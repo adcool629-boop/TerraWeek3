@@ -113,6 +113,8 @@ func _ready() -> void:
 	$Node/SquidLure.visible = false
 	$Node/Bread.visible = false
 	$Node/Cake.visible = false
+	$Node/Ship.visible = false
+	$Axe.visible = false
 	$UseBackground.position.x = -400
 	
 func openinv() -> void:
@@ -173,6 +175,8 @@ func openinv() -> void:
 	if has_squid:
 		print("Checking a Squid")
 		show_squid()
+	if has_ship:
+		show_ship()
 	print(store_fish)
 	if get_parent().axe:
 		$Axe.visible = true
@@ -206,30 +210,54 @@ func add_ship() -> void:
 		ShipPX = (MainCharacter.store_num) * 125 + 75
 		store_fish[ship_name].position.y = 100
 		ShipPY = 100
-		print("adding clownfish to row 1")
+		print("adding Ship to row 1")
 	elif MainCharacter.store_num > 7 and MainCharacter.store_num < 15:
 		store_fish[ship_name].position.x = (MainCharacter.store_num) * 125 - 800
 		ShipPX = (MainCharacter.store_num) * 125 - 800
 		store_fish[ship_name].position.y = 250
 		ShipPY = 250
-		print("adding clownfish to row 2")
+		print("adding Ship to row 2")
 	elif MainCharacter.store_num > 14 and MainCharacter.store_num < 22:
 		store_fish[ship_name].position.x = (MainCharacter.store_num) * 125 - 1675
 		ShipPX = (MainCharacter.store_num) * 125 - 1675
 		store_fish[ship_name].position.y = 385
 		ShipPY = 385
-		print("adding clownfish to row 3")
+		print("adding Ship to row 3")
 	elif MainCharacter.store_num > 21 and MainCharacter.store_num < 29:
 		store_fish[ship_name].position.x = (MainCharacter.store_num) * 125 - 2500
 		ShipPX = (MainCharacter.store_num) * 125 - 2550
 		store_fish[ship_name].position.y = 530
 		ShipPY = 530
-		print("adding clownfish to row 4")
+		print("adding Ship to row 4")
 	store_fish[ShipX] = ShipPX
 	store_fish[ShipY] = ShipPY
 	print(store_fish[ship_name])
 	print(store_fish[ShipX])
 	print(store_fish[ShipY])
+	
+func show_ship() -> void:
+	var ship_show_num: int  = 1
+	var ship_show: String
+	
+	for i in range(28):
+		ship_show = "Ship" +str(ship_show_num)
+		if store_fish.has(ship_show) and is_instance_valid(store_fish[ship_show]):
+			print("Ship Found")
+			store_fish[ship_show].visible = true
+		ship_show_num += 1
+	ship_show_num = 1
+
+func hide_ship() -> void:
+	var ship_show_num: int  = 1
+	var ship_show: String
+	
+	for i in range(28):
+		ship_show = "Ship" +str(ship_show_num)
+		if store_fish.has(ship_show) and is_instance_valid(store_fish[ship_show]):
+			print("Ship Found")
+			store_fish[ship_show].visible = true
+		ship_show_num += 1
+	ship_show_num = 1
 	
 func add_clownfish() -> void:
 	var add_fish = $Node/Clownfish.duplicate()
@@ -9735,6 +9763,8 @@ func _on_close_pressed() -> void:
 	if has_squid:
 		print("Checking a Squid")
 		hide_squid()
+	if has_ship:
+		hide_ship()
 	if get_parent().selling:
 		get_parent().selling = false
 		get_parent().shopping = false
@@ -9836,6 +9866,7 @@ func _on_use_pressed() -> void:
 	$UseBackground.set_process_input(false)
 	$UseBackground.position.x = -400
 	if UseLargeLuck:
+		get_parent().llp_used += 1
 		get_parent().luck += 20
 		LLuck_amount += -1
 		get_parent().LLuck += -1
@@ -9845,6 +9876,7 @@ func _on_use_pressed() -> void:
 		print("Luck is " + str(get_parent().luck))
 		$Node/LLuck/Label.text = str(LLuck_amount)
 	if UseMediumLuck:
+		get_parent().mlp_used += 1
 		get_parent().luck += 6
 		MLuck_amount += -1
 		get_parent().MLuck += -1
@@ -9854,6 +9886,7 @@ func _on_use_pressed() -> void:
 		print("Luck is " + str(get_parent().luck))
 		$Node/MLuck/Label.text = str(MLuck_amount)
 	if UseSmallLuck:
+		get_parent().slp_used += 1
 		get_parent().luck += 2
 		SLuck_amount += -1
 		get_parent().SLuck += -1
@@ -9863,6 +9896,7 @@ func _on_use_pressed() -> void:
 		print("Luck is " + str(get_parent().luck))
 		$Node/SLuck/Label.text = str(SLuck_amount)
 	if EatApple:
+		get_parent().apples_eaten += 1
 		get_parent().apple_ate()
 		get_parent().apples_decrease()
 		if get_parent().apples <= 0:
@@ -9870,6 +9904,7 @@ func _on_use_pressed() -> void:
 		EatApple = false
 		$Node/Apple/Label.text = str(apple_amount)
 	if eatbread:
+		get_parent().bread_eaten += 1
 		get_parent().bread_ate()
 		get_parent().bread_decrease()
 		if get_parent().bread <= 0:
@@ -9877,6 +9912,7 @@ func _on_use_pressed() -> void:
 		eatbread = false
 		$Node/Bread/Label.text = str(bread_amount)
 	if eatcake:
+		get_parent().cake_eaten += 1
 		get_parent().cake_ate()
 		get_parent().cake_decrease()
 		if get_parent().cake <= 0:
@@ -9968,6 +10004,7 @@ func _on_stats_button_pressed() -> void:
 func on_sell_clownfish_pressed(specific_cf: String, value: int, CfX: int, CfY: int) -> void:
 	if get_parent().selling and store_fish.has(specific_cf) and is_instance_valid(store_fish[specific_cf]):
 		MainCharacter.total_coins += value
+		MainCharacter.coins += value
 		fish_move_back(specific_cf, CfX, CfY)
 		store_fish[specific_cf].queue_free()
 		store_fish.erase(specific_cf)
@@ -9980,6 +10017,7 @@ func on_sell_clownfish_pressed(specific_cf: String, value: int, CfX: int, CfY: i
 func _on_sell_cf_l_pressed() -> void:
 	if get_parent().selling and ClownfishLure_amount > 0:
 		MainCharacter.total_coins += 100
+		MainCharacter.coins += 100
 		get_parent().CfL_amount += -1
 		get_parent().clownfish_lure_decrease()
 		if get_parent().CfL_amount == 0:
@@ -9990,6 +10028,7 @@ func _on_sell_cf_l_pressed() -> void:
 func _on_sell_cod_l_pressed() -> void:
 	if get_parent().selling and CodLure_amount > 0:
 		MainCharacter.total_coins += 150
+		MainCharacter.coins += 150
 		get_parent().CodL_amount += -1
 		get_parent().cod_lure_decrease()
 		if get_parent().CodL_amount == 0:
@@ -9999,6 +10038,7 @@ func _on_sell_cod_l_pressed() -> void:
 func _on_sell_gf_l_pressed() -> void:
 	if get_parent().selling and GoldfishLure_amount > 0:
 		MainCharacter.total_coins += 75
+		MainCharacter.coins += 75
 		get_parent().GfL_amount += -1
 		get_parent().goldfish_lure_decrease()
 		if get_parent().GfL_amount == 0:
@@ -10008,6 +10048,7 @@ func _on_sell_gf_l_pressed() -> void:
 func _on_sell_fc_pressed() -> void:
 	if get_parent().selling and FatChanceLure_amount > 0:
 		MainCharacter.total_coins += 250
+		MainCharacter.coins += 250
 		get_parent().FC_amount += -1
 		get_parent().fc_decrease()
 		if get_parent().FC_amount == 0:
@@ -10017,6 +10058,8 @@ func _on_sell_fc_pressed() -> void:
 func _on_sell_fanta_l_pressed() -> void:
 	if get_parent().selling and fantalure_amount > 0:
 		MainCharacter.total_coins += 5000
+		MainCharacter.coins += 5000
+		
 		get_parent().fanta_decrease()
 		if get_parent().fanta_amount == 0:
 			get_parent().fanta_lure_remove()
@@ -10025,6 +10068,7 @@ func _on_sell_fanta_l_pressed() -> void:
 func _on_sell_squid_l_pressed() -> void:
 	if get_parent().selling and squidlure_amount > 0:
 		MainCharacter.total_coins += 10000
+		MainCharacter.coins += 10000
 		get_parent().squid_decrease()
 		if get_parent().fanta_amount == 0:
 			get_parent().fanta_lure_remove()
@@ -10033,6 +10077,7 @@ func _on_sell_squid_l_pressed() -> void:
 func _on_sell_trash_pressed() -> void:
 	if get_parent().selling and TrashBag_amount > 0:
 		MainCharacter.total_coins += 1
+		MainCharacter.coins += 1
 		get_parent().trash_amount += -1
 		TrashBag_amount += -1
 		MainCharacter.trash += -1
@@ -10043,6 +10088,7 @@ func _on_sell_trash_pressed() -> void:
 func _on_sell_s_luck_pressed() -> void:
 	if get_parent().selling and SLuck_amount > 0:
 		MainCharacter.total_coins += 5
+		MainCharacter.coins += 5
 		SLuck_amount += -1
 		get_parent().SLuck += -1
 		if get_parent().SLuck <= 0:
@@ -10052,6 +10098,7 @@ func _on_sell_s_luck_pressed() -> void:
 func _on_sell_m_luck_pressed() -> void:
 	if get_parent().selling and MLuck_amount > 0:
 		MainCharacter.total_coins += 10
+		MainCharacter.coins += 10
 		MLuck_amount += -1
 		get_parent().MLuck += -1
 		if get_parent().MLuck <= 0:
@@ -10061,6 +10108,7 @@ func _on_sell_m_luck_pressed() -> void:
 func _on_sell_l_luck_pressed() -> void:
 	if get_parent().selling and LLuck_amount > 0:
 		MainCharacter.total_coins += 20
+		MainCharacter.coins += 20
 		LLuck_amount += -1
 		get_parent().LLuck += -1
 		if get_parent().LLuck <= 0:
@@ -10070,6 +10118,7 @@ func _on_sell_l_luck_pressed() -> void:
 func _on_sell_apple_pressed() -> void:
 	if get_parent().selling and apple_amount > 0:
 		MainCharacter.total_coins += 1000
+		MainCharacter.coins += 1000
 		get_parent().apples_decrease()
 		if get_parent().apples <= 0:
 			get_parent().apples_remove()
@@ -10078,6 +10127,7 @@ func _on_sell_apple_pressed() -> void:
 func _on_sell_bread_pressed() -> void:
 	if get_parent().selling and bread_amount > 0:
 		MainCharacter.total_coins += 2000
+		MainCharacter.coins += 2000
 		get_parent().bread_decrease()
 		if get_parent().bread <= 0:
 			get_parent().bread_remove()
@@ -10086,6 +10136,7 @@ func _on_sell_bread_pressed() -> void:
 func _on_sell_cake_pressed() -> void:
 	if get_parent().selling and cake_amount > 0:
 		MainCharacter.total_coins += 5000
+		MainCharacter.coins += 5000
 		get_parent().cake_decrease()
 		if get_parent().cake <= 0:
 			get_parent().cake_remove()
@@ -10095,6 +10146,7 @@ func _on_sell_cake_pressed() -> void:
 func _on_seastone_button_pressed() -> void:
 	if get_parent().selling and seastone_amount > 0:
 		MainCharacter.total_coins += 100000
+		MainCharacter.coins += 100000
 		get_parent().seastone_decrease()
 		
 		

@@ -34,10 +34,17 @@ func _process(delta: float) -> void:
 func pick_fish() -> void:
 	var pick = snappedf(randf(),0.01)
 	print(pick)
+	if MainCharacter.store_num == 28:
+		$Label.text = "NO MORE INVENTORY SPACE"
+		return
 	#-----------------------------------------------------------------------------------------------------------------------------
 	#------------------------------------GAMBLERS ROD-------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------------------------------------
-	if get_parent().GRod:
+	elif get_parent().GRod:
+		get_parent().GRod_uses += -1
+		if get_parent().GRod_uses == 0:
+			get_parent().GRod = false
+			get_parent().remove_GRod()
 		if  pick < 0.1:
 			print("100,000 Coins")
 			$Label.text = "You got 100,000 Coins!"
@@ -75,14 +82,18 @@ func pick_fish() -> void:
 			get_parent().fanta_lure_add()
 			get_parent().squid_amount += 1
 			get_parent().squid_lure_add()
-			
-		
+		if pick > 0.95 and get_parent().luck < 1:
+			print("You lose")
+			$Label.text = 'YOU LOSE!'
+			$RareCatch.text = "a little bit of LUCK would've prevented this"
+			$GameOverTimer.start()
 	#-----------------------------------------------------------------------------------------------------------------------------
 	#------------------------------------Intermediate Rod-------------------------------------------------------------------------
 	#-----------------------------------------------------------------------------------------------------------------------------
 	elif get_parent().IRod:
 		if get_parent().CfL_amount > 0 and clownfish_lure:
 			get_parent().CfL_amount += -1
+			get_parent().cfl_used += 1
 			get_parent().clownfish_lure_decrease()
 			if get_parent().CfL_amount == 0:
 				get_parent().clownfish_lure_remove()
@@ -139,6 +150,7 @@ func pick_fish() -> void:
 			
 		elif get_parent().CodL_amount > 0 and cod_lure:
 			get_parent().CodL_amount += -1
+			get_parent().codl_used += 1
 			get_parent().cod_lure_decrease()
 			if get_parent().CodL_amount == 0:
 				get_parent().cod_lure_remove()
@@ -195,6 +207,7 @@ func pick_fish() -> void:
 			
 		elif get_parent().GfL_amount > 0 and goldfish_lure:
 			get_parent().GfL_amount += -1
+			get_parent().gfl_used += 1
 			get_parent().goldfish_lure_decrease()
 			if get_parent().GfL_amount == 0:
 				get_parent().goldfish_lure_remove()
@@ -304,6 +317,7 @@ func pick_fish() -> void:
 	elif get_parent().ARod:
 		if get_parent().CfL_amount > 0 and clownfish_lure:
 			get_parent().CfL_amount += -1
+			get_parent().cfl_used += 1
 			get_parent().clownfish_lure_decrease()
 			if get_parent().CfL_amount == 0:
 				get_parent().clownfish_lure_remove()
@@ -356,6 +370,7 @@ func pick_fish() -> void:
 			
 		elif get_parent().CodL_amount > 0 and cod_lure:
 			get_parent().CodL_amount += -1
+			get_parent().codl_used += 1
 			get_parent().cod_lure_decrease()
 			if get_parent().CodL_amount == 0:
 				get_parent().cod_lure_remove()
@@ -408,6 +423,7 @@ func pick_fish() -> void:
 			
 		elif get_parent().GfL_amount > 0 and goldfish_lure:
 			get_parent().GfL_amount += -1
+			get_parent().gfl_used += 1
 			get_parent().goldfish_lure_decrease()
 			if get_parent().GfL_amount == 0:
 				get_parent().goldfish_lure_remove()
@@ -458,6 +474,7 @@ func pick_fish() -> void:
 				
 				
 		elif get_parent().fanta_amount > 0 and fanta_lure:
+			get_parent().fanta_used += 1
 			get_parent().fanta_decrease()
 			if get_parent().fanta_amount == 0:
 				get_parent().fanta_lure_remove()
@@ -503,6 +520,7 @@ func pick_fish() -> void:
 			
 			
 		elif get_parent().squid_amount > 0 and squid_lure:
+			get_parent().squid_used += 1
 			get_parent().squid_decrease()
 			if get_parent().fanta_amount == 0:
 				get_parent().fanta_lure_remove()
@@ -595,6 +613,7 @@ func pick_fish() -> void:
 	#-----------------------------------------------------------------------------------------------------------------------------
 	elif get_parent().CfL_amount > 0 and clownfish_lure and not get_parent().IRod and not get_parent().ARod:
 		get_parent().CfL_amount += -1
+		get_parent().cfl_used += 1
 		get_parent().clownfish_lure_decrease()
 		if get_parent().CfL_amount == 0:
 			get_parent().clownfish_lure_remove()
@@ -641,6 +660,7 @@ func pick_fish() -> void:
 			
 	elif get_parent().CodL_amount > 0 and cod_lure and not get_parent().IRod and not get_parent().ARod:
 		get_parent().CodL_amount += -1
+		get_parent().cod_used += 1 
 		get_parent().cod_lure_decrease()
 		if get_parent().CodL_amount == 0:
 			get_parent().cod_lure_remove()
@@ -687,6 +707,7 @@ func pick_fish() -> void:
 			
 	elif get_parent().GfL_amount > 0 and goldfish_lure and not get_parent().IRod and not get_parent().ARod:
 		get_parent().GfL_amount += -1
+		get_parent().gfl_used += 1
 		get_parent().goldfish_lure_decrease()
 		if get_parent().GfL_amount == 0:
 			get_parent().goldfish_lure_remove()
@@ -794,6 +815,7 @@ func clownfish_picked() -> void:
 	if get_parent().ARod:
 		weight = weight * 4
 	if get_parent().FC_amount > 0 and FatChance:
+		get_parent().fc_used += 1
 		get_parent().FC_amount += -1
 		get_parent().fc_decrease()
 		print("Fat Chance Used")
@@ -836,6 +858,7 @@ func cod_picked() -> void:
 		weight = weight * 4
 	if get_parent().FC_amount > 0 and FatChance:
 		get_parent().FC_amount += -1
+		get_parent().fc_used += 1
 		get_parent().fc_decrease()
 		print("Fat Chance Used")
 		if get_parent().FC_amount == 0:
@@ -877,6 +900,7 @@ func goldfish_picked() -> void:
 		weight = weight * 4
 	if get_parent().FC_amount > 0 and FatChance:
 		get_parent().FC_amount += -1
+		get_parent().fc_used += 1
 		get_parent().fc_decrease()
 		print("Fat Chance Used")
 		if get_parent().FC_amount == 0:
@@ -923,6 +947,7 @@ func skullfish_picked() -> void:
 		weight = weight * 4
 	if get_parent().FC_amount > 0 and FatChance:
 		get_parent().FC_amount += -1
+		get_parent().fc_used += 1
 		get_parent().fc_decrease()
 		print("Fat Chance Used")
 		if get_parent().FC_amount == 0:
@@ -963,6 +988,7 @@ func bluegill_picked() -> void:
 		weight = weight * 4
 	if get_parent().FC_amount > 0 and FatChance:
 		get_parent().FC_amount += -1
+		get_parent().fc_used += 1
 		get_parent().fc_decrease()
 		print("Fat Chance Used")
 		if get_parent().FC_amount == 0:
@@ -1003,6 +1029,7 @@ func fantasia_picked() -> void:
 		weight = weight * 4
 	if get_parent().FC_amount > 0 and FatChance:
 		get_parent().FC_amount += -1
+		get_parent().fc_used += 1
 		get_parent().fc_decrease()
 		print("Fat Chance Used")
 		if get_parent().FC_amount == 0:
@@ -1043,6 +1070,7 @@ func squid_picked() -> void:
 		weight = weight * 4
 	if get_parent().FC_amount > 0 and FatChance:
 		get_parent().FC_amount += -1
+		get_parent().fc_used += 1
 		get_parent().fc_decrease()
 		print("Fat Chance Used")
 		if get_parent().FC_amount == 0:
@@ -1086,3 +1114,7 @@ func inventory_value() -> void:
 	MainCharacter.total_coins = int(total) + MainCharacter.total_coins
 	print(MainCharacter.total_coins)
 	total = 0
+
+
+func _on_game_over_timer_timeout() -> void:
+	MainCharacter.game_over = true

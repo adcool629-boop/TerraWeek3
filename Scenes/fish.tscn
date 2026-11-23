@@ -47,7 +47,7 @@ offset_left = -64.0
 offset_top = -84.0
 offset_right = 65.0
 offset_bottom = -61.0
-theme_override_colors/font_color = Color(1, 0.78039217, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 
 [node name="SeaStone" parent="." unique_id=756222465 instance=ExtResource("10_clm4a")]
 
@@ -55,4 +55,8 @@ theme_override_colors/font_color = Color(1, 0.78039217, 0, 1)
 
 [node name="Ghost" parent="." unique_id=550958966 instance=ExtResource("12_fll1f")]
 
+[node name="GameOverTimer" type="Timer" parent="." unique_id=313490304]
+one_shot = true
+
 [connection signal="timeout" from="ShowFish" to="." method="_on_show_fish_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]

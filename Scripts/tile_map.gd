@@ -43,3 +43,7 @@ func _on_gate_remove_body_entered(body: Node2D) -> void:
 	if MainCharacter.Fence1Access:
 		$RemoveableFence1.enabled = false
 		MainCharacter.Fence1Access = false
+
+
+func _on_tree_trap_1_body_entered(body: Node2D) -> void:
+	$TreeBlockage1.enabled = true

@@ -229,14 +229,6 @@ offset_right = 130.0
 offset_bottom = 273.0
 text = "Skill Checks Lost: "
 
-[node name="CloseButton" type="Button" parent="." unique_id=27081166]
-offset_left = 447.0
-offset_top = 558.0
-offset_right = 539.0
-offset_bottom = 601.0
-theme_override_font_sizes/font_size = 24
-text = "Close"
-
 [node name="Wealth" type="Label" parent="." unique_id=58293615]
 offset_left = 350.0
 offset_top = 325.0
@@ -268,5 +260,117 @@ offset_top = 100.0
 offset_right = 140.0
 offset_bottom = 125.0
 text = "Wood Harvested: "
+
+[node name="Consumables" type="Label" parent="." unique_id=1199047250]
+offset_left = 650.0
+offset_top = 25.0
+offset_right = 859.0
+offset_bottom = 70.0
+theme_override_font_sizes/font_size = 32
+text = "Consumables"
+
+[node name="CfL" type="Label" parent="Consumables" unique_id=340970658]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 50.0
+offset_right = 174.0
+offset_bottom = 75.0
+text = "Clownfish Lures Used:"
+
+[node name="CodL" type="Label" parent="Consumables" unique_id=1995826239]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 75.0
+offset_right = 128.0
+offset_bottom = 100.0
+text = "Cod Lures Used:"
+
+[node name="GfL" type="Label" parent="Consumables" unique_id=523543790]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 100.0
+offset_right = 162.0
+offset_bottom = 125.0
+text = "Goldfish Lures Used:"
+
+[node name="FC" type="Label" parent="Consumables" unique_id=1166744058]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 125.0
+offset_right = 140.0
+offset_bottom = 148.0
+text = "Fat Chances Used:"
+
+[node name="FantasiaL" type="Label" parent="Consumables" unique_id=1962485797]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 150.0
+offset_right = 163.0
+offset_bottom = 175.0
+text = "Fantasia Lures Used:"
+
+[node name="SquidL" type="Label" parent="Consumables" unique_id=527356387]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 175.0
+offset_right = 141.0
+offset_bottom = 200.0
+text = "Squid Lures Used:"
+
+[node name="SLP" type="Label" parent="Consumables" unique_id=1916339026]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 200.0
+offset_right = 200.0
+offset_bottom = 225.0
+text = "Small Luck Potions Used: "
+
+[node name="MLP" type="Label" parent="Consumables" unique_id=322772724]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 225.0
+offset_right = 221.0
+offset_bottom = 250.0
+text = "Medium Luck Potions Used: "
+
+[node name="LLP" type="Label" parent="Consumables" unique_id=2041626809]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 250.0
+offset_right = 196.0
+offset_bottom = 275.0
+text = "Large Luck Potions Used:"
+
+[node name="Apples" type="Label" parent="Consumables" unique_id=497925441]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 275.0
+offset_right = 104.0
+offset_bottom = 300.0
+text = "Apples Eaten: "
+
+[node name="Bread" type="Label" parent="Consumables" unique_id=1604101931]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 300.0
+offset_right = 106.0
+offset_bottom = 325.0
+text = "Bread Eaten: "
+
+[node name="Cake" type="Label" parent="Consumables" unique_id=1218906552]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 325.0
+offset_right = 98.0
+offset_bottom = 350.0
+text = "Cake Eaten: "
+
+[node name="CloseButton" type="Button" parent="." unique_id=27081166]
+offset_left = 447.0
+offset_top = 558.0
+offset_right = 539.0
+offset_bottom = 601.0
+theme_override_font_sizes/font_size = 24
+text = "Close"
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

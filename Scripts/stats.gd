@@ -31,13 +31,32 @@ func _process(delta: float) -> void:
 	$Reeling/MGPlayed.text = "Mini-Games Played: " +str(get_parent().mg_played)
 	$Reeling/MGWon.text = "Mini-Games Won: " +str(get_parent().mg_won)
 	$Reeling/MGLost.text = "Mini-Games Lost: " +str(get_parent().mg_lost)
-	$Reeling/QTPlayed.text = "Quick Time Events Played:" +str(get_parent().qte_played)
+	$Reeling/QTPlayed.text = "Quick Time Events Played: " +str(get_parent().qte_played)
 	$Reeling/QTWon.text = "Quick Time Events Won: " +str(get_parent().qte_won)
 	$Reeling/QTLost.text = "Quick Time Events Lost: " +str(get_parent().qte_lost)
 	$Reeling/SCPlayed.text = "Skill Checks Played: " +str(get_parent().sc_played)
 	$Reeling/SCWon.text = "Skill Checks Won: " +str(get_parent().sc_won)
 	$Reeling/SCLost.text =  "Skill Checks Lost: " +str(get_parent().sc_lost)
-
-
+	
+	#-----------------WEALTH---------------------
+	$Wealth/Coins.text = "Coins Amassed:  " +str(MainCharacter.coins)
+	$Wealth/Trash.text = "Trash Collected: " +str(MainCharacter.total_trash)
+	$Wealth/Wood.text = "Wood Harvested: " +str(MainCharacter.total_wood)
+	
+	#-----------------CONSUMABLES---------------------
+	$Consumables/CfL.text = "Clownfish Lures Used: " +str(get_parent().cfl_used)
+	$Consumables/CodL.text = "Cod Lures Used: " +str(get_parent().codl_used)
+	$Consumables/GfL.text = "Goldfish Lures Used: " +str(get_parent().gfl_used)
+	$Consumables/FC.text = "Fat Chances Used: " +str(get_parent().fc_used)
+	$Consumables/FantasiaL.text = "Fantasia Lures Used: " +str(get_parent().fanta_used)
+	$Consumables/SquidL.text = "Squid Lures Used: " +str(get_parent().squid_used)
+	$Consumables/SLP.text = "Small Luck Potions Used: " +str(get_parent().slp_used)
+	$Consumables/MLP.text = "Medium Luck Potions Used: " +str(get_parent().mlp_used)
+	$Consumables/LLP.text = "Large Luck Potions Used: " +str(get_parent().llp_used)
+	$Consumables/Apples.text = "Apples Eaten: " +str(get_parent().apples_eaten)
+	$Consumables/Bread.text = "Bread Eaten: " +str(get_parent().bread_eaten)
+	$Consumables/Cake.text = "Cake Eaten: " +str(get_parent().cake_eaten)
+	
+	
 func _on_close_button_pressed() -> void:
 	get_parent().hide_stats()

@@ -20,6 +20,11 @@
 [ext_resource type="AudioStream" uid="uid://cawhnih0hpf7e" path="res://assets/Audios/fishingreel.mp3" id="18_67c0k"]
 [ext_resource type="PackedScene" uid="uid://devei6bkln6pw" path="res://Scenes/hunger.tscn" id="19_qcjux"]
 [ext_resource type="PackedScene" uid="uid://diyd7yql28048" path="res://Scenes/food_market.tscn" id="20_gfui2"]
+[ext_resource type="PackedScene" uid="uid://dn3kxk2yhfsxr" path="res://Scenes/first_sell_dialogue.tscn" id="20_qcjux"]
+[ext_resource type="PackedScene" uid="uid://itqupbxfatdb" path="res://Scenes/ni_2_dialogue.tscn" id="21_gfui2"]
+[ext_resource type="PackedScene" uid="uid://1id6clvb1vt0" path="res://Scenes/stats.tscn" id="22_5u0so"]
+[ext_resource type="PackedScene" uid="uid://7ekpxwtpv0rf" path="res://Scenes/ssnpc.tscn" id="23_k8i55"]
+[ext_resource type="PackedScene" uid="uid://qetve4b86sg" path="res://Scenes/axe_npc_dialouge.tscn" id="24_ccunm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vasm8"]
 atlas = ExtResource("1_hlkhd")
@@ -705,8 +710,59 @@ parameters/looping = true
 target_position = Vector2(0, 25)
 collision_mask = 128
 
+[node name="SellNpcDetector" type="RayCast2D" parent="." unique_id=289108242]
+target_position = Vector2(0, 25)
+collision_mask = 512
+collide_with_areas = true
+
+[node name="NI2Detector" type="RayCast2D" parent="." unique_id=1569269047]
+target_position = Vector2(0, 25)
+collision_mask = 256
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="FirstSellDialogue" parent="." unique_id=1134928323 instance=ExtResource("20_qcjux")]
+
+[node name="InventoryTimer" type="Timer" parent="." unique_id=2038528576]
+wait_time = 0.1
+one_shot = true
+
+[node name="NI2Dialogue" parent="." unique_id=986857014 instance=ExtResource("21_gfui2")]
+
+[node name="Stats" parent="." unique_id=882359280 instance=ExtResource("22_5u0so")]
+
+[node name="SsNpcDetector" type="RayCast2D" parent="." unique_id=491130286]
+target_position = Vector2(0, 25)
+collision_mask = 1024
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="SSNPCDialogue" parent="." unique_id=1457655332 instance=ExtResource("23_k8i55")]
+
+[node name="AxeNPCDetector" type="RayCast2D" parent="." unique_id=440043712]
+target_position = Vector2(0, 25)
+collision_mask = 512
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="InfTreeDetector" type="RayCast2D" parent="." unique_id=281867418]
+enabled = false
+target_position = Vector2(0, 25)
+collision_mask = 8192
+hit_from_inside = true
+collide_with_areas = true
+
+[node name="AxeNPCDialouge" parent="." unique_id=470062176 instance=ExtResource("24_ccunm")]
+
+[node name="GateDetector" type="RayCast2D" parent="." unique_id=1233234193]
+target_position = Vector2(0, 25)
+collision_mask = 2048
+hit_from_inside = true
+collide_with_areas = true
+
 [node name="FoodMarket" parent="." unique_id=847863486 instance=ExtResource("20_gfui2")]
 
 [connection signal="timeout" from="ErrorTimer" to="." method="_on_error_timer_timeout"]
 [connection signal="timeout" from="WaitTimer" to="." method="_on_wait_timer_timeout"]
 [connection signal="timeout" from="FishHooked/FishHookedTimer" to="." method="_on_fish_hooked_timer_timeout"]
+[connection signal="timeout" from="InventoryTimer" to="." method="_on_inventory_timer_timeout"]
