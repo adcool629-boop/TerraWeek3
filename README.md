@@ -26,6 +26,7 @@ Catch more fish
 Upgrade your rod
 More will be added later
 Enjoy the Game!
+Since this is to let people test the game everyone has plenty of coins and trash bag rates are multiplied by 100
 ----------------------
 Inputs and controls
 ----------------------
@@ -36,10 +37,13 @@ D - moves the player right
 M1(Character-Select) allows you to select the character
 M1(Near Water) allows the player to fish, make sure to hold the mouse button and try to get that white pin on the green zone
 M1(In shop) Click on the prices to buy and item and the close button to return
+M1(When Selling) Instantantly sells whatever items clicked as long as it can be sold
+M1(On a bait or lure) equips that bait. To unequip either equip a different one of click the unequip button at the bottom of the inventoy.
 Tab - Tab to Open inventory
-F - Interact with the shopkeep
+F - Interact with the people and items
 Q - Input for the Quick Time Event Mini-Game
 E - Input for the Quick Time Event Mini-Game
+Enter- To Continue in dialogue unless you must chose a button.
 
 -----------
 Hints
@@ -52,12 +56,22 @@ Weight Values Clownfish(0.1 - 2.5), Cod(0.1-5), Goldfish(0.1-3)
 Bait descriptions are in the shop 
 On the QuickTime event, you must get 10 in a row to catch a fish
 Left-click on baits bought in the inventory to use them
-this is the only working shop as of now
-![alt text](<Screenshot 2026-11-02 000653.png>)
+The NPC at the very bottom (circled in blue) of the 2nd island sells the item you need to enter the 3rd island (npc furthest left)
+Red Circles are the shops
+Blue Circles are npc's you can talk to
+Black Circles are where you can sell fish.
 
-This is basically all the visuals the game has to offer more will be added with time
-![alt text](<Screenshot 2026-11-02 000942.png>)
+When you reach the second island you will obtain a hunger bar it is best to speak to both shop keepers as one of them provides more detail on the situation.
+Island1
+![alt text](<Screenshot 2026-11-22 223921.png>)
 
+Island 2
+![alt text](<Screenshot 2026-11-22 224142.png>)
+
+Island 3 (Incomplete)
+I believe you should explor island 3 on your own as it is more of exploration rather than direct gameplay.
+Orange Marks places of intrest.
+![alt text](<Screenshot 2026-11-22 224625.png>)
 ----------------------
 Fishing Scenes
 ----------------------
