@@ -9,7 +9,7 @@ The Basics
 This is my submission for Terra Week 5
 It is a top-down 2d Game
 This is just a basic fishing game in which the player must cast their rod and complete the skill checks to catch fish
-You can then use the coins, which for now are automatically converted from the fish's sell value, to buy bait.
+You can then use the coins to buy bait, fishing rods, and other stuff. You also may need to them to get to the next Island
 
 -----------
 The Why
