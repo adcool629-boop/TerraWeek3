@@ -6,7 +6,7 @@ Demo: https://adcool629-boop.github.io/TerraWeek5/
 The Basics
 -----------
 
-This is my submission for Terra Week 2
+This is my submission for Terra Week 5
 It is a top-down 2d Game
 This is just a basic fishing game in which the player must cast their rod and complete the skill checks to catch fish
 You can then use the coins, which for now are automatically converted from the fish's sell value, to buy bait.
@@ -52,7 +52,7 @@ Tab - Tab to Open inventory
 F - Interact with the people and items
 Q - Input for the Quick Time Event Mini-Game
 E - Input for the Quick Time Event Mini-Game
-Enter- To Continue in dialogue unless you must chose a button.
+Enter- To Continue in dialogue unless you must click a button.
 
 -----------
 Hints
@@ -60,8 +60,8 @@ Hints
 You MUST be near water to fish.
 The Sell Value is determined by base value * weight * score on the casting skill check
 Score on the Casting Skill Check - Perfect(2x), Good(1.5x) Meh(1x) Bad(0.5x)
-Base Value - Clownfish(25), Cod(25), Goldfish(15)
-Weight Values Clownfish(0.1 - 2.5), Cod(0.1-5), Goldfish(0.1-3)
+Base Value - Clownfish(25), Cod(25), Goldfish(15), Skullfish(50), Bluegill(100), Fantasia(500), Squid(1000)
+Weight Values Clownfish(0.1 - 2.5), Cod(0.1-5), Goldfish(0.1-3), Skullfish (0.1- 20), Bluegill(0.1-20), Fantasia(0.1-20), Squid(0.1-20)
 Bait descriptions are in the shop 
 On the QuickTime event, you must get 10 in a row to catch a fish
 Left-click on baits bought in the inventory to use them
