@@ -1,5 +1,7 @@
-# TerraWeek2
+# TerraWeek5 
 !!!! MULTI-WEEK PROJECT
+Demo: https://adcool629-boop.github.io/TerraWeek3/
+
 -----------
 The Basics
 -----------
@@ -16,6 +18,12 @@ I made this game because I've always loved fishing, especially in games. For as 
 whether it was back in, like, 2020 fishing in Hypixel Skyblock or even now playing the latest fishing games. 
 Because of that, I thought to myself, "Why not make your own fishing game? It'll make the experience 10x more fun and rewarding".
 So while I am sharing this game with others, it was mainly for my own satisfaction.
+
+-----------
+The How
+-----------
+This game was made in godot using multiple scenes and scripts with almost every scene and script connecting to either the tilemap scene or the player scenes (there are 6 player scenes) which are used after the player selects the character they want to use (theres no difference between the 6 characters besides appearance). The tilemap layer and player scenes are then connected to each other in the main scene with a few other scenes connected to the main scene like the character select scene, or even scenes not connect to the main scene like the global scene which I use for global variables and such. While I have used godot before I still don't have much experience so I really just reused a lot of knowledge I already had and tried out a few new things, such as dictionaries, so while there may be easier ways to tackle the problems I faced, at this time I do not know of those solutions so I just had to stick to what I did know even if it was harder and more time consuming.
+
 
 -----------
 The Objective
@@ -81,3 +89,8 @@ Fishing Scenes
 ![alt text](<Screenshot 2026-10-31 213433.png>)
 
 ![alt text](<Screenshot 2026-10-31 033332.png>)
+
+----------------------
+Quick Notice
+----------------------
+The game is still in the demo stage and I'm sure there are still plenty of bugs I need to discover and fix and even small errors I may have forgotten to fix or remove, so please bear with the game even if it is a little buggy.
